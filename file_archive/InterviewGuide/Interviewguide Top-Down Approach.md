@@ -1,10 +1,11 @@
-# Interviewguide Top-Down Approach
+ <!--- Ulysses mit Github2 format exportieren -->
+## Interviewguide Top-Down Approach
 
-## Begrüßung und Vorstellung
+### Begrüßung und Vorstellung
 Im Rahmen meiner Bachelorarbeit möchte ich herausfinden, für wen und warum **öffentlich zugängliche verteilte super-highspeed Internetzugänge** relevant sind. Mich interessieren alle Ideen und Anregungen, die Ihnen/dir zu dem Thema einfallen.
 Das Interview wird zwischen 20 und 30 Minuten dauern.
 
-## Infos zum Breitbandbrunnen
+### Infos zum Breitbandbrunnen
 Den Breitbandbrunnen ist eine Internetzugang im öffentlichen Raum, den vor allem folgende 3 Eigenschaften auszeichnen.
 1. öffentlich zugänglich
 2. verteilt 
@@ -14,24 +15,29 @@ Die grundsätzliche Idee ist es an verschiedenen Orten in Wien (z.B. Unistandort
 
 Ist das Konzept des Breitbandbrunnens klar? Evtl. Den Partner wiederholen lassen und Verständnisschwierigkeiten aus dem Weg zu schaffen.
 
-## Einverständniserklärung
+### Einverständniserklärung
 
-## Den Interviewpartner seine jetzige Lebenssituation erklären lassen
+### Den Interviewpartner seine jetzige Lebenssituation erklären lassen
 - Beruf
 - Vorwissen Informatik
 - wofür wird der Computer/Handy/Tablet benutzt
 - Wofür wird das Internet genutzt
 
-## Vorteile des Breitbandbrunnens aufzeigen 
+### Vorteile des Breitbandbrunnens aufzeigen 
 nur ganz Waage umreißen - soll einen Denkanstoß darstellen
 - Ideensammlung
 
-## Ideen der Person durchgehen
+### Ideen der Person durchgehen
+- Was würden Sie mit so einem Highspeed Internetzugang machen?
+- Wie würde es für Sie einen nutzen ergeben?
+- Was müssen die Access Points bieten?
 Alle Ideen behandeln und die einzelnen Aspekte genau abklären.
 Wenn am Anfang viel Ideen kommen evtl. notieren und strukturiert abarbeiten.
 
-## Weitere Ideen, die während des Interviews gekommen sind?
+### Weitere Ideen, die während des Interviews gekommen sind?
 
-## Webapp
+### Webapp
 - kurz erklären, was der Sinn und zweck ist
 - rudimentäre Designentwürfe anbieten und Input dazu abfragen
+
+### Bedanken und Verabschieden
