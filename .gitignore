@@ -1,4 +1,8 @@
 28 lines (22 sloc)  402 Bytes
+
+# for local use
+
+local_dontSync/
   
 # General
 .DS_Store

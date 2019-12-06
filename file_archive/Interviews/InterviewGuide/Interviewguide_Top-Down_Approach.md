@@ -11,8 +11,34 @@ Den Breitbandbrunnen ist ein Internetzugang im öffentlichen Raum, den vor allem
 1. öffentlich zugänglich
 2. verteilt 
 3. Super-highspeed (teilw. Schnellere Zugriffen als auf die interne Festplatte)
-4. 
+
 Die grundsätzliche Idee ist an verschiedenen Orten in Wien (z.B. Unistandorte, Bibliotheken, öffentliche Gebäude) solche Access Points zur Verfügung zu stellen. 
+
+#### BBW in Zahlen:
+- Aktuelle Bandbreiten (letztes Jahr) österreichweit
+	- Mobil 30 MBits/s
+	- Festnetz - WLAN 20MBit/s
+- Aktuelle Bandbreiten (letztes Jahr) Wien
+	- Mobil 37 MBits/s (53.100 Messungen)
+	- Festnetz - WLAN 27 MBit/s (91.483 Messungen)
+Hinter weltweitem Schnitt
+![Quelle: (https://www.speedtest.net/global-index)][image-1]
+
+#### Vergleich BBW: [^1]
+- 10 GBit/s -\> 10.000 Mbit/s
+- 270 mal so schnell wie mobile Downloadrate in Ö
+- Download 1GB
+	- normaler Zugang, ca. 216 Sekunden -\> ca. 3min 36s
+	- BBW,  0,8 sec 
+- Download 1h 4K 60fps Video (24.000 MB -\> 24GB)
+	- normaler Zugang, ca. 1h 26min
+	- BBW 19,2 sec
+- Download einer gesamten Festplatte (1TB)
+	- 2 Tage, 12 Stunden, 3 Minuten und 36 Sekunden
+	- 13 Minuten und 20 Sekunden
+
+Ist das Konzept des Breitbandbrunnens klar? Evtl. Den Partner wiederholen lassen und Verständnisschwierigkeiten aus dem Weg zu schaffen.
+
 
 Ist das Konzept des Breitbandbrunnens klar? Evtl. Den Partner wiederholen lassen und Verständnisschwierigkeiten aus dem Weg zu schaffen.
 
@@ -43,3 +69,9 @@ Wenn am Anfang viel Ideen kommen evtl. notieren und strukturiert abarbeiten.
 - rudimentäre Designentwürfe anbieten und Input dazu abfragen
 
 ### Bedanken und Verabschieden
+
+[^1]:	Berechnungen durchgeführt mit [https://www.heise.de/netze/tools/bandbreitenrechner/][1]
+
+[1]:	https://www.heise.de/netze/tools/bandbreitenrechner/
+
+[image-1]:	file:///.file/id=6571367.21461366
