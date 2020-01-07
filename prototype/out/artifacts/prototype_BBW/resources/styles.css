@@ -1,3 +1,27 @@
 .navbar-logo{
     height: 100px;
 }
+
+.aboutList{
+    align-content: center;
+    font-size: larger;
+}
+
+.aboutList ul{
+    list-style-type: circle;
+}
+
+.aboutList ul li {
+
+}
+
+
+
+.masterhead{
+     height: 50vh;
+     min-height: 500px;
+     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/headerImg.jpg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+ }
