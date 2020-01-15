@@ -1,0 +1,316 @@
+
+{
+  "hints": {
+    "visited_nodes.average": "156.0",
+    "visited_nodes.sum": "156"
+  },
+  "info": {
+    "copyrights": [
+      "GraphHopper",
+      "OpenStreetMap contributors"
+    ],
+    "took": 19
+  },
+  "paths": [
+    {
+      "distance": 4820.921,
+      "weight": 871.138026,
+      "time": 1101973,
+      "transfers": 0,
+      "points_encoded": true,
+      "bbox": [
+        16.329577,
+        48.190736,
+        16.356349,
+        48.220484
+      ],
+      "points": "agceHentbB}ATEAc@DICQ@AAGU}KjBIAOM[oAMQ{A{@YM_@LuEjCGa@CAa@Ng@qCuEdCw@cE?GDIs@_EKMmBeKuE_WOOQmA?OM?qIzBa@AeCVUVyFVcJd@@x@QTeCFmN_IoBcAaBQyDU_AA}B@q@GeA[gEkBqJkEgGkCWG~@{G_DiAJ}@AuBNeA?[EY{BuHRmFAyBeAcJg@sAu@wA{@kAmAsBUm@KWWs@{@cDgEgPl@iA\\_@",
+      "instructions": [
+        {
+          "distance": 52.411,
+          "heading": 351.22,
+          "sign": 0,
+          "interval": [
+            0,
+            1
+          ],
+          "text": "Dem Straßenverlauf von Reindorfgasse folgen",
+          "time": 13477,
+          "street_name": "Reindorfgasse"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 50.721,
+          "sign": 1,
+          "annotation_importance": 0,
+          "interval": [
+            1,
+            7
+          ],
+          "text": "Leicht rechts abbiegen",
+          "time": 10143,
+          "street_name": ""
+        },
+        {
+          "distance": 516.922,
+          "sign": -2,
+          "interval": [
+            7,
+            16
+          ],
+          "text": "Links abbiegen auf Grenzgasse",
+          "time": 144334,
+          "street_name": "Grenzgasse"
+        },
+        {
+          "distance": 34.899,
+          "sign": 2,
+          "interval": [
+            16,
+            19
+          ],
+          "text": "Rechts abbiegen",
+          "time": 6979,
+          "street_name": ""
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 59.053,
+          "sign": 2,
+          "annotation_importance": 0,
+          "interval": [
+            19,
+            20
+          ],
+          "text": "Rechts abbiegen",
+          "time": 11810,
+          "street_name": ""
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 128.79,
+          "sign": -2,
+          "annotation_importance": 0,
+          "interval": [
+            20,
+            21
+          ],
+          "text": "Links abbiegen auf Benedikt-Schellinger-Gasse",
+          "time": 38637,
+          "street_name": "Benedikt-Schellinger-Gasse"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 87.355,
+          "sign": 2,
+          "annotation_importance": 0,
+          "interval": [
+            21,
+            24
+          ],
+          "text": "Rechts abbiegen auf Goldschlagstraße",
+          "time": 17470,
+          "street_name": "Goldschlagstraße"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 242.061,
+          "sign": -2,
+          "annotation_importance": 0,
+          "interval": [
+            24,
+            27
+          ],
+          "text": "Links abbiegen auf Reithofferplatz",
+          "time": 48411,
+          "street_name": "Reithofferplatz"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 308.524,
+          "sign": 0,
+          "annotation_importance": 0,
+          "interval": [
+            27,
+            28
+          ],
+          "text": "Dem Straßenverlauf von Goldschlagstraße folgen",
+          "time": 61703,
+          "street_name": "Goldschlagstraße"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 48.137,
+          "sign": -1,
+          "annotation_importance": 0,
+          "interval": [
+            28,
+            31
+          ],
+          "text": "Leicht links abbiegen auf Emil-Maurer-Platz",
+          "time": 11201,
+          "street_name": "Emil-Maurer-Platz"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 647.909,
+          "sign": -2,
+          "annotation_importance": 0,
+          "interval": [
+            31,
+            38
+          ],
+          "text": "Links abbiegen",
+          "time": 136722,
+          "street_name": ""
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 669.408,
+          "sign": -2,
+          "annotation_importance": 0,
+          "interval": [
+            38,
+            46
+          ],
+          "text": "Links abbiegen",
+          "time": 144947,
+          "street_name": ""
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 644.754,
+          "sign": -7,
+          "annotation_importance": 0,
+          "interval": [
+            46,
+            53
+          ],
+          "text": "Links halten",
+          "time": 130287,
+          "street_name": ""
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 110.873,
+          "sign": 2,
+          "annotation_importance": 0,
+          "interval": [
+            53,
+            54
+          ],
+          "text": "Rechts abbiegen auf Hernalser Gürtel",
+          "time": 23808,
+          "street_name": "Hernalser Gürtel"
+        },
+        {
+          "distance": 93.085,
+          "sign": -2,
+          "interval": [
+            54,
+            55
+          ],
+          "text": "Links abbiegen auf Zimmermanngasse",
+          "time": 18616,
+          "street_name": "Zimmermanngasse"
+        },
+        {
+          "distance": 249.653,
+          "sign": 2,
+          "interval": [
+            55,
+            61
+          ],
+          "text": "Rechts abbiegen auf Zimmermannplatz",
+          "time": 54819,
+          "street_name": "Zimmermannplatz"
+        },
+        {
+          "distance": 397.766,
+          "sign": 1,
+          "interval": [
+            61,
+            67
+          ],
+          "text": "Leicht rechts abbiegen auf Lazarettgasse",
+          "time": 79550,
+          "street_name": "Lazarettgasse"
+        },
+        {
+          "distance": 82.67,
+          "sign": 0,
+          "interval": [
+            67,
+            69
+          ],
+          "text": "Dem Straßenverlauf von Lazarettgasse folgen",
+          "time": 16533,
+          "street_name": "Lazarettgasse"
+        },
+        {
+          "distance": 11.059,
+          "sign": 7,
+          "interval": [
+            69,
+            70
+          ],
+          "text": "Rechts halten auf Sensengasse",
+          "time": 2211,
+          "street_name": "Sensengasse"
+        },
+        {
+          "distance": 92.661,
+          "sign": 0,
+          "interval": [
+            70,
+            72
+          ],
+          "text": "Dem Straßenverlauf von Sensengasse folgen",
+          "time": 19118,
+          "street_name": "Sensengasse"
+        },
+        {
+          "distance": 233.556,
+          "sign": 0,
+          "interval": [
+            72,
+            73
+          ],
+          "text": "Dem Straßenverlauf von Sensengasse folgen",
+          "time": 78015,
+          "street_name": "Sensengasse"
+        },
+        {
+          "annotation_text": "Radweg",
+          "distance": 58.654,
+          "sign": 2,
+          "annotation_importance": 0,
+          "interval": [
+            73,
+            75
+          ],
+          "text": "Rechts abbiegen auf Währinger Straße",
+          "time": 33182,
+          "street_name": "Währinger Straße"
+        },
+        {
+          "distance": 0.0,
+          "sign": 4,
+          "last_heading": 144.2134770344282,
+          "interval": [
+            75,
+            75
+          ],
+          "text": "Ziel erreicht",
+          "time": 0,
+          "street_name": ""
+        }
+      ],
+      "legs": [],
+      "details": {},
+      "ascend": 49.05342102050781,
+      "descend": 65.54092407226562,
+      "snapped_waypoints": "agceHentbBqvD}bD"
+    }
+  ]
+}

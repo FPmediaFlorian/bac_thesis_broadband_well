@@ -11,3 +11,7 @@ local_dontSync/
 # Ulysses
 .Ulysses-Group.plist
 file_archive/InterviewGuide/.Ulysses-Group.plist
+
+#API Keys
+prototype/src/main/java/constant/APIKeys.java
+/prototype/src/main/java/constant/APIKeys.java
