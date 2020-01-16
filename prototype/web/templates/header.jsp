@@ -21,6 +21,7 @@
 
     <!-- <link rel="stylesheet" href="resources/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="resources/styles.css">
+    <script src="resources/functions.js"></script>
 
 
     <!-- Bootstrap JavaScript -->
@@ -39,10 +40,10 @@
     <link rel="stylesheet" href="resources/leafletRM/leaflet-routing-machine.css" />
     <script src="resources/leafletRM/leaflet-routing-machine.min.js"></script>
 
-    <!-- Include Leaflet Routing Machine Markers -->
-    <script src="resources/leafletRM/markers/js/leaflet-color-markers.js"></script>
+
 
     <!-- Include Graphhopper -->
+    <script src="resources/graphhopper/lrm-graphhopper-1.2.0.js"></script>
 
 
 

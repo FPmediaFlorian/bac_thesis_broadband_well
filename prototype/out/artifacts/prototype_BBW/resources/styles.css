@@ -84,9 +84,9 @@ a:hover{
 *
 */
 
-#map {
+#map1 {
     width: 100%;
-    height: calc(100% - 230px);
+    height: 100%;
 }
 #attribution {
     width: 100%;
@@ -99,4 +99,8 @@ a:hover{
     padding: 0px 5px;
 }
 
+.scrolling-on {
+    position: absolute;
+    overflow-y: scroll;
+}
 

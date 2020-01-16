@@ -9,10 +9,10 @@
 
 <footer>
     <div class="container pb-2">
-        <div class="row align-items-center">
+        <div class="row align-items-center ">
             <div class="col-sm-6">
                 <a href="mailt:bbw@randomurl.net">Contact us</a> | <a href="#">Privacy</a> | <a href="#">Terms of Use</a>
-            </div>
+            </div> <!--TODO Write legal documents-->
             <div class="col-sm-3">
                 &copy; <%out.print(LocalDateTime.now().getYear());%> Broadbandwell Prototype
             </div>

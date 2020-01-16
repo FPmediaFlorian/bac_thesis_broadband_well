@@ -13,5 +13,5 @@ local_dontSync/
 file_archive/InterviewGuide/.Ulysses-Group.plist
 
 #API Keys
-prototype/src/main/java/constant/APIKeys.java
-/prototype/src/main/java/constant/APIKeys.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/APIKeys.java
+prototype/src/main/java/Helper/APIKeys.java
