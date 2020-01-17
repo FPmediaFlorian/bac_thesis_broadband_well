@@ -1,4 +1,9 @@
-/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Requests/EasyRequest.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/SizeSuffix.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/servlets/EasyMapRequest.java
-/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/StaticValues.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Requests/EasyRequestClass.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/APIKeys.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/LatLng.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/DownloadCalculator.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/BBW.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/BBWList.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Requests/EasyConnectionType.java

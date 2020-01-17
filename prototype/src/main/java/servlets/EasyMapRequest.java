@@ -1,8 +1,8 @@
 package servlets;
 
 import Helper.APIKeys;
-import Requests.EasyConnectionType;
-import Requests.EasyRequest;
+import Helper.LatLng;
+import Requests.EasyRequestClass;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,33 +15,21 @@ public class EasyMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        String connectionType = request.getParameter("easyInternetAccess");
         boolean upload = false;
-
         //Check downloadmode
         if(request.getParameter("updownloadRadio").equals("upload")) upload=true;
-
         //Create request instance
-        EasyRequest easyRequest = new EasyRequest(request.getParameter("easyCurrentLocation"),Double.valueOf(request.getParameter("easyDownloadSize")),upload);
+        EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("easyCurrentLocation"),request.getParameter("easyInternetAccess"),Double.valueOf(request.getParameter("easyDownloadSize")),upload);
 
-        //Set connectiontype
-        if(connectionType.equals("Mobile Connection")){
-            easyRequest.setConnectionType(EasyConnectionType.MOBILE);
-        }else {
-            if(connectionType.equals("Fixed Broadband Connection")){
-                easyRequest.setConnectionType(EasyConnectionType.FIXEDBB);
-            }else {
-                easyRequest.setConnectionType(EasyConnectionType.UNKNOWN);
-            }
-        }
+        //LOGGER.info("Request: " + easyRequest.toString());
+        LOGGER.info("Geocoding:"+easyRequest.getGeolocation().getLatLng());
+        LOGGER.info("Downloadtime: "+easyRequest.getDownloadtime());
+        LOGGER.info("Downloadtime BBW: "+easyRequest.getBBWdownloadtime());
 
-        LOGGER.info("Request: " + easyRequest.toString());
 
-        LOGGER.info("Geocoding:"+easyRequest.getGeolocation().getPoint());
-
-        request.setAttribute("latlngStart",easyRequest.getGeolocation().getPoint().getLat()+","+easyRequest.getGeolocation().getPoint().getLng());
+        LatLng returnGeolocation = easyRequest.getGeolocation();
+        //Set Parameters for Webform
+        request.setAttribute("latlngStart", returnGeolocation.getLatLng());
         request.setAttribute("latlngDest","48.2200482,16.3562356");
         request.setAttribute("route",true);
         request.setAttribute("ghApiKey", APIKeys.GHAPI);

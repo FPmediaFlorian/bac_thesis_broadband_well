@@ -140,14 +140,6 @@
     //Add markers to map
     addBBWmarkersWpopups();
 
-
-
-
-
-
-
- 
-
 </script>
 
 <%-- Import Footer File --%>

@@ -34,6 +34,7 @@ function addBBWmarkersWpopups() {
         shadowSize: [41, 41]
     });
 
+    //TODO Parse dynamicly from Javacode
     var markerWS29 = L.marker([48.2200482, 16.3562356],{icon: BBWIcon}).addTo(map); //WS 29
     var markerVKM = L.marker([48.2131498, 16.3505518],{icon: BBWIcon}).addTo(map); //VKM
 
