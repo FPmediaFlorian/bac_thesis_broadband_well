@@ -15,3 +15,5 @@ file_archive/InterviewGuide/.Ulysses-Group.plist
 #API Keys
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/APIKeys.java
 prototype/src/main/java/Helper/APIKeys.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/web/keys.txt
+web/keys.txt
