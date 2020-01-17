@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+
 public class EasyMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 

@@ -72,7 +72,6 @@ public class EasyRequestClass {
         DownloadCalculator downloadCalculator = new DownloadCalculator();
         downloadCalculator.setSize(downloadSize, SizeSuffix.GB);
         double downloadTime=0;
-        //TODO in Downloadcalculator auslagern
         if(upload){
             //UPLOAD
             switch (connectionType){
