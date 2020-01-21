@@ -9,6 +9,8 @@ public class LatLng {
         this.lng = lng;
     }
 
+    public LatLng(){}
+
     public String getLatLng(){
         StringBuilder sb = new StringBuilder();
         sb.append(lat);

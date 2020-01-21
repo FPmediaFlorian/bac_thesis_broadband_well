@@ -32,6 +32,7 @@ public class DownloadCalculator {
     public double getDownloadtimeSec(){
         return size/stream;
     }
+
     public double getBBWdownloadtimeSec(){
         return size/bbwStream;
     }

@@ -30,8 +30,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
-
     <!-- Include Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
@@ -40,14 +38,18 @@
     <link rel="stylesheet" href="resources/leafletRM/leaflet-routing-machine.css" />
     <script src="resources/leafletRM/leaflet-routing-machine.min.js"></script>
 
-
-
     <!-- Include Graphhopper -->
     <script src="resources/graphhopper/lrm-graphhopper-1.2.0.js"></script>
 
+    <!-- Include Maptiler -->
+    <script src="https://cdn.maptiler.com/maptiler-geocoder/v1.1.0/maptiler-geocoder.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-geocoder/v1.1.0/maptiler-geocoder.css" rel="stylesheet" />
 
+    <!-- Include Font Awesome Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
-
+    <!-- Include Speedtest-->
+    <script async type="text/javascript" src="//app1.cloudharmony.com/rum/rum/speedtest-aws:cloudfront.js"></script>
 </head>
 
 <body>
@@ -57,7 +59,7 @@
 <!-- NAVBAR-->
 <nav class="navbar navbar-expand-lg  navbar-light bg-light shadow-sm">
     <div class="container">
-        <a href="#" class="navbar-brand">
+        <a href="index.jsp" class="navbar-brand">
             <!-- Logo Image -->
             <img src="resources/img/BBW_Logo_trans.png" alt="" class="d-inline-block align-middle mr-2 logo-small">
         </a>
@@ -70,7 +72,7 @@
                 <li class="nav-item"><a href="index.jsp#about01" class="nav-link menu-font">About <span class="sr-only">(current)</span></a></li>
                 <li class="nav-item"><a href="index.jsp#figure01" class="nav-link menu-font">BBW in figures</a></li>
                 <li class="nav-item"><a href="index.jsp#use01" class="nav-link menu-font">How to use?</a></li>
-                <li class="nav-item"><a href="map.jsp" class="nav-link menu-font">Route planer</a></li>
+                <li class="nav-item"><a href="BuildMap" class="nav-link menu-font">Route planer</a></li>
             </ul>
         </div>
     </div>

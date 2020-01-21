@@ -14,6 +14,31 @@ function createMap(){
     }).addTo(map);
 }
 
+
+function addBBWmarkersWpopupsDynamic() {
+    var greenIcon = new L.Icon({
+        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-green.png',
+        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var BBWIcon = new L.Icon({
+        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
+        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+
+
+
+}
+
 function addBBWmarkersWpopups() {
 
     var normalIcon = new L.Icon({
@@ -64,15 +89,19 @@ function toogleSpeedForm() {
     }
 }
 
-function drawRoutess(startLat, startLng, destinationLat, destinationLng, APIkey) {
+function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, BBWIcon, greenIcon, vehicle) {
     L.Routing.control({
         waypoints: [
-            L.latLng(startLat,startLng),
-            L.latLng(destinationLat,destinationLng)
+            L.latLng(startLat, startLng),
+            L.latLng(destinationLat, destinationLng)
         ],
-
-        //TODO Endmarker ändern auf BBW icon
-
-        router: L.Routing.graphHopper(APIkey)
+        createMarker: function (i, wp, nWps) {
+            if (i === nWps - 1) {
+                return L.marker(wp.latLng, {icon: BBWIcon});
+            } else {
+                return L.marker(wp.latLng, {icon: greenIcon});
+            }
+        },
+        router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: vehicle}})
     }).addTo(map);
 }

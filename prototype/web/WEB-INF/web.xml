@@ -14,4 +14,14 @@
         <url-pattern>/EasyMapRequest</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BuildMap</servlet-name>
+        <servlet-class>servlets.BuildMap</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuildMap</servlet-name>
+        <url-pattern>/BuildMap</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

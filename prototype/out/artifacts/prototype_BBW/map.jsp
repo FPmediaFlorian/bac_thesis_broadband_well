@@ -5,62 +5,84 @@
   Time: 09:03
   To change this template use File | Settings | File Templates.
 --%>
-
-<html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%-- Import Header File --%>
 <%@ include file="templates/header.jsp" %>
 <section>
     <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
         <div class="row h-100">
-            <div class="col-lg-3 overflow-auto">
-
+            <div class="col-md-4 overflow-auto"> <!--TODO Make col min 4 on smaller screens-->
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#easy">Easy Mode</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#expert">Expert Mode</a></li>
                 </ul>
-
-                <div class="tab-content "> <!--TODO ValidationControl Clientside-->
+                <div class="tab-content ">
                     <div id="easy" class="container tab-pane active"><br>
-                        <form action="EasyMapRequest" method="post">
+                        <% if (request.getAttribute("error") != null) {%>
+                        <div class="row pt-2">
+                            <div class="alert alert-danger text-center" role="alert">
+                                <p>${error}</p>
+                            </div>
+                        </div>
+                        <%}%>
+                        <form action="EasyMapRequest" method="post" accept-charset="ISO-8859-1">
                             <div class="form-group">
                                 <label for="easyCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="easyCurrentLocation" name="easyCurrentLocation" placeholder="Current Location">
+                                <input type="text" class="form-control" id="easyCurrentLocation" name="easyCurrentLocation" placeholder="Current Location" required>
                                 <small id="easyCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
                             </div>
+
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="transport-option" value="car" id="transport-car" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="transport-option" value="walk" id="transport-walk" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                </label>
+                            </div>
+
                             <div class="form-group">
                                 <label for="easyInternetAccess">Select your internet connection</label>
                                 <select class="form-control" id="easyInternetAccess" name="easyInternetAccess">
-                                    <option>Mobile Connection</option>
-                                    <option>Fixed Broadband Connection</option>
-                                    <option>i dont know</option>
+                                    <option data-icon="as fa-broadcast-tower">Mobile Connection</option>
+                                    <option><i class="fas fa-network-wired"></i> Fixed Broadband Connection</option>
+                                    <option><i class="fas fa-question"></i> i dont know</option>
                                 </select>
                                 <small id="easyInternetAccessHelp" class="form-text text-muted">Please select your internet connection!</small>
                             </div>
+
                             <div class="form-group">
                                 <label for="easyDownloadSize">Filesize in Gigabyte</label>
-                                <input type="number" class="form-control" id="easyDownloadSize" name="easyDownloadSize" placeholder="Filesize eg. 100 GB">
+                                <input type="number" class="form-control" id="easyDownloadSize" name="easyDownloadSize" placeholder="Filesize eg. 100 GB" required><!--https://getbootstrap.com/docs/4.0/components/input-group/#buttons-with-dropdowns-->
                                 <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file to download in GB!</small>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="updownloadRadio" id="easyUploadRadio" value="upload" checked>
-                                <label class="form-check-label" for="easyUploadRadio">
-                                    Upload File
+
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                                <label class="btn btn-secondary active">
+                                    <input type="radio"  name="updownloadRadio" id="easyUploadRadio" value="upload" checkedautocomplete="off" checked> <i class="fas fa-upload"></i>Upload File
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download"> <i class="fas fa-download"></i> Download File
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download">
-                                <label class="form-check-label" for="easyDownloadRadio">
-                                    Download File
-                                </label>
-                            </div>
+
                             <!--TODO implement option to Choose vehicle-->
                             <br/>
                             <button type="submit" class="btn btn-primary">Get my results!</button>
                         </form>
                     </div>
                     <div id="expert" class="container tab-pane fade " style="height: 100%"><br>
-                        <form style="height: 100%">
+                        <% if (request.getAttribute("error") != null) {%>
+                        <div class="row pt-2">
+                            <div class="alert alert-danger text-center" role="alert">
+                                <p>${error}</p>
+                            </div>
+                        </div>
+                        <%}%>
+                        <form style="height: 100%" accept-charset="ISO-8859-1">
                             <div class="form-group">
                                 <label for="expertCurrentLocation">Current Location</label>
                                 <input type="text" class="form-control" id="expertCurrentLocation" placeholder="Current Location">
@@ -124,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-9" id="map1"></div>
+            <div class="col-md-8" id="map1"></div>
 
         </div>
     </div>
@@ -136,9 +158,37 @@
     // Create map
     createMap();
 
+    var BBWIcon = new L.Icon({
+        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
+        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
-    //Add markers to map
-    addBBWmarkersWpopups();
+    var greenIcon = new L.Icon({
+        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-green.png',
+        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    //Creates BBW Marker dynamically
+    ${createMarker}
+
+
+    //TODO if used, make API Key dynamic from Backend!
+/*    var geocoder = new maptiler.Geocoder({
+        input: 'easyCurrentLocation',
+        key: ${maptiperAPIKEY},
+        language: 'de',
+        proximity: [48.20809,16.37156]
+    });
+    */
+
 
 </script>
 

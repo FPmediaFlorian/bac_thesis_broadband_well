@@ -9,7 +9,7 @@
 <%@ include file="templates/header.jsp" %>
 
 <!--HEADER-->
-<header class="masterhead">
+<header class="masterhead overflow-hidden">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12 text-center">

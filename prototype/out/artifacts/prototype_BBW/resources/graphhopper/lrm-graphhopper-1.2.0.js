@@ -285,7 +285,7 @@
                         context = context || callback;
                         if (response.info.errors && response.info.errors.length) {
                             callback.call(context, {
-                                // TODO: include all errors
+                               
                                 status: response.info.errors[0].details,
                                 message: response.info.errors[0].message
                             });

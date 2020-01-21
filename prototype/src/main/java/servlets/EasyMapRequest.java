@@ -1,15 +1,16 @@
 package servlets;
 
+import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
 import Helper.LatLng;
 import Requests.EasyRequestClass;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 
 public class EasyMapRequest extends HttpServlet {
@@ -19,22 +20,41 @@ public class EasyMapRequest extends HttpServlet {
         boolean upload = false;
         //Check downloadmode
         if(request.getParameter("updownloadRadio").equals("upload")) upload=true;
+
+
+
+
         //Create request instance
-        EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("easyCurrentLocation"),request.getParameter("easyInternetAccess"),Double.valueOf(request.getParameter("easyDownloadSize")),upload);
+        EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("easyCurrentLocation"),request.getParameter("easyInternetAccess"),Double.valueOf(request.getParameter("easyDownloadSize")),upload, request.getParameter("transport-option"));
 
         //LOGGER.info("Request: " + easyRequest.toString());
-        LOGGER.info("Geocoding:"+easyRequest.getGeolocation().getLatLng());
-        LOGGER.info("Downloadtime: "+easyRequest.getDownloadtime());
-        LOGGER.info("Downloadtime BBW: "+easyRequest.getBBWdownloadtime());
+
+        String geocode = null;
+        try {
+            geocode = easyRequest.getGeolocation().getLatLng();
+        } catch (InvalidAddressExeption ex){
+            request.setAttribute("error","Your Address could not be found! Please try another spelling or address!");
+            request.getRequestDispatcher("BuildMap").forward(request, response);
+            return;
+        }
+
+        LOGGER.debug("Geocoding:"+geocode);
+        LOGGER.debug("Downloadtime: "+easyRequest.getDownloadtime());
+        LOGGER.debug("Downloadtime BBW: "+easyRequest.getBBWdownloadtime());
 
 
-        LatLng returnGeolocation = easyRequest.getGeolocation();
+
         //Set Parameters for Webform
-        request.setAttribute("latlngStart", returnGeolocation.getLatLng());
-        request.setAttribute("latlngDest","48.2200482,16.3562356");
-        request.setAttribute("route",true);
+        request.setAttribute("latlngStart", geocode);
+        request.setAttribute("latlngDest",easyRequest.getNearestBBW().getLatLng().getLatLng());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
+        request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
+        request.setAttribute("desicionResponse",easyRequest.getDesicionResponse());
+
 
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("BuildMap").forward(request, response);
     }
 }

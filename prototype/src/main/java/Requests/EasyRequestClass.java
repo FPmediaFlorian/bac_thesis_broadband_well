@@ -1,5 +1,6 @@
 package Requests;
 
+import Exceptions.InvalidAddressExeption;
 import Helper.*;
 import com.byteowls.jopencage.JOpenCageGeocoder;
 import com.byteowls.jopencage.model.JOpenCageForwardRequest;
@@ -7,73 +8,62 @@ import com.byteowls.jopencage.model.JOpenCageLatLng;
 import com.byteowls.jopencage.model.JOpenCageResponse;
 import com.graphhopper.directions.api.client.ApiClient;
 import com.graphhopper.directions.api.client.ApiException;
-import com.graphhopper.directions.api.client.api.GeocodingApi;
 import com.graphhopper.directions.api.client.api.RoutingApi;
 import com.graphhopper.directions.api.client.model.*;
 
+import org.apache.log4j.Logger;
+import servlets.EasyMapRequest;
+
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.zip.DataFormatException;
+import java.util.concurrent.TimeUnit;
 
 public class EasyRequestClass {
+    private static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
+
+
     private String currentLocation;
     private EasyConnectionType connectionType;
     private double downloadSize;
     private boolean upload;
     private LatLng geocode;
-    //Default static down and upstreams
-    //Values are from netztest.at statistics
-    //Period: 6 Months, visitet 17.1.2020
-    private static double downMobile = 42 ;
-    private static double downFixed = 27 ; //Value is not satisfying
-    private static double downUnknown = 5;
-    private static double upMobile = 13 ;
-    private static double upFixed = 10 ; //Value is not satisfying
-    private static double upUnknown = 5;
-
-
-
-    public EasyRequestClass(String currentLocation, String connectionType, double downloadSize, boolean upload) {
-        this.currentLocation = currentLocation;
-        this.downloadSize = downloadSize;
-        this.upload = upload;
-        geocode = null;
-        //Set connectiontype
-        setConnectionType(connectionType);
-    }
+    private BBW nearestBBW;
+    private VehicleProfileId transportForm;
 
 
     /**
      * Loaded Constructor
-     * @param currentLocation Adress on the current location
+     * @param currentLocation Address on the current location
+     * @param connectionType type of connection
      * @param downloadSize Filesize to be downloaded in GB
      * @param upload Up- or Download, true -> upload, false -> download
      */
-    public EasyRequestClass(String currentLocation, double downloadSize, boolean upload) {
+    public EasyRequestClass(String currentLocation, String connectionType, double downloadSize, boolean upload, String transportOption) {
         this.currentLocation = currentLocation;
         this.downloadSize = downloadSize;
         this.upload = upload;
         geocode = null;
+        nearestBBW=null;
+        //Set connectiontype
+        setConnectionType(connectionType);
+        //Set Transportform
+        setTransportFormFromString(transportOption);
     }
 
-    /**
-     * Empty Contructor
-     */
-    public EasyRequestClass() {
-        geocode=null;
-    }
 
     /**
      * Calculates the Donloadtime of the request with given Down- & Upstreams
      * @return Returns downloadtime in seconds
-     * @throws DataFormatException
      */
     public double getDownloadtime() {
         DownloadCalculator downloadCalculator = new DownloadCalculator();
         downloadCalculator.setSize(downloadSize, SizeSuffix.GB);
-        double downloadTime=0;
         if(upload){
             //UPLOAD
+            double upMobile = 13;
+            //Value is not satisfying
+            double upFixed = 10;
+            double upUnknown = 5;
             switch (connectionType){
                 case MOBILE:
                     downloadCalculator.setStream(upMobile);
@@ -87,6 +77,13 @@ public class EasyRequestClass {
             }
         } else {
             //DOWNLOAD
+            //Default static down and upstreams
+            //Values are from netztest.at statistics
+            //Period: 6 Months, visitet 17.1.2020
+            double downMobile = 42;
+            //Value is not satisfying
+            double downFixed = 27;
+            double downUnknown = 5;
             switch (connectionType){
                 case MOBILE:
                     downloadCalculator.setStream(downMobile);
@@ -113,101 +110,97 @@ public class EasyRequestClass {
     }
 
     /**
-     * Matches the given Address with a Geolocationcode using Graphhopper API
-     * @return Returns a GeocodingLocation object which contains lat & lng
+     * Matches the given Address with a Geocode using OpenCage API
+     * @return Returns LatLng object which contains lat & lng
      */
-    public LatLng getGeolocation(){
-
-        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder(APIKeys.OPENCAGEAPI);
-        JOpenCageForwardRequest request = new JOpenCageForwardRequest(getCurrentLocation());
-        request.setRestrictToCountryCode("at"); // restrict results to a specific country
-        //request.setBounds(48.4423, 16.8155, 47.9706, 15.8107); // restrict results to a geographic bounding box (southWestLng, southWestLat, northEastLng, northEastLat)
-
-        JOpenCageResponse response = jOpenCageGeocoder.forward(request);
-        JOpenCageLatLng firstResultLatLng = response.getFirstPosition(); // get the coordinate pair of the first result
-
-
-        /*
-        GeocodingApi geocoding = new GeocodingApi();
-        ApiClient client=new ApiClient().setDebugging(false);
-        client.setApiKey(APIKeys.GHAPI);
-        geocoding.setApiClient(client);
-        GeocodingLocation loc0;
-        try {
-            GeocodingResponse geocodingResponse = geocoding.getGeocode(getCurrentLocation(), "de", 5, false, false, "48.20809,16.37156", null);
-            loc0 = geocodingResponse.getHits().get(0);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-
+    public LatLng getGeolocation() throws InvalidAddressExeption {
+        geocode = GeoCalculator.getGeocode(getCurrentLocation());
         if(geocode==null){
-            geocode = new LatLng(loc0.getPoint().getLat(),loc0.getPoint().getLng());
-        }else {
-            geocode.setLat(loc0.getPoint().getLat());
-            geocode.setLng(loc0.getPoint().getLng());
+            throw new InvalidAddressExeption("The Addres could not be Found!");
+            //TODO Error, invalid Address
         }
-
-
-         */
-
-        if(geocode==null){
-            geocode = new LatLng(firstResultLatLng.getLat(),firstResultLatLng.getLng());
-        }else {
-            geocode.setLat(firstResultLatLng.getLat());
-            geocode.setLng(firstResultLatLng.getLng());
-        }
-
-
         return geocode;
     }
 
-
-    public double getTraveltime() throws ApiException {
-        BBW nearestBBW = null;
-        double traveltime = 0;
-
-        RoutingApi routing = new RoutingApi();
-        ApiClient client = new ApiClient().setDebugging(true);
-        client.setApiKey(APIKeys.GHAPI);
-        if(geocode==null) geocode = getGeolocation();
-        for(BBW bbw : BBWList.BBW_LIST){
-            //Calculate time with Graphhopper APIkey
-            RouteResponse rsp = routing.getRoute(Arrays.asList(geocode.getLat()+","+geocode.getLng(), bbw.getLatLngString()),
-                    Arrays.<String>asList(), Arrays.<String>asList(),
-                    VehicleProfileId.CAR, "en", true, Arrays.<String>asList(), false,
-                    true, true, false, true, null, false,
-                    "fastest", Collections.<Integer>emptyList(), null, null, null,
-                    null, null, null, null, null,
-                    null, null);
-            if(nearestBBW==null) {
-                traveltime = rsp.getPaths().get(0).getTime();
-                nearestBBW = bbw;
-            }else {
-                if(traveltime > rsp.getPaths().get(0).getTime()){
-                    traveltime = rsp.getPaths().get(0).getTime();
-                    nearestBBW = bbw;
-                }
+    /**
+     * Calculates the Traveltime to the nearest BBW
+     * @return Return Traveltime in seconds
+     */
+    public double getTravelTime(){
+        if (geocode==null) {
+            try {
+                getGeolocation();
+            } catch (InvalidAddressExeption invalidAddressExeption) {
+                LOGGER.error(invalidAddressExeption.getMessage());
             }
-
         }
+        nearestBBW = GeoCalculator.getTravetime(geocode, transportForm);
+        return nearestBBW.getTravelTime();
+    }
 
-        return traveltime;
+    /**
+     * gets the nearest BBW
+     * @return Returns the nearest BBW
+     */
+    public BBW getNearestBBW() {
+        if(nearestBBW==null){
+            getTravelTime();
+        }
+        return nearestBBW;
+    }
+
+    /**
+     * Creates the Desicion based in various other calculations.
+     * @return return s String with HTML input to be shown an the mapResult Page
+     */
+    public String getDesicionResponse() {
+        //TODO Auslagern in eigene Klasse
+        //TODO implement desicion response
+        double downloadtimeHome;
+        double downloadtimeBBW ;
+        double totalTraveltime;
+        double totalTimeForBBW;
+
+        downloadtimeHome = getDownloadtime(); //seconds
+        downloadtimeBBW = getBBWdownloadtime(); //seconds
+        totalTraveltime = TimeUnit.MILLISECONDS.toSeconds(2*(long) nearestBBW.getTravelTime()); //seconds
+
+        totalTimeForBBW = totalTraveltime+downloadtimeBBW;
+
+        StringBuilder sb = new StringBuilder();
+        if (totalTimeForBBW<downloadtimeHome){
+            //Go to BBW
+            sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+        }else{
+            //Download @Home
+            sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+            sb.append("Negative message to come");
+        }
+        return sb.toString();
     }
 
 
     /** Getter and Setter */
+    /**
+     * Returns Current Location
+     * @return Current Location as a String
+     */
     public String getCurrentLocation() {
         return currentLocation;
     }
 
+    /**
+     * Sets the current Location
+     * @param currentLocation String with a Streetname in Vienna
+     */
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
     }
 
-    public EasyConnectionType getConnectionType() {
-        return connectionType;
-    }
-
+    /**
+     * sets the Connection Type based on String input
+     * @param connectionType connectiontype as a String, Allowed: "Mobile Connection","Fixed Broadband Connection" and "Unknown"
+     */
     public void setConnectionType(String connectionType) {
         if(connectionType.equals("Mobile Connection")){
             this.connectionType=EasyConnectionType.MOBILE;
@@ -220,20 +213,46 @@ public class EasyRequestClass {
         }
     }
 
-    public double getDownloadSize() {
-        return downloadSize;
-    }
 
+    /**
+     * Sets the downloadsize in GB
+     * @param downloadSize Downloadsize in GB
+     */
     public void setDownloadSize(double downloadSize) {
         this.downloadSize = downloadSize;
     }
 
-    public boolean isUpload() {
-        return upload;
-    }
-
+    /**
+     * Sets the upload token
+     * @param upload true -> Upload, false -> Download
+     */
     public void setUpload(boolean upload) {
         this.upload = upload;
+    }
+
+    public VehicleProfileId getTransportForm() {
+        return transportForm;
+    }
+
+    public void setTransportFormFromString(String transportOption) {
+        if(transportOption.equals("bycicle")){
+            transportForm=VehicleProfileId.BIKE;
+        }else {
+            if(transportOption.equals("car")){
+                transportForm=VehicleProfileId.CAR;
+            }else {
+                if(transportOption.equals("walk")){
+                    transportForm=VehicleProfileId.FOOT;
+                }else{
+                    transportForm= VehicleProfileId.CAR;
+                }
+
+            }
+        }
+    }
+    public void setTransportForm(VehicleProfileId transportForm) {
+
+        this.transportForm = transportForm;
     }
 
     @Override
@@ -245,4 +264,5 @@ public class EasyRequestClass {
                 ", upload=" + upload +
                 '}';
     }
+
 }
