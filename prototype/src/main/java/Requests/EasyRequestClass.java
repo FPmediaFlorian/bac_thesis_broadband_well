@@ -2,20 +2,11 @@ package Requests;
 
 import Exceptions.InvalidAddressExeption;
 import Helper.*;
-import com.byteowls.jopencage.JOpenCageGeocoder;
-import com.byteowls.jopencage.model.JOpenCageForwardRequest;
-import com.byteowls.jopencage.model.JOpenCageLatLng;
-import com.byteowls.jopencage.model.JOpenCageResponse;
-import com.graphhopper.directions.api.client.ApiClient;
-import com.graphhopper.directions.api.client.ApiException;
-import com.graphhopper.directions.api.client.api.RoutingApi;
 import com.graphhopper.directions.api.client.model.*;
 
 import org.apache.log4j.Logger;
 import servlets.EasyMapRequest;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class EasyRequestClass {
@@ -23,29 +14,27 @@ public class EasyRequestClass {
 
 
     private String currentLocation;
-    private EasyConnectionType connectionType;
     private double downloadSize;
-    private boolean upload;
     private LatLng geocode;
     private BBW nearestBBW;
     private VehicleProfileId transportForm;
+    private double streamSpeed;
+    private SizeSuffix sizeSuffix;
 
 
     /**
      * Loaded Constructor
      * @param currentLocation Address on the current location
-     * @param connectionType type of connection
+     * @param streamSpeed speed of down or uploadspeed
      * @param downloadSize Filesize to be downloaded in GB
-     * @param upload Up- or Download, true -> upload, false -> download
      */
-    public EasyRequestClass(String currentLocation, String connectionType, double downloadSize, boolean upload, String transportOption) {
+    public EasyRequestClass(String currentLocation, double streamSpeed , double downloadSize, SizeSuffix sizeSuffix,  String transportOption) {
         this.currentLocation = currentLocation;
         this.downloadSize = downloadSize;
-        this.upload = upload;
+        this.streamSpeed =streamSpeed;
+        this.sizeSuffix = sizeSuffix;
         geocode = null;
         nearestBBW=null;
-        //Set connectiontype
-        setConnectionType(connectionType);
         //Set Transportform
         setTransportFormFromString(transportOption);
     }
@@ -56,46 +45,7 @@ public class EasyRequestClass {
      * @return Returns downloadtime in seconds
      */
     public double getDownloadtime() {
-        DownloadCalculator downloadCalculator = new DownloadCalculator();
-        downloadCalculator.setSize(downloadSize, SizeSuffix.GB);
-        if(upload){
-            //UPLOAD
-            double upMobile = 13;
-            //Value is not satisfying
-            double upFixed = 10;
-            double upUnknown = 5;
-            switch (connectionType){
-                case MOBILE:
-                    downloadCalculator.setStream(upMobile);
-                    break;
-                case FIXEDBB:
-                    downloadCalculator.setStream(upFixed);
-                    break;
-                case UNKNOWN:
-                    downloadCalculator.setStream(upUnknown);
-                    break;
-            }
-        } else {
-            //DOWNLOAD
-            //Default static down and upstreams
-            //Values are from netztest.at statistics
-            //Period: 6 Months, visitet 17.1.2020
-            double downMobile = 42;
-            //Value is not satisfying
-            double downFixed = 27;
-            double downUnknown = 5;
-            switch (connectionType){
-                case MOBILE:
-                    downloadCalculator.setStream(downMobile);
-                    break;
-                case FIXEDBB:
-                    downloadCalculator.setStream(downFixed);
-                    break;
-                case UNKNOWN:
-                    downloadCalculator.setStream(downUnknown);
-                    break;
-            }
-        }
+        DownloadCalculator downloadCalculator = new DownloadCalculator(downloadSize,streamSpeed,sizeSuffix);
         return downloadCalculator.getDownloadtimeSec();
     }
 
@@ -197,21 +147,6 @@ public class EasyRequestClass {
         this.currentLocation = currentLocation;
     }
 
-    /**
-     * sets the Connection Type based on String input
-     * @param connectionType connectiontype as a String, Allowed: "Mobile Connection","Fixed Broadband Connection" and "Unknown"
-     */
-    public void setConnectionType(String connectionType) {
-        if(connectionType.equals("Mobile Connection")){
-            this.connectionType=EasyConnectionType.MOBILE;
-        }else {
-            if(connectionType.equals("Fixed Broadband Connection")){
-                this.connectionType=EasyConnectionType.FIXEDBB;
-            }else {
-                this.connectionType=EasyConnectionType.UNKNOWN;
-            }
-        }
-    }
 
 
     /**
@@ -222,13 +157,6 @@ public class EasyRequestClass {
         this.downloadSize = downloadSize;
     }
 
-    /**
-     * Sets the upload token
-     * @param upload true -> Upload, false -> Download
-     */
-    public void setUpload(boolean upload) {
-        this.upload = upload;
-    }
 
     public VehicleProfileId getTransportForm() {
         return transportForm;
@@ -250,19 +178,10 @@ public class EasyRequestClass {
             }
         }
     }
-    public void setTransportForm(VehicleProfileId transportForm) {
 
-        this.transportForm = transportForm;
-    }
 
-    @Override
-    public String toString() {
-        return "EasyRequest{" +
-                "currentLocation='" + currentLocation + '\'' +
-                ", connectionType=" + connectionType +
-                ", downloadSize=" + downloadSize +
-                ", upload=" + upload +
-                '}';
-    }
+
+
+
 
 }

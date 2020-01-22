@@ -3,6 +3,7 @@ package servlets;
 import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
 import Helper.LatLng;
+import Helper.SizeSuffix;
 import Requests.EasyRequestClass;
 import org.apache.log4j.Logger;
 
@@ -17,15 +18,13 @@ public class EasyMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean upload = false;
-        //Check downloadmode
-        if(request.getParameter("updownloadRadio").equals("upload")) upload=true;
-
-
-
 
         //Create request instance
-        EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("easyCurrentLocation"),request.getParameter("easyInternetAccess"),Double.valueOf(request.getParameter("easyDownloadSize")),upload, request.getParameter("transport-option"));
+        EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("CurrentLocation"),
+                Double.valueOf(request.getParameter("streamspeed")),
+                Double.valueOf(request.getParameter("downloadSize")),
+                SizeSuffix.valueOf(request.getParameter("sizeAppend")),
+                request.getParameter("transport-option"));
 
         //LOGGER.info("Request: " + easyRequest.toString());
 
@@ -41,7 +40,6 @@ public class EasyMapRequest extends HttpServlet {
         LOGGER.debug("Geocoding:"+geocode);
         LOGGER.debug("Downloadtime: "+easyRequest.getDownloadtime());
         LOGGER.debug("Downloadtime BBW: "+easyRequest.getBBWdownloadtime());
-
 
 
         //Set Parameters for Webform

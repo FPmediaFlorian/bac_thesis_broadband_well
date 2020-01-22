@@ -31,8 +31,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- Include Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <link rel="stylesheet" href="resources/leaflet/leaflet.css" />
+    <script src="resources/leaflet/leaflet.js"></script>
 
     <!-- Include Leaflet Routing Machine -->
     <link rel="stylesheet" href="resources/leafletRM/leaflet-routing-machine.css" />
@@ -41,18 +41,12 @@
     <!-- Include Graphhopper -->
     <script src="resources/graphhopper/lrm-graphhopper-1.2.0.js"></script>
 
-    <!-- Include Maptiler -->
-    <script src="https://cdn.maptiler.com/maptiler-geocoder/v1.1.0/maptiler-geocoder.js"></script>
-    <link href="https://cdn.maptiler.com/maptiler-geocoder/v1.1.0/maptiler-geocoder.css" rel="stylesheet" />
+    <!-- Include Maptiler GEOCODER -->
+    <script src="resources/maptiler-geocoder/maptiler-geocoder.js"></script>
+    <link href="resources/maptiler-geocoder/maptiler-geocoder.css" rel="stylesheet" />
 
     <!-- Include Font Awesome Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-
-    <!-- Include Speedtest Cloudharmony-->
-    <script async type="text/javascript" src="//app1.cloudharmony.com/rum/rum/speedtest-aws:cloudfront.js"></script>
-
-    <!-- Include Speedtest DSL Reports-->
-    <script type="text/javascript" src="https://www.dslreports.com/assets/st/1.6/js/speedtest.js"></script>
 
     <!-- Include Speedtest Librespeed-->
     <script type="text/javascript" src="resources/speedtest/speedtest.js"></script>

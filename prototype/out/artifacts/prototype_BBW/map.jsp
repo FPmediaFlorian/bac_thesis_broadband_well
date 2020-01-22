@@ -25,11 +25,11 @@
                             </div>
                         </div>
                         <%}%>
-                        <form action="EasyMapRequest" method="post" accept-charset="ISO-8859-1">
+                        <form action="EasyMapRequest" method="post" accept-charset="ISO-8859-1" id="easyForm">
                             <div class="form-group">
                                 <label for="easyCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="easyCurrentLocation" name="easyCurrentLocation" placeholder="Current Location" required>
-                                <small id="easyCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
+                                <input type="text" class="form-control" id="easyCurrentLocation" name="CurrentLocation" placeholder="Current Location" required>
+                                <small id="easyCurrentLocationHelp" class="form-text text-muted">Please fill in a street in Vienna!</small>
                             </div>
 
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
@@ -45,19 +45,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="easyInternetAccess">Select your internet connection</label>
-                                <select class="form-control" id="easyInternetAccess" name="easyInternetAccess">
-                                    <option data-icon="as fa-broadcast-tower">Mobile Connection</option>
-                                    <option><i class="fas fa-network-wired"></i> Fixed Broadband Connection</option>
-                                    <option><i class="fas fa-question"></i> i dont know</option>
-                                </select>
-                                <small id="easyInternetAccessHelp" class="form-text text-muted">Please select your internet connection!</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="easyDownloadSize">Filesize in Gigabyte</label>
-                                <input type="number" class="form-control" id="easyDownloadSize" name="easyDownloadSize" placeholder="Filesize eg. 100 GB" required><!--https://getbootstrap.com/docs/4.0/components/input-group/#buttons-with-dropdowns-->
-                                <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file to download in GB!</small>
+                                <label for="easyDownloadSize">Filesize</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="easyDownloadSize" name="downloadSize" placeholder="Filesize eg. 100 GB" required>
+                                    <div class="input-group-append">
+                                        <select class="browser-default custom-select" name="sizeAppend">
+                                            <option value="MB">MB</option>
+                                            <option value="GB" selected>GB</option>
+                                            <option value="TB">TB</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--https://getbootstrap.com/docs/4.0/components/input-group/#buttons-with-dropdowns-->
+                                <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file you want to download!</small>
                             </div>
 
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
@@ -68,11 +68,18 @@
                                     <input type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download"> <i class="fas fa-download"></i> Download File
                                 </label>
                             </div>
-
-                            <!--TODO implement option to Choose vehicle-->
+                            <input type="hidden" id="streamspeed" name="streamspeed" value="">
                             <br/>
-                            <button type="submit" class="btn btn-primary">Get my results!</button>
+                            <button type="button" class="btn btn-primary" onclick="speedtestAndSubmit();">Get my results!</button>
                         </form>
+                        <div class="alert alert-info" id="loadingAnimation" style="visibility: hidden;">
+                            <div class="spinner-border text-primary" role="status" >
+                                <span class="sr-only">Performing Speedtest</span>
+                            </div>
+                            <b id="loadingText">Performing Speedtest</b>
+                        </div>
+
+
                     </div>
                     <div id="expert" class="container tab-pane fade " style="height: 100%"><br>
                         <% if (request.getAttribute("error") != null) {%>
@@ -85,8 +92,19 @@
                         <form style="height: 100%" accept-charset="ISO-8859-1">
                             <div class="form-group">
                                 <label for="expertCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="expertCurrentLocation" placeholder="Current Location">
+                                <input type="text" class="form-control" id="expertCurrentLocation" name="CurrentLocation" placeholder="Current Location">
                                 <small id="expertCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
+                            </div>
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle-expert" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="transport-option" value="car" id="transport-car-expert" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="transport-option" value="walk" id="transport-walk-expert" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                </label>
                             </div>
                             <label for="speedtestRadio">Information about your internet connection</label>
                             <div class="form-check">
@@ -102,12 +120,12 @@
                                     i know my Up- & Downstreams <!--TODO Forms einrücken-->
                                 </label>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pl-3">
                                 <label for="expertUpstream" id="expertUpstreamLabel" style="display: none;">Upstream in kb/s</label>
                                 <input type="number" class="form-control" id="expertUpstream" placeholder="Upstream eg. 20 kb/s" style="display: none;">
                                 <small id="expertUpstreamHelp" class="form-text text-muted" style="display: none;">Please fill in your Upstream in kb/s!</small>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pl-3">
                                 <label for="expertUpstream" id="expertDownstreamLabel" style="display: none;">Downstream in kb/s</label>
                                 <input type="number" class="form-control" id="expertDownstream" placeholder="Downstream eg. 20 kb/s" style="display: none;">
                                 <small id="expertDownstreamHelp" class="form-text text-muted" style="display: none;">Please fill in your Downstream in kb/s!</small>
@@ -153,6 +171,10 @@
 </section>
 
 <script>
+
+    /**
+     * Scripts for map and routing
+     */
     var map;
 
     // Create map
@@ -179,16 +201,52 @@
     //Creates BBW Marker dynamically
     ${createMarker}
 
+    /**
+     * Scripts for speedtest
+     */
 
-    //TODO if used, make API Key dynamic from Backend!
-/*    var geocoder = new maptiler.Geocoder({
-        input: 'easyCurrentLocation',
-        key: ${maptiperAPIKEY},
-        language: 'de',
-        proximity: [48.20809,16.37156]
-    });
-    */
+    function speedtestAndSubmit(){
+        // show loading animation
+        document.getElementById('loadingAnimation').style.visibility = "visible";
+        //Upload or Download?
+        s = new Speedtest();
+        var streamspeed;
+        if (document.getElementById("updownloadRadio") ==='upload'){
+            //Upload
+            s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");
+            s.setParameter("test_order","U");
+            s.start();
 
+            s.onupdate = function (data) {
+                document.getElementById('streamspeed').value = data.ulStatus;
+            }
+        }else {
+            //Download
+            s.setParameter("url_dl","//st-be-bo1.infra.garr.it/garbage.php");
+            s.setParameter("test_order","D");
+            s.start();
+
+            s.onupdate = function (data) {
+                document.getElementById('streamspeed').value = data.dlStatus;
+            }
+        }
+
+
+
+
+        s.onend = function (aborted){
+            if(!aborted){
+                console.log('Test finished!');
+                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
+                document.getElementById("easyForm").submit();
+            }else{
+                console.log('Test aborted!');
+                //TODO Error Message
+            }
+        }
+
+
+    }
 
 </script>
 

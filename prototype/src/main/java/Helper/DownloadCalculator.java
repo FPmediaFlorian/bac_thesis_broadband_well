@@ -37,7 +37,6 @@ public class DownloadCalculator {
         return size/bbwStream;
     }
 
-
     public void setSize(double size, SizeSuffix sizeSuffix){
         this.size = size;
         this.suffix= sizeSuffix;
