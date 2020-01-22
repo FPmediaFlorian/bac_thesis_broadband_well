@@ -48,8 +48,16 @@
     <!-- Include Font Awesome Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
-    <!-- Include Speedtest-->
+    <!-- Include Speedtest Cloudharmony-->
     <script async type="text/javascript" src="//app1.cloudharmony.com/rum/rum/speedtest-aws:cloudfront.js"></script>
+
+    <!-- Include Speedtest DSL Reports-->
+    <script type="text/javascript" src="https://www.dslreports.com/assets/st/1.6/js/speedtest.js"></script>
+
+    <!-- Include Speedtest Librespeed-->
+    <script type="text/javascript" src="resources/speedtest/speedtest.js"></script>
+    <script type="text/javascript" src="resources/speedtest/speedtest_worker.js"></script>
+
 </head>
 
 <body>

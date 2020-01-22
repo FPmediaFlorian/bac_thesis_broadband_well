@@ -8,58 +8,99 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%-- Import Header File --%>
 <%@ include file="templates/header.jsp" %>
-Hello
-<script>
-    function ch_st_loaded(speedtest) {
-        var st_callback = function() {
-            /*
-              * This method is invoked before the speedtest starts. If it returns false
-              * test execution will stop
-              *
-              * @param array tests an ordered array representing the tests to be performed
-              * and the test order. Each item in the array is an object with the following
-              * attributes:
-              *   concurrency: (optional) concurrency for downlink/uplink tests - this
-              *     signifies the number of concurrent threads that will be used during
-              *     each test iteration. Test result metrics are an aggregation of metrics
-              *     for each thread
-              *   duration: estimated test duration in seconds
-              *   iterations: total number of test iterations to be performed - including
-              *     warmup iterations
-              *   location: (optional) location metadata for the test endpoint - an object
-              *     with these attributes: city, state, country, lat, long. Not present
-              *     for endpoints without location information (e.g. CDN, DNS)
-              *   max_size: (optional) maximum size (KB) for uplink/downlink tests
-              *   min_size: (optional) minimum size (KB) for uplink/downlink tests
-              *   provider_id: identifier of the provider (e.g. aws) - see
-              *     https://cloudharmony.com/docs/api#!/api/Get_Providers
-              *   region: (optional) identifier of the service region (e.g. us-east-1) - see
-              *     https://cloudharmony.com/docs/api#!/api/Get_Service
-              *   service: name of the service (e.g. Amazon EC2)
-              *   service_id: identifier of the service (e.g. aws:ec2) - see
-              *     https://cloudharmony.com/docs/api#!/api/Get_Services
-              *   service_type: service type identifier - one of: cdn, compute, dns, paas,
-              *     storage
-              *   subregion: (optional) identifier of the provider subregion (e.g. us-east-1a)
-              *   type: test type identifier - one of: downlink, uplink, latency, dns
-              *   warmup: number of warmup iterations - these precede test iterations and
-              *     are excluded from result metrics
-              *
-              * @param object types object with keys corresponding with every test type and
-              * values describing associated test parameters. Value objects include the
-              * following attributes:
-              *   duration: total estimated duration for all tests of this type in seconds
-              *   tests: total number of tests of this type
-              * @return boolean
-              */
 
-            this.started = function(tests, types) {
-                 console.log("START CALLBACK");
-                 console.log(tests);
-                 console.log(types);
+<h3>DSLReports Speed Test library demo</h3>
+
+<p>
+
+    <button id='startbutton'>Start Test</button>
+    <button id='stopbutton'>Stop</button>
+    <br>
+    status:
+    <span id='status'></span>
+<br> Log:
+</p>
+<div id='logdiv' style='font-size:10px; font-face:courier; border:1px solid #ccc; padding:0.5em; max-height:350px; overflow-y: scroll'>
+</div>
+<script type="text/javascript">
+    function stoptest() {
+        dslr_speedtest({op: 'stop'});
+    }
+
+    function speedtest() {
+        log("Start button pushed");
+
+        var o = new Object();
+
+        // Can hint connection type
+        // from 0..
+        // ["GPRS", "3G", "4G", "WiFi", "Wireless", "Satellite", "DSL", "Cable", "Fiber", "", "Unsure"];
+        // undefined == Unsure
+        o.conntype = undefined;
+        // for complete results, bufferbloat must be true
+        // for faster results lacking grades and URL etc
+        // set to false
+        o.bufferbloat = false;
+
+        // hz can be 4 (fastest), 2 (default) or 1 (slowest)
+        // determines speed that onstatus is called
+        o.hz = 4;
+
+        o.apiKey = '12345678'; // Test API key
+
+        // fired continuously with basic info
+        o.onstatus = function(e) {
+            if (e.direction)
+                log(e.direction + " megabit/sec: down/up " + e.down + " / " + e.up + " ping=" + e.ping + "ms");
+
         };
-        var uplinkRedirectUri = "resources/speedtest/up.html"; // change this to the URI where up.html is accessible on your server
-        speedtest.start(st_callback, uplinkRedirectUri);
+
+        // fired at 1hz with progress guesstimate
+        o.onprogress = function(o) {
+            document.getElementById('status').innerHTML = o.doing + " Progress:" + o.progress + "%";
+        };
+
+        o.onerror = function(o) {
+            // this also marks the test end. oncomplete is not fired
+            alert(o.msg);
+        };
+
+        // fired once upon successful conclusion
+        // o has results.. see log for json version of structure
+        o.oncomplete = function(o) {
+            var s = JSON.stringify(o);
+            log("oncomplete fired " + s);
+        };
+
+        // fired if the test wants to ask a question of the user with
+        // a YES/NO answer.
+        o.onconfirm = function(s) {
+            return confirm(s);
+        };
+
+        // pass any user data in, it is stored
+        // and also returned with result.
+        o.udata = { "myuserfield": "myvalue" };
+
+        dslr_speedtest({
+            op: 'start',
+            params: o
+        });
+    }
+
+    var e = document.getElementById('startbutton');
+
+    e.addEventListener("click", function() {
+        speedtest();
+    });
+    e = document.getElementById('stopbutton');
+    e.addEventListener("click", function() {
+        stoptest();
+    });
+
+    function log(s) {
+        var log = document.getElementById('logdiv');
+        log.innerHTML = s + "<br>" + log.innerHTML;
     }
 </script>
 
