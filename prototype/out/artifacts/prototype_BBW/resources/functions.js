@@ -67,26 +67,29 @@ function addBBWmarkersWpopups() {
     markerVKM.bindPopup('BBW in  Laudongasse 15–19<br>Volkskundemuseum Wien').openPopup;
 }
 
-function toogleSpeedForm() {
-    if(document.getElementById('speedformRadio').checked){
-        //show Speedinfo Form
-        document.getElementById('expertUpstream').style.display = 'block';
-        document.getElementById('expertUpstreamLabel').style.display = 'block';
-        document.getElementById('expertUpstreamHelp').style.display = 'block';
 
-        document.getElementById('expertDownstream').style.display = 'block';
-        document.getElementById('expertDownstreamLabel').style.display = 'block';
-        document.getElementById('expertDownstreamHelp').style.display = 'block';
-    }else {
-        //hide Speedinfo Form
-        document.getElementById('expertUpstream').style.display = 'none';
-        document.getElementById('expertUpstreamLabel').style.display = 'none';
-        document.getElementById('expertUpstreamHelp').style.display = 'none';
+function labelUpload() {
+    document.getElementById('streamLabel').innerHTML ='Upload in MBit/s';
+}
+function labelDownload() {
+    document.getElementById('streamLabel').innerHTML ='Download in MBit/s';
 
-        document.getElementById('expertDownstream').style.display = 'none';
-        document.getElementById('expertDownstreamLabel').style.display = 'none';
-        document.getElementById('expertDownstreamHelp').style.display = 'none';
-    }
+
+}
+
+function hideSpeedform() {
+    document.getElementById('streamLabel').style.display = 'none';
+    document.getElementById('streamInput').style.display = 'none';
+    document.getElementById('expertDownstreamHelp').style.display = 'none';
+
+}
+
+function showSpeedForm() {
+
+    document.getElementById('streamLabel').style.display = 'block';
+    document.getElementById('streamInput').style.display = 'block';
+    document.getElementById('expertDownstreamHelp').style.display = 'block';
+
 }
 
 function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, BBWIcon, greenIcon, vehicle) {

@@ -29,7 +29,24 @@ public class BuildMap extends HttpServlet {
             i++;
         }
 
+
         request.setAttribute("createMarker",sb.toString());
+
+        sb = new StringBuilder();
+        i=0;
+        sb.append("<option value=\"-1\">autoselect nearest</option>");
+
+        for (BBW bbw:BBW.BBW_LIST){
+            sb.append("<option value=\"");
+            sb.append(i);
+            sb.append("\">");
+            sb.append(bbw.getName());
+            sb.append("</option>");
+            i++;
+        }
+
+        request.setAttribute("bbwOption",sb.toString());
+
         request.setAttribute("maptiperAPIKEY", "'"+APIKeys.MAPTILERAPI+"'");
 
         request.getRequestDispatcher("/map.jsp").forward(request, response);
