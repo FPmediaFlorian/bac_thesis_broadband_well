@@ -60,7 +60,7 @@
                                 <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file you want to download!</small>
                             </div>
 
-                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport"  id="updownloadRadio" required>
                                 <label class="btn btn-secondary active">
                                     <input type="radio"  name="updownloadRadio" id="easyUploadRadio" value="upload" checkedautocomplete="off" checked> <i class="fas fa-upload"></i>Upload File
                                 </label>
@@ -70,7 +70,7 @@
                             </div>
                             <input type="hidden" id="streamspeed" name="streamspeed" value="">
                             <br/>
-                            <button type="button" class="btn btn-primary" onclick="speedtestAndSubmit();">Get my results!</button>
+                            <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitEasy();">Get my results!</button>
                         </form>
                         <div class="alert alert-info" id="loadingAnimation" style="visibility: hidden;">
                             <div class="spinner-border text-primary" role="status" >
@@ -78,8 +78,6 @@
                             </div>
                             <b id="loadingText">Performing Speedtest</b>
                         </div>
-
-
                     </div>
                     <div id="expert" class="container tab-pane fade " style="height: 100%"><br>
                         <% if (request.getAttribute("error") != null) {%>
@@ -89,7 +87,7 @@
                             </div>
                         </div>
                         <%}%>
-                        <form style="height: 100%" accept-charset="ISO-8859-1">
+                        <form action="ExpertMapRequest" method="post" accept-charset="ISO-8859-1" id="expertForm">
                             <div class="form-group">
                                 <label for="expertCurrentLocation">Current Location</label>
                                 <input type="text" class="form-control" id="expertCurrentLocation" name="CurrentLocation" placeholder="Current Location">
@@ -143,25 +141,29 @@
 
                             <div class="form-group pl-3" id="manualInputStream">
                                 <label for="streamInput" id="streamLabel" style="display: none;">Upload in MBit/s</label>
-                                <input type="number" class="form-control" id="streamInput" name="streamspeed" placeholder=" eg. 20 MBit/s" style="display: none;">
+                                <input type="number" class="form-control" id="streamInput" name="streamspeed" placeholder=" eg. 20 MBit/s" style="display: none;" required>
                                 <small id="expertDownstreamHelp" class="form-text text-muted" style="display: none;">Please fill in your Stream in MBit/s!</small>
                             </div>
 
 
                             <div class="form-group">
                                 <label for="expertRequestedBBW">Select your desired BBW</label>
-                                <select class="form-control" id="expertRequestedBBW">
+                                <select class="form-control" id="expertRequestedBBW" name="desiredBBW">
                                     ${bbwOption}
-                                    <!--<option>autoselect the nearest</option>
-                                    <option>Währingerstraße 29, 1090 Wien</option>
-                                    <option>Laudongasse 15,  1080 Wien</option> -->
                                 </select>
                                 <small id="expertRequestedBBWHelp" class="form-text text-muted">Please select your desiered BBW!</small>
                             </div>
 
                             <br/>
-                            <button type="submit" class="btn btn-primary">Get my results!</button>
+                            <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitExpert()">Get my results!</button>
+
                         </form>
+                        <div class="alert alert-info" id="loadingAnimationExpert" style="visibility: hidden;">
+                            <div class="spinner-border text-primary" role="status" >
+                                <span class="sr-only">Performing Speedtest</span>
+                            </div>
+                            <b id="loadingTextExpert">Performing Speedtest</b>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,49 +208,6 @@
     /**
      * Scripts for speedtest
      */
-
-    function speedtestAndSubmit(){
-        // show loading animation
-        document.getElementById('loadingAnimation').style.visibility = "visible";
-        //Upload or Download?
-        s = new Speedtest();
-        var streamspeed;
-        if (document.getElementById("updownloadRadio") ==='upload'){
-            //Upload
-            s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");
-            s.setParameter("test_order","U");
-            s.start();
-
-            s.onupdate = function (data) {
-                document.getElementById('streamspeed').value = data.ulStatus;
-            }
-        }else {
-            //Download
-            s.setParameter("url_dl","//st-be-bo1.infra.garr.it/garbage.php");
-            s.setParameter("test_order","D");
-            s.start();
-
-            s.onupdate = function (data) {
-                document.getElementById('streamspeed').value = data.dlStatus;
-            }
-        }
-
-
-
-
-        s.onend = function (aborted){
-            if(!aborted){
-                console.log('Test finished!');
-                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
-                document.getElementById("easyForm").submit();
-            }else{
-                console.log('Test aborted!');
-                //TODO Error Message
-            }
-        }
-
-
-    }
 
 </script>
 

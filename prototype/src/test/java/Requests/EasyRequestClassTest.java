@@ -39,7 +39,7 @@ public class EasyRequestClassTest {
     }
 
     @Test
-    public void routingTest() throws IOException, ApiException {
+    public void routingTest() {
         //Reindorfgasse to nearest BBW (VKM)
         EasyRequestClass easyRequestClass = new EasyRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"),"car");
         Assert.assertEquals(540000,easyRequestClass.getTravelTime(),60000);

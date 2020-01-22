@@ -40,7 +40,34 @@ public class GeoCalculator {
        return geocode;
     }
 
-    public static BBW getTravetime(LatLng geocode, VehicleProfileId transportForm){
+
+    public static double calculateTraveltime(LatLng geocode, VehicleProfileId transportForm, BBW bbw){
+        double traveltime = 0;
+        RouteResponse rsp = null;
+        RoutingApi routing = new RoutingApi();
+        routing.setApiClient(createClient());
+
+        try {
+            rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
+                    Collections.<String>emptyList(), Collections.<String>emptyList(),
+                    transportForm, "en", true, Collections.<String>emptyList(), false,
+                    true, true, false, true, null, false,
+                    "fastest", Collections.<Integer>emptyList(), null, null, null,
+                    null, null, null, null, null,
+                    null, null);
+        } catch (ApiException e) {
+            LOGGER.error(e.getMessage());
+        }
+
+        try {
+            traveltime=rsp.getPaths().get(0).getTime();
+        }catch (NullPointerException e){
+            LOGGER.error(e.getMessage());
+        }
+        return traveltime;
+    }
+
+    public static BBW getNearestBBWsetTraveltime(LatLng geocode, VehicleProfileId transportForm){
         //TODO Auslagern in eigene Klasse
         BBW nearestBBW= null ;
         double traveltime = 0;

@@ -108,3 +108,86 @@ function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, B
         router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: vehicle}})
     }).addTo(map);
 }
+
+function speedtestAndSubmitExpert() {
+    if (document.getElementById('speedtestRadio').checked) {
+        document.getElementById('loadingAnimationExpert').style.visibility = "visible";
+
+        s = new Speedtest();
+        //Upload or Download?
+        if (document.getElementById("uploadRadio").checked) {
+            //Upload
+            s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
+            s.setParameter("test_order", "U");
+            s.start();
+
+            s.onupdate = function (data) {
+                document.getElementById('streamInput').value = data.ulStatus;
+            }
+        } else {
+            //Download
+            s.setParameter("url_dl", "//st-be-bo1.infra.garr.it/garbage.php");
+            s.setParameter("test_order", "D");
+            s.start();
+
+            s.onupdate = function (data) {
+                document.getElementById('streamInput').value = data.dlStatus;
+            }
+        }
+
+        s.onend = function (aborted) {
+            if (!aborted) {
+                console.log('Test finished!');
+                document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+                document.getElementById("expertForm").submit();
+
+            } else {
+                console.log('Test aborted!');
+                //TODO Error Message
+            }
+        }
+    }else {
+        document.getElementById("expertForm").submit();
+    }
+}
+
+function speedtestAndSubmitEasy(){
+    // show loading animation
+    document.getElementById('loadingAnimation').style.visibility = "visible";
+    //Upload or Download?
+    s = new Speedtest();
+    var streamspeed;
+    //TODO unterschied zwischen up & download??
+    if (document.getElementById("easyUploadRadio").checked){
+        //Upload
+        s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");
+        s.setParameter("test_order","U");
+        s.start();
+
+        s.onupdate = function (data) {
+            document.getElementById('streamspeed').value = data.ulStatus;
+        }
+    }else {
+        //Download
+        s.setParameter("url_dl","//st-be-bo1.infra.garr.it/garbage.php");
+        s.setParameter("test_order","D");
+        s.start();
+
+        s.onupdate = function (data) {
+            document.getElementById('streamspeed').value = data.dlStatus;
+        }
+    }
+
+    s.onend = function (aborted){
+        if(!aborted){
+            console.log('Test finished!');
+            document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
+            document.getElementById("easyForm").submit();
+        }else{
+            console.log('Test aborted!');
+            //TODO Error Message
+        }
+    }
+
+
+}

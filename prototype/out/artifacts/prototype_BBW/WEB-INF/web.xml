@@ -23,5 +23,13 @@
         <url-pattern>/BuildMap</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ExpertMapRequest</servlet-name>
+        <servlet-class>servlets.ExpertMapRequest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExpertMapRequest</servlet-name>
+        <url-pattern>/ExpertMapRequest</url-pattern>
+    </servlet-mapping>
 
 </web-app>
