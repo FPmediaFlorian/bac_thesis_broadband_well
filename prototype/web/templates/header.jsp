@@ -16,10 +16,9 @@
     <!-- Favicon Tag -->
     <link rel="icon" type="image/png" href="resources/img/favicon.png">
 
-    <!-- Latest compiled and minified CSS -->
+    <!-- BOOTSTRAP Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- <link rel="stylesheet" href="resources/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="resources/styles.css">
     <script src="resources/functions.js"></script>
 
@@ -51,10 +50,6 @@
     <!-- Include Speedtest Librespeed-->
     <script type="text/javascript" src="resources/speedtest/speedtest.js"></script>
     <script type="text/javascript" src="resources/speedtest/speedtest_worker.js"></script>
-
-    <!-- Include Targomo Leafelt Build-->
-    <script src="https://releases.targomo.com/leaflet/latest-full.min.js"></script>
-
 
     <!-- Include Mapbox API-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>

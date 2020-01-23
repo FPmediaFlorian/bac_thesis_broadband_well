@@ -38,7 +38,7 @@ function addBBWmarkersWpopupsDynamic() {
 
 
 }
-
+//TODO delete and test
 function addBBWmarkersWpopups() {
 
     var normalIcon = new L.Icon({
@@ -59,7 +59,6 @@ function addBBWmarkersWpopups() {
         shadowSize: [41, 41]
     });
 
-    //TODO Parse dynamicly from Javacode
     var markerWS29 = L.marker([48.2200482, 16.3562356],{icon: BBWIcon}).addTo(map); //WS 29
     var markerVKM = L.marker([48.2131498, 16.3505518],{icon: BBWIcon}).addTo(map); //VKM
 
@@ -157,7 +156,6 @@ function speedtestAndSubmitEasy(){
     //Upload or Download?
     s = new Speedtest();
     var streamspeed;
-    //TODO unterschied zwischen up & download??
     if (document.getElementById("easyUploadRadio").checked){
         //Upload
         s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");

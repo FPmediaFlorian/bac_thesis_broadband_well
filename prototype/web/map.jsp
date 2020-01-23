@@ -11,7 +11,7 @@
 <section>
     <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
         <div class="row h-100">
-            <div class="col-md-4 overflow-auto"> <!--TODO Make col min 4 on smaller screens-->
+            <div class="col-md-4 overflow-auto">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#easy">Easy Mode</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#expert">Expert Mode</a></li>
