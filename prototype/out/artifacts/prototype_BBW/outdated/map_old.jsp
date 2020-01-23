@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%-- Import Header File --%>
-<%@ include file="templates/header.jsp" %>
+<%@ include file="../templates/header.jsp" %>
 <section>
     <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
         <div class="row h-100">
@@ -204,4 +204,4 @@
 </script>
 
 <%-- Import Footer File --%>
-<%@ include file="templates/footer.jsp" %>
+<%@ include file="../templates/footer.jsp" %>

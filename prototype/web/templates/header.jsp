@@ -52,6 +52,20 @@
     <script type="text/javascript" src="resources/speedtest/speedtest.js"></script>
     <script type="text/javascript" src="resources/speedtest/speedtest_worker.js"></script>
 
+    <!-- Include Targomo Leafelt Build-->
+    <script src="https://releases.targomo.com/leaflet/latest-full.min.js"></script>
+
+
+    <!-- Include Mapbox API-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- Import Assembly -->
+    <link href='https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css' rel='stylesheet'>
+    <script src='https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.js'></script>
+    <!-- Import jQuery -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+
 </head>
 
 <body>
@@ -75,6 +89,7 @@
                 <li class="nav-item"><a href="index.jsp#figure01" class="nav-link menu-font">BBW in figures</a></li>
                 <li class="nav-item"><a href="index.jsp#use01" class="nav-link menu-font">How to use?</a></li>
                 <li class="nav-item"><a href="BuildMap" class="nav-link menu-font">Route planer</a></li>
+                <li class="nav-item"><a href="isochroneMap.jsp" class="nav-link menu-font">Isochrone Map</a></li>
             </ul>
         </div>
     </div>

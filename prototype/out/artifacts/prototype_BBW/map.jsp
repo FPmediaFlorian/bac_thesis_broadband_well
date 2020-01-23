@@ -205,10 +205,6 @@
     //Creates BBW Marker dynamically
     ${createMarker}
 
-    /**
-     * Scripts for speedtest
-     */
-
 </script>
 
 <%-- Import Footer File --%>

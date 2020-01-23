@@ -69,7 +69,7 @@
         <div class="content-wrapper">
             <h1>404 Error</h1>
             <p>This Site is not available!</p>
-            <p><a href="index.jsp">Go Back to start</a></p>
+            <p><a href="../index.jsp">Go Back to start</a></p>
         </div>
     </div>
 </div>

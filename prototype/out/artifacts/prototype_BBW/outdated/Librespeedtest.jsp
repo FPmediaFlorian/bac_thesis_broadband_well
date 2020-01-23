@@ -1,5 +1,5 @@
 <%-- Import Header File --%>
-<%@ include file="templates/header.jsp" %>
+<%@ include file="../templates/header.jsp" %>
 
 <h1>LibreSpeed Example</h1>
 
@@ -28,4 +28,4 @@
 
 
 <%-- Import Footer File --%>
-<%@ include file="templates/footer.jsp" %>
+<%@ include file="../templates/footer.jsp" %>

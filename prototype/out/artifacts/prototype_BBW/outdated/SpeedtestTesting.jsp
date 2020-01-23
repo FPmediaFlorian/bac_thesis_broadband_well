@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%-- Import Header File --%>
-<%@ include file="templates/header.jsp" %>
+<%@ include file="../templates/header.jsp" %>
 
 <h3>DSLReports Speed Test library demo</h3>
 
@@ -105,4 +105,4 @@
 </script>
 
 <%-- Import Footer File --%>
-<%@ include file="templates/footer.jsp" %>
+<%@ include file="../templates/footer.jsp" %>
