@@ -75,15 +75,15 @@
             <div class="col-lg-6">
                 <h2 class="font-weight-light">How to use the BBW</h2>
                 <ol class="useList">
-                    <li>First step will be to blah blah</li>
-                    <li>For the second step you ned to</li>
-                    <li>Now just do the third step</li>
-                    <li>One more step needs to be done</li>
-                    <li>Just finish this step and you are ready to go</li>
+                    <li>Checkout our Routeplaner or the isochrone Map to find the nearest BBW</li>
+                    <li>Calculate weather it is usefull to travel to the BBW</li>
+                    <li>Travel to the BBW</li>
+                    <li>Just use the terminal privided on site or bring your own device</li>
+                    <li>Enjoy the enormous speed of the BBW! :)</li>
                 </ol>
             </div>
             <div class="col-lg-6">
-                <img src="https://dummyimage.com/360x360/AFB1B3/fff&text=installing_BBW" class="rounded float-left" alt="Picture BBW">
+                <img src="resources/img/computerTerminal.png" class="rounded float-left" alt="Picture BBW">
             </div>
         </div>
     </div>
