@@ -10,17 +10,18 @@
 <html>
     <head>
         <!-- Required meta tags -->
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <title>BBW Prototype</title>
 
         <!-- Favicon Tag -->
         <link rel="icon" type="image/png" href="resources/img/favicon.png"/>
 
         <!-- BOOTSTRAP Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="resources/styles.css"/>
+        <link rel="stylesheet" href="resources/styles.css">
         <script src="resources/functions.js"></script>
 
 
@@ -31,11 +32,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
         <!-- Include Leaflet -->
-        <link rel="stylesheet" href="resources/leaflet/leaflet.css" />
+        <link rel="stylesheet" href="resources/leaflet/leaflet.css" >
         <script src="resources/leaflet/leaflet.js"></script>
 
         <!-- Include Leaflet Routing Machine -->
-        <link rel="stylesheet" href="resources/leafletRM/leaflet-routing-machine.css" />
+        <link rel="stylesheet" href="resources/leafletRM/leaflet-routing-machine.css" >
         <script src="resources/leafletRM/leaflet-routing-machine.min.js"></script>
 
         <!-- Include Graphhopper -->
@@ -43,7 +44,7 @@
 
         <!-- Include Maptiler GEOCODER -->
         <script src="resources/maptiler-geocoder/maptiler-geocoder.js"></script>
-        <link href="resources/maptiler-geocoder/maptiler-geocoder.css" rel="stylesheet" />
+        <link href="resources/maptiler-geocoder/maptiler-geocoder.css" rel="stylesheet" >
 
         <!-- Include Font Awesome Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
@@ -54,9 +55,9 @@
 
         <!-- Include Mapbox API-->
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>
-        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css' rel='stylesheet'/>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css' rel='stylesheet'>
         <!-- Import Assembly -->
-        <link href='https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css' rel='stylesheet'/>
+        <link href='https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css' rel='stylesheet'>
         <script src='https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.js'></script>
         <!-- Import jQuery -->
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

@@ -22,7 +22,7 @@ public class BuildMap extends HttpServlet {
         for (BBW bbw:BBW.BBW_LIST){
             sb.append("var marker"+i+" = L.marker([");
             sb.append(bbw.getLatLng().getLatLng());
-            sb.append("],{icon: BBWIcon}).addTo(map).on('click',selectBBW(e));");
+            sb.append("],{icon: BBWIcon}).addTo(map);");
             sb.append(System.getProperty("line.separator"));
             sb.append("marker"+i+".bindPopup('");
             sb.append(bbw.getDescMarker());
