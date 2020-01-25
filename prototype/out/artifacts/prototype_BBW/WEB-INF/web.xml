@@ -24,6 +24,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>BuildIsochrone</servlet-name>
+        <servlet-class>servlets.BuildIsochrone</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuildIsochrone</servlet-name>
+        <url-pattern>/BuildIsochrone</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ExpertMapRequest</servlet-name>
         <servlet-class>servlets.ExpertMapRequest</servlet-class>
     </servlet>

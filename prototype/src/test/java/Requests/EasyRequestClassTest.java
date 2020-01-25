@@ -15,6 +15,7 @@ public class EasyRequestClassTest {
 
     @Test
     public void downloadtimeTest(){
+        BBW.initBBWList();
         //Test Downloadtimes
         EasyRequestClass easyRequestClass = new EasyRequestClass("Reindorfgasse 42", 42, 52, SizeSuffix.valueOf("GB"),"car");
 
@@ -25,6 +26,7 @@ public class EasyRequestClassTest {
 
     @Test
     public void geolocationTest() throws InvalidAddressExeption {
+        BBW.initBBWList();
         EasyRequestClass easyRequestClass = new EasyRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"),"car");
 
         Assert.assertEquals(48.190830,easyRequestClass.getGeolocation().getLat(),0.001);
@@ -40,6 +42,7 @@ public class EasyRequestClassTest {
 
     @Test
     public void routingTest() {
+        BBW.initBBWList();
         //Reindorfgasse to nearest BBW (VKM)
         EasyRequestClass easyRequestClass = new EasyRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"),"car");
         Assert.assertEquals(540000,easyRequestClass.getTravelTime(),60000);

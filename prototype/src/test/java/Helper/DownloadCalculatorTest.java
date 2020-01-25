@@ -7,6 +7,7 @@ public class DownloadCalculatorTest {
 
     @Test
     public void TestDownloadCalc(){
+        BBW.initBBWList();
         DownloadCalculator downloadCalculator = new DownloadCalculator(100,30,SizeSuffix.GB);
 
         //Test Download Time Calcualtor
@@ -19,4 +20,5 @@ public class DownloadCalculatorTest {
         Assert.assertEquals(160000,downloadCalculator.getSize(),2);
 
     }
+
 }

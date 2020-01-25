@@ -8,7 +8,7 @@
 - Leaflet
 - LRM (Leaflet Routing Maschine)
 	- LRM Graphhopper
-- Maptiler Geocoder?? (Autocompletion for addresses)
+- Maptiler Geocoder??(Autocompletion for addresses)
 - **Librespeed Speedtest**
 	- runs with a Server in Bologna (fastest from my flat)
 	- -\> copy files on uni Server or CDN? Or Serverside on URL
@@ -40,3 +40,19 @@
 ## Fragen:
 - M3 presentation
 - which protoype to use?
+
+TODO:
+- Öffnungszeiten
+- evtl. auch an anderen Tagen
+- Wiener Linien einbinden
+- wenn BBW angezeigt -\> in Auswahl übernehmen
+- BBW Infos -\> JSON config
+- -\> Time Berechnungen Isochrone Map
+- Dropdorn Isochrone map
+- Bring mich Button Android und iPhone
+- Interviews in 5
+
+M3
+Überblick wo haben wir gestartet
+Folien Moodle Sonntag 19:00
+-\>Englisch präsentieren

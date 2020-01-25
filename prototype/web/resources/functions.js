@@ -110,7 +110,7 @@ function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, B
 
 function speedtestAndSubmitExpert() {
     if (document.getElementById('speedtestRadio').checked) {
-        document.getElementById('loadingAnimationExpert').style.visibility = "visible";
+        document.getElementById('loadingAnimationExpert').style.display = "block";
 
         s = new Speedtest();
         //Upload or Download?
@@ -152,7 +152,7 @@ function speedtestAndSubmitExpert() {
 
 function speedtestAndSubmitEasy(){
     // show loading animation
-    document.getElementById('loadingAnimation').style.visibility = "visible";
+    document.getElementById('loadingAnimation').style.display = "block";
     //Upload or Download?
     s = new Speedtest();
     var streamspeed;

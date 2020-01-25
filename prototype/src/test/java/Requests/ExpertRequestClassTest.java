@@ -12,6 +12,7 @@ public class ExpertRequestClassTest {
 
     @Test
     public void downloadtimeTest() throws InvalidAddressExeption {
+        BBW.initBBWList();
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 42, 52, SizeSuffix.valueOf("GB"),"car", -1);
 
         Assert.assertEquals(9904.761,expertRequestClass.getDownloadtime(),0.2);
@@ -20,6 +21,7 @@ public class ExpertRequestClassTest {
 
     @Test
     public void geolocationTest() throws InvalidAddressExeption {
+        BBW.initBBWList();
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 42, 52, SizeSuffix.valueOf("GB"),"car", -1);
 
         Assert.assertEquals(48.190830,expertRequestClass.getGeocode().getLat(),0.001);
@@ -34,6 +36,7 @@ public class ExpertRequestClassTest {
 
     @Test
     public void routingTest() throws InvalidAddressExeption {
+        BBW.initBBWList();
         //Auto calculate nearest BBW
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"),"car",-1);
         Assert.assertEquals(540000,expertRequestClass.getDesiredBBW().getTravelTime(),60000);

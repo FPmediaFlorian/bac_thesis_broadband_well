@@ -9,9 +9,9 @@
 <%-- Import Header File --%>
 <%@ include file="../templates/header.jsp" %>
 <section>
-    <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
+    <div class="container-fluid h-75">
         <div class="row h-100">
-            <div class="col-md-4 overflow-auto"> <!--TODO Make col min 4 on smaller screens-->
+            <div class="col-md-4 overflow-auto">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#easy">Easy Mode</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#expert">Expert Mode</a></li>
@@ -68,8 +68,6 @@
                                     <input type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download"> <i class="fas fa-download"></i> Download File
                                 </label>
                             </div>
-
-                            <!--TODO implement option to Choose vehicle-->
                             <br/>
                             <button type="submit" class="btn btn-primary">Get my results!</button>
                         </form>
@@ -104,13 +102,13 @@
                                 <input class="form-check-input" type="radio" name="expertInternetAccess" id="speedtestRadio" value="speedtest" onclick="toogleSpeedForm()" checked>
                                 <label class="form-check-label" for="speedtestRadio">
                                     perform Speedtest <small id="expertPreformSpeedtest" class="form-text text-muted">Takes about 10 seconds!</small>
-                                    <!-- TODO Perform speedtest on submit-->
+
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="expertInternetAccess" id="speedformRadio" value="speedform" onclick="toogleSpeedForm()">
                                 <label class="form-check-label" for="speedformRadio">
-                                    i know my Up- & Downstreams <!--TODO Forms einrücken-->
+                                    i know my Up- & Downstreams
                                 </label>
                             </div>
                             <div class="form-group pl-3">
@@ -191,7 +189,6 @@
     ${createMarker}
 
 
-    //TODO if used, make API Key dynamic from Backend!
 /*    var geocoder = new maptiler.Geocoder({
         input: 'easyCurrentLocation',
         key: ${maptiperAPIKEY},

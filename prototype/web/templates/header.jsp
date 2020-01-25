@@ -68,7 +68,7 @@
 
 
 <!-- NAVBAR-->
-<nav class="navbar navbar-expand-lg  navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-xl  navbar-light bg-light shadow-sm">
     <div class="container">
         <a href="index.jsp" class="navbar-brand">
             <!-- Logo Image -->
@@ -84,7 +84,7 @@
                 <li class="nav-item"><a href="index.jsp#figure01" class="nav-link menu-font">BBW in figures</a></li>
                 <li class="nav-item"><a href="index.jsp#use01" class="nav-link menu-font">How to use?</a></li>
                 <li class="nav-item"><a href="BuildMap" class="nav-link menu-font">Route planer</a></li>
-                <li class="nav-item"><a href="isochroneMap.jsp" class="nav-link menu-font">Isochrone Map</a></li>
+                <li class="nav-item"><a href="BuildIsochrone" class="nav-link menu-font">Isochrone Map</a></li>
             </ul>
         </div>
     </div>

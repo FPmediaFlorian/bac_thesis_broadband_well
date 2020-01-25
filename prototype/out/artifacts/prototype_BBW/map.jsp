@@ -11,7 +11,7 @@
 <section>
     <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
         <div class="row h-100">
-            <div class="col-md-4 overflow-auto"> <!--TODO Make col min 4 on smaller screens-->
+            <div class="col-md-4 overflow-auto">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#easy">Easy Mode</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#expert">Expert Mode</a></li>
@@ -35,6 +35,9 @@
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
                                 <label class="btn btn-secondary active">
                                     <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                </label>
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" name="transport-option" value="public" id="transport-public" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
                                 </label>
                                 <label class="btn btn-secondary">
                                     <input type="radio" name="transport-option" value="car" id="transport-car" autocomplete="off"> <i class="fas fa-car"></i> Car
@@ -72,7 +75,7 @@
                             <br/>
                             <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitEasy();">Get my results!</button>
                         </form>
-                        <div class="alert alert-info" id="loadingAnimation" style="visibility: hidden;">
+                        <div class="alert alert-info" id="loadingAnimation" style="display: none;">
                             <div class="spinner-border text-primary" role="status" >
                                 <span class="sr-only">Performing Speedtest</span>
                             </div>
@@ -96,6 +99,9 @@
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
                                 <label class="btn btn-secondary active">
                                     <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle-expert" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                </label>
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" name="transport-option" value="public" id="transport-public-expert" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
                                 </label>
                                 <label class="btn btn-secondary">
                                     <input type="radio" name="transport-option" value="car" id="transport-car-expert" autocomplete="off"> <i class="fas fa-car"></i> Car
@@ -158,7 +164,7 @@
                             <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitExpert()">Get my results!</button>
 
                         </form>
-                        <div class="alert alert-info" id="loadingAnimationExpert" style="visibility: hidden;">
+                        <div class="alert alert-info" id="loadingAnimationExpert" style="display: none;">
                             <div class="spinner-border text-primary" role="status" >
                                 <span class="sr-only">Performing Speedtest</span>
                             </div>

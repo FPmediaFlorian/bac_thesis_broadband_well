@@ -54,6 +54,7 @@ public class ExpertRequestClass {
         downloadCalculator.setSize(downloadSize,sizeSuffix);
         return downloadCalculator.getBBWdownloadtimeSec();
     }
+
     /**
      * Matches the given Address with a Geocode using OpenCage API
      * @return Returns LatLng object which contains lat & lng

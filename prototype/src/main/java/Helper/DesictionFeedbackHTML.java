@@ -56,7 +56,7 @@ public class DesictionFeedbackHTML {
         sb.append("<td>"+String.format("%d h %d min %d sec",TimeUnit.SECONDS.toHours(totalTimeForBBW), TimeUnit.SECONDS.toMinutes(totalTimeForBBW)-TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(totalTimeForBBW)), totalTimeForBBW - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(totalTimeForBBW)))+"</td>");
         sb.append("</tr>\n" +
                 "                                <tr class=\"table-danger\">\n" +
-                "                                    <td>total Time @Home:</td>");
+                "                                    <td>total Time current Location:</td>");
         sb.append("<td>"+String.format("%d h %d min %d sec", TimeUnit.SECONDS.toHours(downloadtimeHome), TimeUnit.SECONDS.toMinutes(downloadtimeHome)-TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(downloadtimeHome)), downloadtimeHome - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(downloadtimeHome)))+"</td>");
         sb.append("</tr>\n" +
                 "                            </tbody>\n" +
@@ -69,7 +69,7 @@ public class DesictionFeedbackHTML {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<div class=\"alert alert-warning\" role=\"alert\">\n" +
-                "                    You should download your Files @Home!\n" +
+                "                    You should download your Files @current Location!\n" +
                 "                </div>\n" +
                 "                <p>Your nearest BBW would be at the");
         sb.append(nearestBBW.getName());
@@ -101,7 +101,7 @@ public class DesictionFeedbackHTML {
         sb.append("<td>"+String.format("%d h %d min %d sec",TimeUnit.SECONDS.toHours(totalTimeForBBW), TimeUnit.SECONDS.toMinutes(totalTimeForBBW)-TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(totalTimeForBBW)), totalTimeForBBW - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(totalTimeForBBW)))+"</td>");
         sb.append("</tr>\n" +
                 "                                <tr class=\"table-success\">\n" +
-                "                                    <td>total Time @Home:</td>");
+                "                                    <td>total Time current Location:</td>");
         sb.append("<td>"+String.format("%d h %d min %d sec", TimeUnit.SECONDS.toHours(downloadtimeHome), TimeUnit.SECONDS.toMinutes(downloadtimeHome)-TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(downloadtimeHome)), downloadtimeHome - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(downloadtimeHome)))+"</td>");
         sb.append("</tr>\n" +
                 "                            </tbody>\n" +

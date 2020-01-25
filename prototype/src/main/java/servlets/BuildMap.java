@@ -14,13 +14,15 @@ public class BuildMap extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BBW.initBBWList();
+
         StringBuilder sb = new StringBuilder();
 
         int i = 1;
         for (BBW bbw:BBW.BBW_LIST){
             sb.append("var marker"+i+" = L.marker([");
             sb.append(bbw.getLatLng().getLatLng());
-            sb.append("],{icon: BBWIcon}).addTo(map);");
+            sb.append("],{icon: BBWIcon}).addTo(map).on('click',selectBBW(e));");
             sb.append(System.getProperty("line.separator"));
             sb.append("marker"+i+".bindPopup('");
             sb.append(bbw.getDescMarker());
