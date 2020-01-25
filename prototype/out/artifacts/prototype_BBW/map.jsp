@@ -211,6 +211,10 @@
     //Creates BBW Marker dynamically
     ${createMarker}
 
+    function selectBBW(e) {
+        //TODO Set selected BBW
+
+    }
 </script>
 
 <%-- Import Footer File --%>
