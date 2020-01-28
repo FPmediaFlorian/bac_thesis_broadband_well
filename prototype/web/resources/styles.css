@@ -71,13 +71,10 @@ a:hover{
 
 
 .bg {
-    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
     color: #FFFFFF;
-    padding: 90px 90px;
-    background: url("img/colabTable.jpg");
-;
+    padding: 25vh 15%;
+    background: url("img/colabTable.jpg") no-repeat center center;;
 }
 
 
