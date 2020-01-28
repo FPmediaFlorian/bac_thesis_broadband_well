@@ -50,7 +50,7 @@ TODO:
 - -\> Time Berechnungen Isochrone Map
 - Dropdorn Isochrone map
 - Bring mich Button Android und iPhone
-- Interviews in 5
+- Interviews  validation 5 Stück
 
 M3
 Überblick wo haben wir gestartet
