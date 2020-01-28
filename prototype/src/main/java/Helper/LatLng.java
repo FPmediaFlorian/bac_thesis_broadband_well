@@ -19,6 +19,10 @@ public class LatLng {
         return sb.toString();
     }
 
+    public double calculateDistance(LatLng latLng){
+        return Math.sqrt(Math.pow(this.getLat()-latLng.getLat(),2)+Math.pow(this.getLng()-latLng.getLng(),2));
+    }
+
     public double getLat() {
         return lat;
     }

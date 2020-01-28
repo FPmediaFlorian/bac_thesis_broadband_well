@@ -71,10 +71,13 @@ a:hover{
 
 
 .bg {
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
     color: #FFFFFF;
-    padding: 25vh 15%;
-    background: url("img/colabTable.jpg") no-repeat center center;;
+    padding: 90px 90px;
+    background: url("img/colabTable.jpg");
+;
 }
 
 
@@ -87,10 +90,7 @@ a:hover{
     align-content: center;
     font-size: larger;
 }
-.useList ol{
-    list-style-type: decimal;
-}
-.useList li{
+.aboutList ol{
     list-style-type: decimal;
 }
 

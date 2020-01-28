@@ -16,7 +16,7 @@ public class EasyRequestClass {
     private double downloadSize;
     private LatLng geocode;
     private BBW nearestBBW;
-    private VehicleProfileId transportForm;
+    private TransportForm transportForm;
     private double streamSpeed;
     private SizeSuffix sizeSuffix;
 
@@ -116,6 +116,7 @@ public class EasyRequestClass {
 
         totalTimeForBBW = totalTraveltime+downloadtimeBBW;
 
+
         StringBuilder sb = new StringBuilder();
         if (totalTimeForBBW<downloadtimeHome){
             //Go to BBW
@@ -149,25 +150,12 @@ public class EasyRequestClass {
 
 
 
-    public VehicleProfileId getTransportForm() {
+    public TransportForm getTransportForm() {
         return transportForm;
     }
 
     public void setTransportFormFromString(String transportOption) {
-        if(transportOption.equals("bycicle")){
-            transportForm=VehicleProfileId.BIKE;
-        }else {
-            if(transportOption.equals("car")){
-                transportForm=VehicleProfileId.CAR;
-            }else {
-                if(transportOption.equals("walk")){
-                    transportForm=VehicleProfileId.FOOT;
-                }else{
-                    transportForm= VehicleProfileId.CAR;
-                }
-
-            }
-        }
+        this.transportForm=TransportForm.valueOf(transportOption);
     }
 
 

@@ -34,16 +34,16 @@
 
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                    <input type="radio" name="transport-option" value="BIKE" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
                                 </label>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="public" id="transport-public" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
+                                    <input type="radio" name="transport-option" value="PUBLIC" id="transport-public" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="car" id="transport-car" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                    <input type="radio" name="transport-option" value="CAR" id="transport-car" autocomplete="off"> <i class="fas fa-car"></i> Car
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="walk" id="transport-walk" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                    <input type="radio" name="transport-option" value="FOOT" id="transport-walk" autocomplete="off"> <i class="fas fa-walking"></i> Walk
                                 </label>
                             </div>
 
@@ -98,16 +98,16 @@
                             </div>
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle-expert" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                    <input type="radio" name="transport-option" value="BIKE" id="transport-bicycle-expert" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
                                 </label>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="public" id="transport-public-expert" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
+                                    <input type="radio" name="transport-option" value="PUBLIC" id="transport-public-expert" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="car" id="transport-car-expert" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                    <input type="radio" name="transport-option" value="CAR" id="transport-car-expert" autocomplete="off"> <i class="fas fa-car"></i> Car
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="walk" id="transport-walk-expert" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                    <input type="radio" name="transport-option" value="FOOT" id="transport-walk-expert" autocomplete="off"> <i class="fas fa-walking"></i> Walk
                                 </label>
                             </div>
 

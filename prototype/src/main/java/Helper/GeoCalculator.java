@@ -62,7 +62,7 @@ public class GeoCalculator {
     }
 
 
-    public static double calculateTraveltime(LatLng geocode, VehicleProfileId transportForm, BBW bbw){
+    public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw){
         double traveltime = 0;
         RouteResponse rsp = null;
         RoutingApi routing = new RoutingApi();
@@ -71,7 +71,7 @@ public class GeoCalculator {
         try {
             rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
                     Collections.<String>emptyList(), Collections.<String>emptyList(),
-                    transportForm, "en", true, Collections.<String>emptyList(), false,
+                    VehicleProfileId.valueOf(transportForm.toString()), "en", true, Collections.<String>emptyList(), false,
                     true, true, false, true, null, false,
                     "fastest", Collections.<Integer>emptyList(), null, null, null,
                     null, null, null, null, null,
@@ -88,45 +88,77 @@ public class GeoCalculator {
         return traveltime;
     }
 
-    public static BBW getNearestBBWsetTraveltime(LatLng geocode, VehicleProfileId transportForm){
-        //TODO Auslagern in eigene Klasse
+    public static BBW getNearestBBWsetTraveltime(LatLng geocode, TransportForm transportForm){
         BBW nearestBBW= null ;
         double traveltime = 0;
+        if(transportForm != TransportForm.PUBLIC){
+            //Normal routing
 
-        RoutingApi routing = new RoutingApi();
-        routing.setApiClient(createClient());
+            RoutingApi routing = new RoutingApi();
+            routing.setApiClient(createClient());
 
-        for (BBW bbw : BBW.BBW_LIST) {
-            //Calculate time with Graphhopper APIkey
-            RouteResponse rsp = null;
-            try {
-                rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
-                        Collections.<String>emptyList(), Collections.<String>emptyList(),
-                        transportForm, "en", true, Collections.<String>emptyList(), false,
-                        true, true, false, true, null, false,
-                        "fastest", Collections.<Integer>emptyList(), null, null, null,
-                        null, null, null, null, null,
-                        null, null);
-            } catch (ApiException e) {
-                LOGGER.error(e.getMessage());
-            }
+            for (BBW bbw : BBW.BBW_LIST) {
+                //Calculate time with Graphhopper APIkey
+                RouteResponse rsp = null;
+                try {
+                    rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
+                            Collections.<String>emptyList(), Collections.<String>emptyList(),
+                            VehicleProfileId.valueOf(transportForm.toString()), "en", true, Collections.<String>emptyList(), false,
+                            true, true, false, true, null, false,
+                            "fastest", Collections.<Integer>emptyList(), null, null, null,
+                            null, null, null, null, null,
+                            null, null);
+                } catch (ApiException e) {
+                    LOGGER.error(e.getMessage());
+                }
 
-            try {
-                traveltime=rsp.getPaths().get(0).getTime();
-            }catch (NullPointerException e){
-                LOGGER.error(e.getMessage());
-            }
+                try {
+                    traveltime=rsp.getPaths().get(0).getTime();
+                }catch (NullPointerException e){
+                    LOGGER.error(e.getMessage());
+                }
 
-            if (nearestBBW == null) {
-                nearestBBW = bbw;
-                nearestBBW.setTravelTime(traveltime);
-            } else {
-                if (nearestBBW.getTravelTime() > traveltime) {
+                if (nearestBBW == null) {
                     nearestBBW = bbw;
                     nearestBBW.setTravelTime(traveltime);
+                } else {
+                    if (nearestBBW.getTravelTime() > traveltime) {
+                        nearestBBW = bbw;
+                        nearestBBW.setTravelTime(traveltime);
+                    }
                 }
             }
+        }else {
+            //public Transport routing
+            double distance=0;
+            WLstation nearestStation= null;
+            //Get nearest BBW by distance
+            for (BBW bbw : BBW.BBW_LIST){
+                if(nearestBBW==null){
+                    nearestBBW=bbw;
+                    distance=bbw.latLng.calculateDistance(geocode);
+                }
+                if(distance>bbw.latLng.calculateDistance(geocode)){
+                    distance=bbw.latLng.calculateDistance(geocode);
+                    nearestBBW=bbw;
+                }
+            }
+            try {
+                nearestStation=getNearestPTStation(geocode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                traveltime= getPublicTransportTraveltime(nearestStation.getLatLng(),nearestBBW);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //convert time to milliseconds (desicion response requires Milliseconds)
+            nearestBBW.setTravelTime(traveltime*1000);
+
         }
+
+
         return nearestBBW;
     }
 
@@ -144,7 +176,7 @@ public class GeoCalculator {
         params.put("outputFormat","JSON");
         params.put("locationServerActive","1");
         params.put("type_origin","any");
-        params.put("name_origin",getNearestPTStation(geocode));
+        params.put("name_origin",String.valueOf(getNearestPTStation(geocode).getID()));
         params.put("type_destination","any");
         params.put("name_destination",bbw.getNearestPTStation());
 
@@ -187,7 +219,6 @@ public class GeoCalculator {
             secRet = hr*3600+min*60;
 
         }
-
         return secRet;
     }
 
@@ -195,90 +226,23 @@ public class GeoCalculator {
 
 
 
-    private static String getNearestPTStation(LatLng latLng) throws Exception{
-        URL url = new URL("http://www.wienerlinien.at/ogd_routing/XML_TRIP_REQUEST2?");
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
+    public static WLstation getNearestPTStation(LatLng latLng) throws Exception{
+        List<WLstation> stationList = WLstation.initWLstationList();
+        WLstation minStation = null;
+        double minDist = 0;
 
-
-
-        Map<String,String> params = new HashMap<>();
-        params.put("type_origin","coord");
-        params.put("name_origin",latLng.getLng()+":"+latLng.getLat()+":WGS84");
-
-        con.setDoOutput(true);
-        DataOutputStream out = new DataOutputStream((con.getOutputStream()));
-        out.writeBytes(getParamsString(params));
-        out.flush();
-        out.close();
-
-        int status = con.getResponseCode();
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+        for (WLstation wlStation:stationList){
+            if (minStation==null){
+                minStation=wlStation;
+                minDist = wlStation.latLng.calculateDistance(latLng);
+            } else {
+                if(minDist>wlStation.latLng.calculateDistance(latLng)){
+                    minDist=wlStation.latLng.calculateDistance(latLng);
+                    minStation = wlStation;
+                }
+            }
         }
-        in.close();
-        con.disconnect();
-
-        //LOGGER.debug("Responsecode: "+status);
-        //LOGGER.debug("Response: "+ content.toString());
-
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(content.toString())));
-
-        XPathFactory factory = XPathFactory.newInstance();
-        XPath xpath = factory.newXPath();
-        //itdRequest
-        //itdTripRequest
-        //itdOdv
-        //itdOdv
-        XPathExpression expr = xpath.compile("//itdRequest/itdTripRequest/itdOdv/itdOdvAssignedStops/@value");
-
-
-        // Evaluate expression result on XML document
-        NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-
-        List<String> values=new ArrayList<>();
-        for (int i = 0; i < nodes.getLength(); i++) {
-            values.add(nodes.item(i).getNodeValue());
-        }
-
-        for(String s : values){
-            LOGGER.debug("String: "+s);
-        }
-
-
-        //LOGGER.debug("Element:"+doc.getElementsByTagName("time"));
-
-        /*
-        NodeList itdRequest = doc.getElementsByTagName("itdTripRequest");
-
-        for(int i = 0; i< itdRequest.getLength();i++){
-            LOGGER.debug("Node "+i+": "+itdRequest.item(i).toString());
-        }
-
-         */
-
-
-
-
-        /*
-        InputStream is = new ByteArrayInputStream(content.toString().getBytes());
-
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document d = db.parse(is);
-
-        Node rootElement = d.getDocumentElement();
-        //LOGGER.debug(nodeToString(rootElement));
-
-        NodeList nodeList = rootElement.getChildNodes();
-        LOGGER.debug(nodeList.toString());
-*/
-        String ret = "60201288";
-        return ret;
+        return minStation;
     }
 
     private static List<String> evaluateXPath(Document document, String xpathExpression) throws Exception
