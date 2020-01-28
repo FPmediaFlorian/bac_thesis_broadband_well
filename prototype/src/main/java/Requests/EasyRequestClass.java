@@ -124,7 +124,6 @@ public class EasyRequestClass {
         }else{
             //Download @Home
             sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
-            sb.append("Negative message to come");
         }
         return sb.toString();
     }

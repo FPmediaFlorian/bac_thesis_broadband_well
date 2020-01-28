@@ -93,7 +93,7 @@
                         <form action="ExpertMapRequest" method="post" accept-charset="ISO-8859-1" id="expertForm">
                             <div class="form-group">
                                 <label for="expertCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="expertCurrentLocation" name="CurrentLocation" placeholder="Current Location">
+                                <input type="text" class="form-control" id="expertCurrentLocation" name="CurrentLocation" placeholder="Current Location" required>
                                 <small id="expertCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
                             </div>
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>

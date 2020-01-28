@@ -5,36 +5,91 @@ import java.util.concurrent.TimeUnit;
 public class DesictionFeedbackHTML {
     public static String getPositiveFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome){
         StringBuilder sb = new StringBuilder();
+
+        sb.append("<div class=\"pt-5 pb-3\">\n" +
+                "                    <div class=\"alert alert-success text-center \">\n" +
+                "                        <strong>You should go to the Broadbandwell!</strong>\n" +
+                "                    </div>\n" +
+                "                </div>");
+        sb.append("<div class=\"text-center pt-3 pb-3\">\n" +
+                "                    <p class=\"text-center pb-3\">The nearest BBW is at <strong>");
+        sb.append(nearestBBW.getName());
+        sb.append("</strong></p>\n" +
+                "                    <a class=\"btn btn-secondary \" data-toggle=\"collapse\" href=\"#collapseBBWInfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseBBWInfo\">Detailed Infos</a>\n" +
+                "                    <div class=\"collapse pt-2\" id=\"collapseBBWInfo\">\n" +
+                "                        <div class=\"card card-body\">");
+        sb.append(nearestBBW.getInfo());
+        sb.append("</div>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "\n" +
+                "                <div class=\"text-center pt-3 pb-3\">\n" +
+                "                    <p class=\"text-center pb-3\">Going to the BBW will save you <strong>");
+        sb.append(getStringfromMilliseconds(downloadtimeHome-totalTimeForBBW));
+        sb.append("</strong></p>\n" +
+                "                    <a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTimeinfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTimeinfo\">Learn more</a>\n" +
+                "                    <div class=\"collapse pt-2\" id=\"collapseTimeinfo\">\n" +
+                "                        <div class=\"card card-body\">\n" +
+                "                            <p>Time you need downloading <strong>@BBW</strong></p>\n" +
+                "                            <table class=\"table table-borderless\">\n" +
+                "                                <tbody>\n" +
+                "                                    <tr>\n" +
+                "                                        <td><strong>Traveltime:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(totalTraveltime));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td><strong>Downloadtime BBW:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(downloadtimeBBW));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr class=\"table-success\">\n" +
+                "                                        <td><strong>total Time:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(totalTimeForBBW));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                </tbody>\n" +
+                "                            </table>\n" +
+                "                            <p>Time you need downloading <strong>@current Location</strong></p>\n" +
+                "                            <table class=\"table table-borderless\">\n" +
+                "                                <tbody>\n" +
+                "                                <tr class=\"table-warning\">\n" +
+                "                                    <td><strong>Downloadtime:</strong></td>\n" +
+                "                                    <td>");
+        sb.append(getStringfromMilliseconds(downloadtimeHome));
+        sb.append("</td>\n" +
+                "                                </tr>\n" +
+                "                                </tbody>\n" +
+                "                            </table>\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                </div>");
+
+
+
+
+
+
+
+
+
+        /*
         sb.append("<div class=\"alert alert-success\" role=\"alert\">\n" +
                 "                    You should go to the Broadbandwell!\n" +
-                "                </div> <p>The nearest BBW is at the");
+                "                </div> <p>The nearest BBW is at the ");
         sb.append(nearestBBW.getName());
         sb.append("</p>\n" +
-                "                <a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseBBWInfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseBBWInfo\">Infos about the VKM</a>\n" +
+                "                <a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseBBWInfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseBBWInfo\">Infos about the BBW</a>\n" +
                 "                <div class=\"collapse\" id=\"collapseBBWInfo\">\n" +
                 "                    <div class=\"card card-body\">\n");
         sb.append(nearestBBW.getInfo());
-        sb.append("                        <p>Das Volkskundemuseum Wien ist eines der großen internationalen ethnographischen Museen mit\n" +
-                "                            umfangreichen Sammlungen zur Volkskunst sowie zu historischen und gegenwärtigen Alltagskulturen\n" +
-                "                            Europas. Wir zeigen Ausstellungen zu vielfältigen Themen des Zusammenlebens in einer sich ständig\n" +
-                "                            verändernden Welt.</p>\n" +
-                "                        <p><strong>Volkskundemuseum Wien</strong></p>\n" +
-                "                        Laudongasse 15–19, 1080 Wien<br>\n" +
-                "                        <strong>Öffnungszeiten</strong>\n" +
-                "                        <u>BBW:</u>\n" +
-                "                        24/7\n" +
-                "                        <u>Museum:</u>\n" +
-                "                        Di bis So, 10.00 bis 17.00 Uhr<br>\n" +
-                "                        Do, 10.00 bis 20.00 Uhr<br>\n" +
-                "                        <u>Bibliothek:</u>\n" +
-                "                        Di bis Fr, 9.00 bis 12.00 Uhr<br>\n" +
-                "                        <u>Hildebrandt Café:</u>\n" +
-                "                        Di bis So, 10.00 bis 18.00 Uhr<br>\n" +
-                "                        Do, 10.00 bis 20.00 Uhr<br>\n" +
-                "                        <u>Mostothek:</u>\n" +
-                "                        Di, ab 17.00 Uhr\n" +
-                "\n" +
-                "                    </div>\n" +
+        sb.append("                    </div>\n" +
                 "                </div>\n" +
                 "                <br>\n" +
                 "                <br>\n" +
@@ -61,13 +116,76 @@ public class DesictionFeedbackHTML {
         sb.append("</tr>\n" +
                 "                            </tbody>\n" +
                 "                        </table></div>");
-
+        */
         return sb.toString();
     }
 
     public static String getNegativeFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome){
         StringBuilder sb = new StringBuilder();
 
+        sb.append("<div class=\"pt-5 pb-3\">\n" +
+                "                    <div class=\"alert alert-warning text-center \">\n" +
+                "                        <strong>You download your Files @current location!</strong>\n" +
+                "                    </div>\n" +
+                "                </div>");
+        sb.append("<div class=\"text-center pt-3 pb-3\">\n" +
+                "                    <p class=\"text-center pb-3\">The nearest BBW would be at <strong>");
+        sb.append(nearestBBW.getName());
+        sb.append("</strong></p>\n" +
+                "                    <a class=\"btn btn-secondary \" data-toggle=\"collapse\" href=\"#collapseBBWInfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseBBWInfo\">Detailed Infos</a>\n" +
+                "                    <div class=\"collapse pt-2\" id=\"collapseBBWInfo\">\n" +
+                "                        <div class=\"card card-body\">");
+        sb.append(nearestBBW.getInfo());
+        sb.append("</div>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "\n" +
+                "                <div class=\"text-center pt-3 pb-3\">\n" +
+                "                    <p class=\"text-center pb-3\">Downloading your files @current Location will save you <strong>");
+        sb.append(getStringfromMilliseconds(totalTimeForBBW-downloadtimeHome));
+        sb.append("</strong></p>\n" +
+                "                    <a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTimeinfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTimeinfo\">Learn more</a>\n" +
+                "                    <div class=\"collapse pt-2\" id=\"collapseTimeinfo\">\n" +
+                "                        <div class=\"card card-body\">\n" +
+                "                         <p>Time you need downloading <strong>@current Location</strong></p>\n" +
+                "                            <table class=\"table table-borderless\">\n" +
+                "                                <tbody>\n" +
+                "                                <tr class=\"table-success\">\n" +
+                "                                    <td><strong>Downloadtime:</strong></td>\n" +
+                "                                    <td>");
+        sb.append(getStringfromMilliseconds(downloadtimeHome));
+        sb.append("</td>\n" +
+                "                                </tr>\n" +
+                "                                </tbody>\n" +
+                "                            </table>\n" +
+                "                            <p>Time you need downloading <strong>@BBW</strong></p>\n" +
+                "                            <table class=\"table table-borderless\">\n" +
+                "                                <tbody>\n" +
+                "                                    <tr>\n" +
+                "                                        <td><strong>Traveltime:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(totalTraveltime));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td><strong>Downloadtime BBW:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(downloadtimeBBW));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr class=\"table-warning\">\n" +
+                "                                        <td><strong>total Time:</strong></td>\n" +
+                "                                        <td>");
+        sb.append(getStringfromMilliseconds(totalTimeForBBW));
+        sb.append("</td>\n" +
+                "                                    </tr>\n" +
+                "                                </tbody>\n" +
+                "                            </table>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                </div>");
+
+        /*
         sb.append("<div class=\"alert alert-warning\" role=\"alert\">\n" +
                 "                    You should download your Files @current Location!\n" +
                 "                </div>\n" +
@@ -107,9 +225,13 @@ public class DesictionFeedbackHTML {
                 "                            </tbody>\n" +
                 "                        </table></div></div>");
 
-
+        */
 
 
         return sb.toString();
+    }
+
+    private static String getStringfromMilliseconds(long time){
+        return String.format("%d h %d min %d sec",TimeUnit.SECONDS.toHours(time),TimeUnit.SECONDS.toMinutes(time)-TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(time)),time-TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(time)));
     }
 }

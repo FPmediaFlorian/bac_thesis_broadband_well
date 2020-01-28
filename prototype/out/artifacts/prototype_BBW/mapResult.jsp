@@ -14,6 +14,65 @@
             <div class="col-lg-3 overflow-auto">
                 <!-- Request result -->
                 ${desicionResponse}
+                <!--
+                <div class="pt-5 pb-3">
+                    <div class="alert alert-success text-center ">
+                        <strong>You should go to the Broadbandwell!</strong>
+                    </div>
+                </div>
+
+                <div class="text-center pt-3 pb-3">
+                    <p class="text-center pb-3">The nearest BBW is at <strong>VKM</strong></p>
+                    <a class="btn btn-secondary " data-toggle="collapse" href="#collapseBBWInfo" role="button" aria-expanded="false" aria-controls="collapseBBWInfo">Detailed Infos</a>
+                    <div class="collapse pt-2" id="collapseBBWInfo">
+                        <div class="card card-body">
+                            Info 123
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-3 pb-3">
+                    <p class="text-center pb-3">Going to the BBW will save you <strong>1h 32 min</strong></p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseTimeinfo" role="button" aria-expanded="false" aria-controls="collapseTimeinfo">Learn more</a>
+                    <div class="collapse pt-2" id="collapseTimeinfo">
+                        <div class="card card-body">
+                            <p>Time you need downloading @BBW</p>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Traveltime:</strong></td>
+                                        <td>2h 32m 2s</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Downloadtime BBW:</strong></td>
+                                        <td>0h 12m 4s</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td><strong>total Time:</strong></td>
+                                        <td>2h 44m 6s</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Time you need downloading @current Location</p>
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr class="table-warning">
+                                    <td><strong>Downloadtime:</strong></td>
+                                    <td>5h 44m 6s</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                -->
+
+
 
             </div>
 
@@ -48,7 +107,33 @@
     createMap();
 
     //Draw the route
-    drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
+    //if (${vehicle} === "PUBLIC"){
+        //drawPublicRoute(${latlngStart},${latlngDest},${latlngStationStart},${latlngStationDest},'${ghApiKey}',BBWIcon,greenIcon)
+    //} else {
+
+        drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
+    //}
+
+    function drawPublicRoute(startLat, startLng, destinationLat, destinationLng,stationStartLat, stationStartLng, StationDestinationLat, StationDestinationLng,APIkey, BBWIcon, greenIcon) {
+        //Add start to startstation
+        L.Routing.control({
+            waypoints: [
+                L.latLng(startLat, startLng),
+                L.latLng(stationStartLat, stationStartLng)
+            ],
+            router: L.Routing.graphHopper(APIkey)
+        }).addTo(map);
+        //Add stationDestination to destination
+        L.Routing.control({
+            waypoints: [
+                L.latLng(destinationLat, destinationLng),
+                L.latLng(StationDestinationLat, StationDestinationLng)
+            ],
+            router: L.Routing.graphHopper(APIkey)
+        }).addTo(map);
+        //Add "Public Transport"
+        L.path([[stationStartLat,stationStartLng],[StationDestinationLat,StationDestinationLng]]).addTo(map)
+    }
 
 
 </script>
