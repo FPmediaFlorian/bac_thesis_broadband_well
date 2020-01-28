@@ -81,7 +81,7 @@
     var lon = 16.356120;
     var lat = 48.220110;
     var profile = 'cycling';
-    var minutes = [5,10,20,30,45,55];
+    var minutes = [6,9,13,16,19,26];
     var params = document.getElementById('params');
     var streamspeed = 100; //Mbit
     var filesizes = [10,15,20,25,30,40];
@@ -285,6 +285,17 @@
         }, "poi-label");
 
 
+        createLegend()
+
+
+        refreshIsoAndMarker();
+    });
+
+    function createLegend(){
+        var element = document.getElementById("legend");
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
 
         var item = document.createElement('div');
         var value = document.createElement('span');
@@ -306,9 +317,7 @@
             item.appendChild(value);
             legend.appendChild(item);
         }
-
-        refreshIsoAndMarker();
-    });
+    }
 
 
     params.addEventListener('change', function(e) {
@@ -343,6 +352,7 @@
                 minutes[i]=Cminutes;
             }
         }
+        createLegend();
     }
 
     function refreshIsoAndMarker() {

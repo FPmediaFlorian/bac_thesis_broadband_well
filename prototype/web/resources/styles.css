@@ -46,6 +46,12 @@ a:hover{
 }
 
 
+.sectionHeading{
+    font-size: 41px;
+    line-height: 51px;
+
+}
+
 /*
 *
 * SECTION: What to know about the BBW
@@ -57,12 +63,23 @@ a:hover{
 }
 
 .aboutList ul{
-    list-style-type: circle;
-}
 
+}
 .aboutList ul li {
-
+    margin-bottom: 15px;
 }
+
+
+.bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #FFFFFF;
+    padding: 90px 90px;
+    background: url("img/colabTable.jpg");
+;
+}
+
 
 /*
 *
