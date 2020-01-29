@@ -18,7 +18,7 @@ public class BuildIsochrone extends HttpServlet {
 
         StringBuilder sb = new StringBuilder();
 
-        for(BBW bbw:BBW.BBW_LIST){
+        for (BBW bbw : BBW.BBW_LIST) {
             sb.append("<option value=\"");
             sb.append(bbw.getLatLngString());
             sb.append("\">");
@@ -26,8 +26,8 @@ public class BuildIsochrone extends HttpServlet {
             sb.append("</option>");
         }
 
-        request.setAttribute("bbwSelector",sb.toString());
-        request.setAttribute("mapboxAPIKEY", "'"+ APIKeys.MAPBOXAPI+"'");
+        request.setAttribute("bbwSelector", sb.toString());
+        request.setAttribute("mapboxAPIKEY", "'" + APIKeys.MAPBOXAPI + "'");
 
         request.getRequestDispatcher("/isochroneMap.jsp").forward(request, response);
     }

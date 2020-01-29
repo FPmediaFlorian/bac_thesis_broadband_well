@@ -28,17 +28,16 @@
     var map = L.map('map', {
         layers: [tileLayer],
         scrollWheelZoom: false
-    }).setView([48.2094,16.3708], 13);
+    }).setView([48.2094, 16.3708], 13);
 
     // set the attribution
     const attributionText = `<a href='https://targomo.com/developers/resources/attribution/' target='_blank'>&copy; Targomo</a>`
     map.attributionControl.addAttribution(attributionText);
 
 
-
     // Define source and target locations which are passed into the Targomo route service.
-    let targets = [{ id: 1, lat: 48.220266, lng: 16.356164 }]; //WS29
-    let source = { id: 0, lat: 48.213231, lng: 16.350499 }; //VKM
+    let targets = [{id: 1, lat: 48.220266, lng: 16.356164}]; //WS29
+    let source = {id: 0, lat: 48.213231, lng: 16.350499}; //VKM
 
     // create a target marker icon to be able to distinguish source and target markers
     const redIcon = L.icon({
@@ -49,21 +48,26 @@
     });
 
     // create a draggable source and two draggable target markers, add them to the map
-    const sourceMarker = L.marker([source.lat, source.lng], { draggable: true }).addTo(map);
-    const targetMarker1 = L.marker([targets[0].lat, targets[0].lng], { icon: redIcon, draggable: true }).addTo(map);
+    const sourceMarker = L.marker([source.lat, source.lng], {draggable: true}).addTo(map);
+    const targetMarker1 = L.marker([targets[0].lat, targets[0].lng], {icon: redIcon, draggable: true}).addTo(map);
     //const targetMarker2 = L.marker([targets[1].lat, targets[1].lng], { icon: redIcon, draggable: true }).addTo(map);
 
     // Everytime a marker is dragged, update the location and request a new route.
     sourceMarker.on("dragend", markerDragged(source.id));
     targetMarker1.on("dragend", markerDragged(targets[0].id));
+
     //targetMarker2.on("dragend", markerDragged(targets[1].id));
     function markerDragged(id) {
         return (e) => {
             const position = e.target.getLatLng();
             if (id === source.id) {
-                source = { id: source.id, lat: position.lat, lng: position.lng };
+                source = {id: source.id, lat: position.lat, lng: position.lng};
             } else {
-                targets = targets.map(target => target.id === id ? { id: id, lat: position.lat, lng: position.lng } : target);
+                targets = targets.map(target => target.id === id ? {
+                    id: id,
+                    lat: position.lat,
+                    lng: position.lng
+                } : target);
             }
             refreshRoutes();
         }
@@ -127,6 +131,7 @@
         line.addTo(map);
         leafletLayers.push(line);
     }
+
     function drawSolidLine(leafletPoints) {
         const line = new L.Polyline(leafletPoints, {
             color: '#FF5722',
@@ -137,6 +142,7 @@
         line.addTo(map);
         leafletLayers.push(line);
     }
+
     function drawCircles(leafletPoints) {
         leafletPoints.forEach(point => {
             const circle = L.circle(point, {
@@ -151,7 +157,6 @@
 
     // Request routes once immediately on page load.
     refreshRoutes();
-
 
 
 </script>

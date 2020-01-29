@@ -20,7 +20,7 @@ public class WLstation {
         this.latLng = latLng;
     }
 
-    public static List<WLstation> initWLstationList(){
+    public static List<WLstation> initWLstationList() {
         List<WLstation> retList = new ArrayList<>();
 
         String csvFile = "/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/WLstops.csv";
@@ -36,7 +36,7 @@ public class WLstation {
                 // use comma as separator
                 String[] station = line.split(cvsSplitBy);
 
-                retList.add(new WLstation(station[1], Integer.valueOf(station[0]),new LatLng(Double.valueOf(station[2]),Double.valueOf(station[3]))));
+                retList.add(new WLstation(station[1], Integer.valueOf(station[0]), new LatLng(Double.valueOf(station[2]), Double.valueOf(station[3]))));
 
             }
 

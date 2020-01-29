@@ -23,7 +23,8 @@
 
                 <div class="text-center pt-3 pb-3">
                     <p class="text-center pb-3">The nearest BBW is at <strong>VKM</strong></p>
-                    <a class="btn btn-secondary " data-toggle="collapse" href="#collapseBBWInfo" role="button" aria-expanded="false" aria-controls="collapseBBWInfo">Detailed Infos</a>
+                    <a class="btn btn-secondary " data-toggle="collapse" href="#collapseBBWInfo" role="button"
+                       aria-expanded="false" aria-controls="collapseBBWInfo">Detailed Infos</a>
                     <div class="collapse pt-2" id="collapseBBWInfo">
                         <div class="card card-body">
                             Info 123
@@ -33,24 +34,25 @@
 
                 <div class="text-center pt-3 pb-3">
                     <p class="text-center pb-3">Going to the BBW will save you <strong>1h 32 min</strong></p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseTimeinfo" role="button" aria-expanded="false" aria-controls="collapseTimeinfo">Learn more</a>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseTimeinfo" role="button"
+                       aria-expanded="false" aria-controls="collapseTimeinfo">Learn more</a>
                     <div class="collapse pt-2" id="collapseTimeinfo">
                         <div class="card card-body">
                             <p>Time you need downloading @BBW</p>
                             <table class="table table-borderless">
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Traveltime:</strong></td>
-                                        <td>2h 32m 2s</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Downloadtime BBW:</strong></td>
-                                        <td>0h 12m 4s</td>
-                                    </tr>
-                                    <tr class="table-success">
-                                        <td><strong>total Time:</strong></td>
-                                        <td>2h 44m 6s</td>
-                                    </tr>
+                                <tr>
+                                    <td><strong>Traveltime:</strong></td>
+                                    <td>2h 32m 2s</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Downloadtime BBW:</strong></td>
+                                    <td>0h 12m 4s</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <td><strong>total Time:</strong></td>
+                                    <td>2h 44m 6s</td>
+                                </tr>
                                 </tbody>
                             </table>
                             <p>Time you need downloading @current Location</p>
@@ -64,14 +66,9 @@
                             </table>
 
 
-
                         </div>
                     </div>
                 </div>
-
-
-
-
 
 
             </div>
@@ -115,12 +112,12 @@
     createMap();
 
 
-    function drawPublicRoute(startLat,startLng,stationAlat,stationAlng,stationBlat,stationBlng,destLat,destLng,orangeIcon,greenIcon,BBWIcon,APIkey){
+    function drawPublicRoute(startLat, startLng, stationAlat, stationAlng, stationBlat, stationBlng, destLat, destLng, orangeIcon, greenIcon, BBWIcon, APIkey) {
         //Current Location -> Station A
         L.Routing.control({
             waypoints: [
-                L.latLng(startLat,startLng),
-                L.latLng(stationAlat,stationAlng)
+                L.latLng(startLat, startLng),
+                L.latLng(stationAlat, stationAlng)
             ],
             createMarker: function (i, wp, nWps) {
                 if (i === nWps - 1) {
@@ -130,20 +127,20 @@
                 }
             },
             fitSelectedRoutes: false,
-            router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+            router: L.Routing.graphHopper(APIkey, {urlParameters: {vehicle: 'FOOT'}})
         }).addTo(map);
 
         //Station A -> Station B
 
-        pline=[[stationAlat,stationAlng],[stationBlat,stationBlng]]
+        pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]]
 
         var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
 
         //Station B -> Destination
         L.Routing.control({
             waypoints: [
-                L.latLng(stationBlat,stationBlng),
-                L.latLng(destLat,destLng)
+                L.latLng(stationBlat, stationBlng),
+                L.latLng(destLat, destLng)
             ],
             createMarker: function (i, wp, nWps) {
                 if (i === nWps - 1) {
@@ -153,15 +150,11 @@
                 }
             },
             fitSelectedRoutes: false,
-            router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+            router: L.Routing.graphHopper(APIkey, {urlParameters: {vehicle: 'FOOT'}})
         }).addTo(map);
 
         map.fitBounds(polyline.getBounds());
     }
-
-
-
-
 
 
 </script>

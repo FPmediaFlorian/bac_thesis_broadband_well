@@ -10,9 +10,9 @@ public class WLstationTest {
     private static Logger LOGGER = Logger.getLogger(WLstationTest.class.getName());
 
     @Test
-    public void csvImportTest(){
-        List<WLstation> list= WLstation.initWLstationList();
+    public void csvImportTest() {
+        List<WLstation> list = WLstation.initWLstationList();
         LOGGER.debug(list);
-        LOGGER.debug("Listsize: "+list.size());
+        LOGGER.debug("Listsize: " + list.size());
     }
 }

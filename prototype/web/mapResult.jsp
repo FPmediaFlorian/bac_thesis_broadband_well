@@ -73,7 +73,6 @@
                 -->
 
 
-
             </div>
 
             <div class="col-lg-9" id="map1"></div>
@@ -116,15 +115,11 @@
 
     //Draw routes
 
-    if('${vehicle}'==='PUBLIC'){
-        drawPublicRoute(${latlngStart},${stationA},${stationB},${latlngDest},orangeIcon,greenIcon,BBWIcon,'${ghApiKey}');
-    }else{
-        drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
+    if ('${vehicle}' === 'PUBLIC') {
+        drawPublicRoute(${latlngStart}, ${stationA}, ${stationB}, ${latlngDest}, orangeIcon, greenIcon, BBWIcon, '${ghApiKey}');
+    } else {
+        drawRoute(${latlngStart}, ${latlngDest}, '${ghApiKey}', BBWIcon, greenIcon, '${vehicle}');
     }
-
-
-
-
 
 
 </script>

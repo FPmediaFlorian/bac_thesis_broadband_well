@@ -2,7 +2,6 @@ package servlets;
 
 import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
-import Helper.LatLng;
 import Helper.SizeSuffix;
 import Helper.TransportForm;
 import Requests.EasyRequestClass;
@@ -34,35 +33,35 @@ public class EasyMapRequest extends HttpServlet {
         String geocode = null;
         try {
             geocode = easyRequest.getGeolocation().getLatLng();
-        } catch (InvalidAddressExeption ex){
-            request.setAttribute("error","Your Address could not be found! Please try another spelling or address!");
+        } catch (InvalidAddressExeption ex) {
+            request.setAttribute("error", "Your Address could not be found! Please try another spelling or address!");
             request.getRequestDispatcher("BuildMap").forward(request, response);
             return;
         }
 
-        LOGGER.debug("Geocoding:"+geocode);
-        LOGGER.debug("Downloadtime: "+easyRequest.getDownloadtime());
-        LOGGER.debug("Downloadtime BBW: "+easyRequest.getBBWdownloadtime());
+        LOGGER.debug("Geocoding:" + geocode);
+        LOGGER.debug("Downloadtime: " + easyRequest.getDownloadtime());
+        LOGGER.debug("Downloadtime BBW: " + easyRequest.getBBWdownloadtime());
 
 
         //Set Parameters for Webform
         request.setAttribute("latlngStart", geocode);
-        request.setAttribute("latlngDest",easyRequest.getNearestBBW().getLatLng().getLatLng());
+        request.setAttribute("latlngDest", easyRequest.getNearestBBW().getLatLng().getLatLng());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
-        request.setAttribute("desicionResponse",easyRequest.getDesicionResponse());
-        if(transportOption==TransportForm.PUBLIC){
-            request.setAttribute("stationA","not"); // TODO get stationA coordinates
-            request.setAttribute("stationB","not"); // TODO get stationB coordinates
-        }else{
-            request.setAttribute("stationA","not");
-            request.setAttribute("stationB","not");
+        request.setAttribute("desicionResponse", easyRequest.getDesicionResponse());
+        if (transportOption == TransportForm.PUBLIC) {
+            request.setAttribute("stationA", "not"); // TODO get stationA coordinates
+            request.setAttribute("stationB", "not"); // TODO get stationB coordinates
+        } else {
+            request.setAttribute("stationA", "not");
+            request.setAttribute("stationB", "not");
         }
-
 
 
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("BuildMap").forward(request, response);
     }

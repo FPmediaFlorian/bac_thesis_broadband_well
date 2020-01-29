@@ -12,11 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BBW {
+    public static List<BBW> BBW_LIST = null;
     private static Logger LOGGER = Logger.getLogger(BBW.class.getName());
-    public static  List<BBW> BBW_LIST = null;
-
-
-
     String name;
     LatLng latLng;
     String descMarker;
@@ -33,21 +30,63 @@ public class BBW {
 
     }
 
-    public BBW() {}
+    public BBW() {
+    }
+
+    public static void initBBWList() {
+
+        BBW_LIST = new ArrayList<>();
+        JSONParser parser = new JSONParser();
+        BBW bbw;
+        try {
+            JSONArray a = (JSONArray) parser.parse(new FileReader("/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/config/BBW_config.json"));//"src/config/BBW_config.json"));
+
+
+            for (Object o : a) {
+                JSONObject bb = (JSONObject) o;
+                JSONObject ll = (JSONObject) bb.get("latLng");
+                bbw = new BBW(bb.get("name").toString(), new LatLng((double) ll.get("lat"), (double) ll.get("lng")), bb.get("descMarker").toString(), bb.get("info").toString(), bb.get("nearestPTStation").toString().replace("\"", ""));
+                BBW_LIST.add(bbw);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //LOGGER.debug(BBW_LIST.toString());
+    }
 
     public String getName() {
         return name;
     }
 
-    public LatLng getLatLng(){
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LatLng getLatLng() {
         return latLng;
+    }
+
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
     }
 
     public String getDescMarker() {
         return descMarker;
     }
 
-    public String getInfo() { return info; }
+    public void setDescMarker(String descMarker) {
+        this.descMarker = descMarker;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     public String getLatLngString() {
         return latLng.getLatLng();
@@ -59,22 +98,6 @@ public class BBW {
 
     public void setTravelTime(double travelTime) {
         this.travelTime = travelTime;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLatLng(LatLng latLng) {
-        this.latLng = latLng;
-    }
-
-    public void setDescMarker(String descMarker) {
-        this.descMarker = descMarker;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
     }
 
     public String getNearestPTStation() {
@@ -94,29 +117,5 @@ public class BBW {
                 ", info='" + info + '\'' +
                 ", travelTime=" + travelTime +
                 '}';
-    }
-
-
-    public static void initBBWList(){
-
-        BBW_LIST = new ArrayList<>();
-        JSONParser parser = new JSONParser();
-        BBW bbw;
-        try {
-            JSONArray a = (JSONArray) parser.parse(new FileReader("/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/config/BBW_config.json"));//"src/config/BBW_config.json"));
-
-
-            for (Object o:a){
-                JSONObject bb=(JSONObject) o;
-                JSONObject ll=(JSONObject) bb.get("latLng");
-                bbw = new BBW(bb.get("name").toString(),new LatLng((double)ll.get("lat"),(double)ll.get("lng")),bb.get("descMarker").toString(), bb.get("info").toString(), bb.get("nearestPTStation").toString().replace("\"",""));
-                BBW_LIST.add(bbw);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        //LOGGER.debug(BBW_LIST.toString());
     }
 }

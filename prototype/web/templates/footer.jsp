@@ -11,7 +11,8 @@
     <div class="container mb-2">
         <div class="row align-items-center ">
             <div class="col-lg-6">
-                <a href="mailt:bbw@randomurl.net">Contact us</a> | <a href="#">Privacy</a> | <a href="#">Terms of Use</a> <br>
+                <a href="mailt:bbw@randomurl.net">Contact us</a> | <a href="#">Privacy</a> | <a href="#">Terms of
+                Use</a> <br>
                 &copy; <%out.print(LocalDateTime.now().getYear());%> Broadbandwell Prototype
             </div>
 

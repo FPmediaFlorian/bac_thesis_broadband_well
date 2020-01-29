@@ -3,21 +3,17 @@ package Helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class BBWtest {
 
     private static Logger LOGGER = Logger.getLogger(BBWtest.class.getName());
 
     @Test
-    public void mapToJson(){
+    public void mapToJson() {
         ObjectMapper mapper = new ObjectMapper();
         try {
 
@@ -42,7 +38,7 @@ public class BBWtest {
     }
 
     @Test
-    public void mapFromJson()   {
+    public void mapFromJson() {
 
         BBW.initBBWList();
     }
