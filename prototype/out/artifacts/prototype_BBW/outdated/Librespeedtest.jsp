@@ -11,13 +11,11 @@
 <p id="upload"></p>
 
 
-
-
 <script type="text/javascript">
     s = new Speedtest();
-    s.setParameter("url_dl","//st-be-bo1.infra.garr.it/garbage.php");
-    s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");
-    s.setParameter("test_order","D_U");
+    s.setParameter("url_dl", "//st-be-bo1.infra.garr.it/garbage.php");
+    s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
+    s.setParameter("test_order", "D_U");
 
     s.onupdate = function (data) { // when status is received, put the values in the appropriate fields
         document.getElementById('download').textContent = data.dlStatus + ' Mbit/s'

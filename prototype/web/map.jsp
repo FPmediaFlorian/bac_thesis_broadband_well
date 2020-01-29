@@ -185,7 +185,7 @@
                                 <label for="streamInput" id="streamLabel" style="display: none;">Upload in
                                     MBit/s</label>
                                 <input type="number" class="form-control" id="streamInput" name="streamspeed"
-                                       placeholder=" eg. 20 MBit/s" style="display: none;" required>
+                                       placeholder=" eg. 20 MBit/s" style="display: none;" >
                                 <small id="expertDownstreamHelp" class="form-text text-muted" style="display: none;">Please
                                     fill in your Stream in MBit/s!</small>
                             </div>

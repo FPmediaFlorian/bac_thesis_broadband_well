@@ -1,4 +1,27 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t, n, r) {
+    function s(o, u) {
+        if (!n[o]) {
+            if (!t[o]) {
+                var a = typeof require == "function" && require;
+                if (!u && a) return a(o, !0);
+                if (i) return i(o, !0);
+                var f = new Error("Cannot find module '" + o + "'");
+                throw f.code = "MODULE_NOT_FOUND", f
+            }
+            var l = n[o] = {exports: {}};
+            t[o][0].call(l.exports, function (e) {
+                var n = t[o][1][e];
+                return s(n ? n : e)
+            }, l, l.exports, e, t, n, r)
+        }
+        return n[o].exports
+    }
+
+    var i = typeof require == "function" && require;
+    for (var o = 0; o < r.length; o++) s(r[o]);
+    return s
+})({
+    1: [function (require, module, exports) {
         function corslite(url, callback, cors) {
             var sent = false;
 
@@ -26,12 +49,12 @@
                 // x.send() returns (this has been observed in the wild).
                 // See https://github.com/mapbox/mapbox.js/issues/472
                 var original = callback;
-                callback = function() {
+                callback = function () {
                     if (sent) {
                         original.apply(this, arguments);
                     } else {
                         var that = this, args = arguments;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             original.apply(that, args);
                         }, 0);
                     }
@@ -64,20 +87,24 @@
             x.onerror = function error(evt) {
                 // XDomainRequest provides no evt parameter
                 callback.call(this, evt || true, null);
-                callback = function() { };
+                callback = function () {
+                };
             };
 
             // IE9 must have onprogress be set to a unique function.
-            x.onprogress = function() { };
-
-            x.ontimeout = function(evt) {
-                callback.call(this, evt, null);
-                callback = function() { };
+            x.onprogress = function () {
             };
 
-            x.onabort = function(evt) {
+            x.ontimeout = function (evt) {
                 callback.call(this, evt, null);
-                callback = function() { };
+                callback = function () {
+                };
+            };
+
+            x.onabort = function (evt) {
+                callback.call(this, evt, null);
+                callback = function () {
+                };
             };
 
             // GET is the only supported HTTP Verb by XDomainRequest and is the
@@ -93,7 +120,7 @@
 
         if (typeof module !== 'undefined') module.exports = corslite;
 
-    },{}],2:[function(require,module,exports){
+    }, {}], 2: [function (require, module, exports) {
         var polyline = {};
 
 // Based off of [the offical Google document](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
@@ -118,7 +145,7 @@
 
 // This is adapted from the implementation in Project-OSRM
 // https://github.com/DennisOSRM/Project-OSRM-Web/blob/master/WebContent/routing/OSRM.RoutingGeometry.js
-        polyline.decode = function(str, precision) {
+        polyline.decode = function (str, precision) {
             var index = 0,
                 lat = 0,
                 lng = 0,
@@ -167,7 +194,7 @@
             return coordinates;
         };
 
-        polyline.encode = function(coordinates, precision) {
+        polyline.encode = function (coordinates, precision) {
             if (!coordinates.length) return '';
 
             var factor = Math.pow(10, precision || 5),
@@ -184,9 +211,9 @@
 
         if (typeof module !== undefined) module.exports = polyline;
 
-    },{}],3:[function(require,module,exports){
-        (function (global){
-            (function() {
+    }, {}], 3: [function (require, module, exports) {
+        (function (global) {
+            (function () {
                 'use strict';
 
                 var L = (typeof window !== "undefined" ? window.L : typeof global !== "undefined" ? global.L : null);
@@ -202,12 +229,12 @@
                         urlParameters: {}
                     },
 
-                    initialize: function(apiKey, options) {
+                    initialize: function (apiKey, options) {
                         this._apiKey = apiKey;
                         L.Util.setOptions(this, options);
                     },
 
-                    route: function(waypoints, callback, context, options) {
+                    route: function (waypoints, callback, context, options) {
                         var timedOut = false,
                             wps = [],
                             url,
@@ -218,7 +245,7 @@
                         options = options || {};
                         url = this.buildRouteUrl(waypoints, options);
 
-                        timer = setTimeout(function() {
+                        timer = setTimeout(function () {
                             timedOut = true;
                             callback.call(context || callback, {
                                 status: -1,
@@ -238,7 +265,7 @@
                             });
                         }
 
-                        corslite(url, L.bind(function(err, resp) {
+                        corslite(url, L.bind(function (err, resp) {
                             var data;
 
                             clearTimeout(timer);
@@ -275,7 +302,7 @@
                         return this;
                     },
 
-                    _routeDone: function(response, inputWaypoints, callback, context) {
+                    _routeDone: function (response, inputWaypoints, callback, context) {
                         var alts = [],
                             mappedWaypoints,
                             coordinates,
@@ -285,7 +312,7 @@
                         context = context || callback;
                         if (response.info.errors && response.info.errors.length) {
                             callback.call(context, {
-                               
+
                                 status: response.info.errors[0].details,
                                 message: response.info.errors[0].message
                             });
@@ -316,7 +343,7 @@
                         callback.call(context, null, alts);
                     },
 
-                    _decodePolyline: function(geometry) {
+                    _decodePolyline: function (geometry) {
                         var coords = polyline.decode(geometry, 5),
                             latlngs = new Array(coords.length),
                             i;
@@ -327,7 +354,7 @@
                         return latlngs;
                     },
 
-                    _toWaypoints: function(inputWaypoints, vias) {
+                    _toWaypoints: function (inputWaypoints, vias) {
                         var wps = [],
                             i;
                         for (i = 0; i < vias.length; i++) {
@@ -341,7 +368,7 @@
                         return wps;
                     },
 
-                    buildRouteUrl: function(waypoints, options) {
+                    buildRouteUrl: function (waypoints, options) {
                         var computeInstructions =
                                 /* Instructions are always needed,
                                    since we do not have waypoint indices otherwise */
@@ -365,7 +392,7 @@
                         }, this.options.urlParameters), baseUrl);
                     },
 
-                    _convertInstructions: function(instructions) {
+                    _convertInstructions: function (instructions) {
                         var signToType = {
                                 '-3': 'SharpLeft',
                                 '-2': 'Left',
@@ -397,7 +424,7 @@
                         return result;
                     },
 
-                    _mapWaypointIndices: function(waypoints, instructions, coordinates) {
+                    _mapWaypointIndices: function (waypoints, instructions, coordinates) {
                         var wps = [],
                             wpIndices = [],
                             i,
@@ -430,12 +457,13 @@
                     }
                 });
 
-                L.Routing.graphHopper = function(apiKey, options) {
+                L.Routing.graphHopper = function (apiKey, options) {
                     return new L.Routing.GraphHopper(apiKey, options);
                 };
 
                 module.exports = L.Routing.GraphHopper;
             })();
 
-        }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-    },{"corslite":1,"polyline":2}]},{},[3]);
+        }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+    }, {"corslite": 1, "polyline": 2}]
+}, {}, [3]);

@@ -19,8 +19,8 @@
     // create targomo client
     const client = new tgm.TargomoClient('westcentraleurope', '2J6E470Z6B586DREYFY3213645504');
     // Define source and target locations which are passed into the Targomo route service.
-    let target = [ 48.220266, 16.356164 ]; //WS 29
-    let source = [ 48.213231, 16.350499 ]; //VKM
+    let target = [48.220266, 16.356164]; //WS 29
+    let source = [48.213231, 16.350499]; //VKM
 
     // define the map
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -40,7 +40,7 @@
         icon: {
             path: MAP_PATH, scale: 1.4, fillOpacity: 1,
             fillColor: '#ff8319', strokeOpacity: 0,
-            anchor: { x: 12, y: 24 },
+            anchor: {x: 12, y: 24},
         }
     });
 
@@ -51,7 +51,7 @@
         icon: {
             path: MAP_PATH, scale: 1.4, fillOpacity: 1,
             fillColor: '#ff8319', strokeOpacity: 0,
-            anchor: { x: 12, y: 24 },
+            anchor: {x: 12, y: 24},
         }
     });
 

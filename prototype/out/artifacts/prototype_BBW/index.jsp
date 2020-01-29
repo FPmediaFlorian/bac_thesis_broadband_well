@@ -22,9 +22,9 @@
 
 <!-- SECTION: What to know about the bbw -->
 <section class="bg-light" id="about01">
-    <div class="container-fluid" >
-        <div class="row align-items-center" >
-            <div class="col-md-5 bg" >
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-5 bg">
             </div>
             <div class="col-7 aboutList ">
                 <h2 class="sectionHeading mb-3 pr-2">What to know?</h2>
@@ -52,10 +52,16 @@
                     <p class="pb-1">To put it in context here are some examples:</p>
                 </span>
                 <ul class="font-light-grey">
-                        <li>The BBWs connection is around 240 times as fast as a standard Internet connection.</li>
-                        <li>Downloading one hour 4K Video (60FPS) takes  19.2 seconds at the BBW. With a normal Internet connection it would take arround 1.5 hours.</li>
-                        <li>Another example: Downloading or backing up an entire hard disk (1TB) would take about 2.5 DAYS with normal streamrates. At the BBW you are ready to go after less than 14 MINUTES!!</li>
-                        <li>And last but not least. You won't be able to comprehend the speed until you've experienced it yourself.</li>
+                    <li>The BBWs connection is around 240 times as fast as a standard Internet connection.</li>
+                    <li>Downloading one hour 4K Video (60FPS) takes 19.2 seconds at the BBW. With a normal Internet
+                        connection it would take arround 1.5 hours.
+                    </li>
+                    <li>Another example: Downloading or backing up an entire hard disk (1TB) would take about 2.5 DAYS
+                        with normal streamrates. At the BBW you are ready to go after less than 14 MINUTES!!
+                    </li>
+                    <li>And last but not least. You won't be able to comprehend the speed until you've experienced it
+                        yourself.
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-6 pt-1 pb-1">
@@ -73,7 +79,7 @@
 <!-- SECTION: How to use the bbw -->
 <section class="bg-light" id="use01">
     <div class="container pt-5 pb-5">
-        <div class="row align-items-center" >
+        <div class="row align-items-center">
             <div class="col-lg-6">
                 <h2 class="sectionHeading mb-3">How to use the BBW</h2>
                 <ol class="useList">
@@ -91,5 +97,5 @@
     </div>
 </section>
 
-        <%-- Import Footer File --%>
+<%-- Import Footer File --%>
 <%@ include file="templates/footer.jsp" %>

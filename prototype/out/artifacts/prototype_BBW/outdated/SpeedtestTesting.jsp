@@ -18,9 +18,10 @@
     <br>
     status:
     <span id='status'></span>
-<br> Log:
+    <br> Log:
 </p>
-<div id='logdiv' style='font-size:10px; font-face:courier; border:1px solid #ccc; padding:0.5em; max-height:350px; overflow-y: scroll'>
+<div id='logdiv'
+     style='font-size:10px; font-face:courier; border:1px solid #ccc; padding:0.5em; max-height:350px; overflow-y: scroll'>
 </div>
 <script type="text/javascript">
     function stoptest() {
@@ -49,38 +50,38 @@
         o.apiKey = '12345678'; // Test API key
 
         // fired continuously with basic info
-        o.onstatus = function(e) {
+        o.onstatus = function (e) {
             if (e.direction)
                 log(e.direction + " megabit/sec: down/up " + e.down + " / " + e.up + " ping=" + e.ping + "ms");
 
         };
 
         // fired at 1hz with progress guesstimate
-        o.onprogress = function(o) {
+        o.onprogress = function (o) {
             document.getElementById('status').innerHTML = o.doing + " Progress:" + o.progress + "%";
         };
 
-        o.onerror = function(o) {
+        o.onerror = function (o) {
             // this also marks the test end. oncomplete is not fired
             alert(o.msg);
         };
 
         // fired once upon successful conclusion
         // o has results.. see log for json version of structure
-        o.oncomplete = function(o) {
+        o.oncomplete = function (o) {
             var s = JSON.stringify(o);
             log("oncomplete fired " + s);
         };
 
         // fired if the test wants to ask a question of the user with
         // a YES/NO answer.
-        o.onconfirm = function(s) {
+        o.onconfirm = function (s) {
             return confirm(s);
         };
 
         // pass any user data in, it is stored
         // and also returned with result.
-        o.udata = { "myuserfield": "myvalue" };
+        o.udata = {"myuserfield": "myvalue"};
 
         dslr_speedtest({
             op: 'start',
@@ -90,11 +91,11 @@
 
     var e = document.getElementById('startbutton');
 
-    e.addEventListener("click", function() {
+    e.addEventListener("click", function () {
         speedtest();
     });
     e = document.getElementById('stopbutton');
-    e.addEventListener("click", function() {
+    e.addEventListener("click", function () {
         stoptest();
     });
 

@@ -9,7 +9,7 @@
 <%-- Import Header File --%>
 <%@ include file="templates/header.jsp" %>
 <section>
-    <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
+    <div class="container-fluid h-75">
         <div class="row h-100">
             <div class="col-lg-3 overflow-auto">
                 <!-- Request result -->
@@ -73,7 +73,6 @@
                 -->
 
 
-
             </div>
 
             <div class="col-lg-9" id="map1"></div>
@@ -116,15 +115,11 @@
 
     //Draw routes
 
-    if('${vehicle}'==='PUBLIC'){
-        drawPublicRoute(${latlngStart},${stationA},${stationB},${latlngDest},orangeIcon,greenIcon,BBWIcon,'${ghApiKey}');
-    }else{
-        drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
+    if ('${vehicle}' === 'PUBLIC') {
+        drawPublicRoute(${latlngStart}, ${stationA}, ${stationB}, ${latlngDest}, orangeIcon, greenIcon, BBWIcon, '${ghApiKey}');
+    } else {
+        drawRoute(${latlngStart}, ${latlngDest}, '${ghApiKey}', BBWIcon, greenIcon, '${vehicle}');
     }
-
-
-
-
 
 
 </script>

@@ -126,19 +126,67 @@ function drawPublicRoute(startLat, startLng, stationAlat, stationAlng, stationBl
 
 
 function speedtestAndSubmitExpert() {
-    if (document.getElementById('speedtestRadio').checked) {
-        document.getElementById('loadingAnimationExpert').style.display = "block";
+    var form = document.getElementById('expertForm');
+    if(form.reportValidity()) {
+        if (document.getElementById('speedtestRadio').checked) {
+            document.getElementById('loadingAnimationExpert').style.display = "block";
 
-        s = new Speedtest();
+            s = new Speedtest();
+            //Upload or Download?
+            if (document.getElementById("uploadRadio").checked) {
+                //Upload
+                s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
+                s.setParameter("test_order", "U");
+                s.start();
+
+                s.onupdate = function (data) {
+                    document.getElementById('streamInput').value = data.ulStatus;
+                }
+            } else {
+                //Download
+                s.setParameter("url_dl", "//st-be-bo1.infra.garr.it/garbage.php");
+                s.setParameter("test_order", "D");
+                s.start();
+
+                s.onupdate = function (data) {
+                    document.getElementById('streamInput').value = data.dlStatus;
+                }
+            }
+
+            s.onend = function (aborted) {
+                if (!aborted) {
+                    console.log('Test finished!');
+                    document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+                    document.getElementById("expertForm").submit();
+
+                } else {
+                    console.log('Test aborted! Websiteadmin');
+                }
+            }
+        } else {
+            document.getElementById('loadingAnimationExpert').style.display = "block";
+            document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+            document.getElementById("expertForm").submit();
+        }
+    }
+}
+
+function speedtestAndSubmitEasy() {
+    var form = document.getElementById('easyForm');
+    if(form.reportValidity()) {
+        // show loading animation
+        document.getElementById('loadingAnimation').style.display = "block";
         //Upload or Download?
-        if (document.getElementById("uploadRadio").checked) {
+        s = new Speedtest();
+        var streamspeed;
+        if (document.getElementById("easyUploadRadio").checked) {
             //Upload
             s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
             s.setParameter("test_order", "U");
             s.start();
 
             s.onupdate = function (data) {
-                document.getElementById('streamInput').value = data.ulStatus;
+                document.getElementById('streamspeed').value = data.ulStatus;
             }
         } else {
             //Download
@@ -147,62 +195,20 @@ function speedtestAndSubmitExpert() {
             s.start();
 
             s.onupdate = function (data) {
-                document.getElementById('streamInput').value = data.dlStatus;
+                document.getElementById('streamspeed').value = data.dlStatus;
             }
         }
 
         s.onend = function (aborted) {
             if (!aborted) {
                 console.log('Test finished!');
-                document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
-                document.getElementById("expertForm").submit();
-
+                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
+                document.getElementById("easyForm").submit();
             } else {
-                console.log('Test aborted! Websiteadmin');
+                console.log('Test aborted! Contact the Websiteadmin!');
             }
         }
-    } else {
-        document.getElementById('loadingAnimationExpert').style.display = "block";
-        document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
-        document.getElementById("expertForm").submit();
+
     }
-}
-
-function speedtestAndSubmitEasy() {
-    // show loading animation
-    document.getElementById('loadingAnimation').style.display = "block";
-    //Upload or Download?
-    s = new Speedtest();
-    var streamspeed;
-    if (document.getElementById("easyUploadRadio").checked) {
-        //Upload
-        s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
-        s.setParameter("test_order", "U");
-        s.start();
-
-        s.onupdate = function (data) {
-            document.getElementById('streamspeed').value = data.ulStatus;
-        }
-    } else {
-        //Download
-        s.setParameter("url_dl", "//st-be-bo1.infra.garr.it/garbage.php");
-        s.setParameter("test_order", "D");
-        s.start();
-
-        s.onupdate = function (data) {
-            document.getElementById('streamspeed').value = data.dlStatus;
-        }
-    }
-
-    s.onend = function (aborted) {
-        if (!aborted) {
-            console.log('Test finished!');
-            document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
-            document.getElementById("easyForm").submit();
-        } else {
-            console.log('Test aborted! Contact the Websiteadmin!');
-        }
-    }
-
 
 }

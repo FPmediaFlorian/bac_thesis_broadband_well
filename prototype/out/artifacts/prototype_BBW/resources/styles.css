@@ -3,16 +3,19 @@
 * SECTION: Genreal use
 *
 */
-.font-light-grey{
+.font-light-grey {
     color: #BEBEBE;
 }
-.logo-small{
+
+.logo-small {
     height: 100px;
 }
-a{
+
+a {
     color: #049FFF;
 }
-a:hover{
+
+a:hover {
     color: #0606FF;
     text-decoration: none;
 }
@@ -22,11 +25,12 @@ a:hover{
 * SECTION: nav menu
 *
 */
-.menu-font{
+.menu-font {
     color: #0606FF !important;
     font-size: larger;
 }
-.menu-font:hover{
+
+.menu-font:hover {
     color: #049FFF !important;
 }
 
@@ -36,7 +40,7 @@ a:hover{
 * SECTION: Header
 *
 */
-.masterhead{
+.masterhead {
     height: 50vh;
     min-height: 500px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/headerImg.jpg');
@@ -46,7 +50,7 @@ a:hover{
 }
 
 
-.sectionHeading{
+.sectionHeading {
     font-size: 41px;
     line-height: 51px;
 
@@ -57,14 +61,15 @@ a:hover{
 * SECTION: What to know about the BBW
 *
 */
-.aboutList{
+.aboutList {
     align-content: center;
     font-size: larger;
 }
 
-.aboutList ul{
+.aboutList ul {
 
 }
+
 .aboutList ul li {
     margin-bottom: 15px;
 }
@@ -83,11 +88,12 @@ a:hover{
 * SECTION: What to know about the BBW
 *
 */
-.useList{
+.useList {
     align-content: center;
     font-size: larger;
 }
-.aboutList ol{
+
+.aboutList ol {
     list-style-type: decimal;
 }
 
@@ -111,8 +117,6 @@ a:hover{
 }
 
 
-
-
 /*
 attribution for Legal notices in map
  */
@@ -120,6 +124,7 @@ attribution for Legal notices in map
     width: 100%;
     height: 15px;
 }
+
 #attribution > a {
     float: right;
     font-size: 11px;
@@ -151,6 +156,7 @@ Isochrone Map
     height: 10px;
     margin-right: 5px;
 }
+
 .map-overlay {
     position: absolute;
     bottom: 12vh;
