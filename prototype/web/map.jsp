@@ -36,7 +36,7 @@
                                 <label class="btn btn-secondary active">
                                     <input type="radio" name="transport-option" value="BIKE" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
                                 </label>
-                                <label class="btn btn-secondary active">
+                                <label class="btn btn-secondary">
                                     <input type="radio" name="transport-option" value="PUBLIC" id="transport-public" autocomplete="off"> <i class="fas fa-bus"></i> Public Transport
                                 </label>
                                 <label class="btn btn-secondary">
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport"  id="updownloadRadio" required>
-                                <label class="btn btn-secondary active">
+                                <label class="btn btn-secondary active" >
                                     <input type="radio"  name="updownloadRadio" id="easyUploadRadio" value="upload" checkedautocomplete="off" checked> <i class="fas fa-upload"></i>Upload File
                                 </label>
                                 <label class="btn btn-secondary">
@@ -73,13 +73,17 @@
                             </div>
                             <input type="hidden" id="streamspeed" name="streamspeed" value="">
                             <br/>
-                            <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitEasy();">Get my results!</button>
-                        </form>
-                        <div class="alert alert-info" id="loadingAnimation" style="display: none;">
-                            <div class="spinner-border text-primary" role="status" >
-                                <span class="sr-only">Performing Speedtest</span>
+                            <div class="form-group pt-3">
+                                <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitEasy();">Perform Speedtest & get my results!</button>
                             </div>
-                            <b id="loadingText">Performing Speedtest</b>
+                        </form>
+                        <div class="pt-4">
+                            <div class="alert alert-info" id="loadingAnimation" style="display: none;">
+                                <div class="spinner-border text-primary" role="status" >
+                                    <span class="sr-only">Performing Speedtest</span>
+                                </div>
+                                <b id="loadingText">Performing Speedtest</b>
+                            </div>
                         </div>
                     </div>
                     <div id="expert" class="container tab-pane fade " style="height: 100%"><br>
@@ -164,11 +168,13 @@
                             <button type="button" class="btn btn-primary" onclick="speedtestAndSubmitExpert()">Get my results!</button>
 
                         </form>
-                        <div class="alert alert-info" id="loadingAnimationExpert" style="display: none;">
-                            <div class="spinner-border text-primary" role="status" >
-                                <span class="sr-only">Performing Speedtest</span>
+                        <div class="pt-4">
+                            <div class="alert alert-info" id="loadingAnimationExpert" style="display: none;">
+                                <div class="spinner-border text-primary" role="status" >
+                                    <span class="sr-only">Performing Speedtest</span>
+                                </div>
+                                <b id="loadingTextExpert">Performing Speedtest</b>
                             </div>
-                            <b id="loadingTextExpert">Performing Speedtest</b>
                         </div>
                     </div>
                 </div>
