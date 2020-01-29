@@ -118,12 +118,17 @@ public class EasyRequestClass {
 
 
         StringBuilder sb = new StringBuilder();
-        if (totalTimeForBBW<downloadtimeHome){
-            //Go to BBW
-            sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
-        }else{
-            //Download @Home
-            sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+        if(Math.abs(totalTimeForBBW-downloadtimeHome)<300){
+            //Neutral, doesn't really matter
+            sb.append(DesictionFeedbackHTML.getNeutralFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+        }else {
+            if (totalTimeForBBW < downloadtimeHome) {
+                //Go to BBW
+                sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+            } else {
+                //Download @Home
+                sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+            }
         }
         return sb.toString();
     }
