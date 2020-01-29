@@ -9,7 +9,7 @@
 <%-- Import Header File --%>
 <%@ include file="templates/header.jsp" %>
 <section>
-    <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
+    <div class="container-fluid h-75">
         <div class="row h-100">
             <div class="col-md-4 overflow-auto">
                 <ul class="nav nav-tabs nav-justified" role="tablist">

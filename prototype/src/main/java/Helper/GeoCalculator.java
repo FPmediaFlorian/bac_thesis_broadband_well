@@ -302,7 +302,6 @@ public class GeoCalculator {
 
     private static ApiClient createClient() {
 
-        //TODO Auslagern in eigene Klasse
         ApiClient client = new ApiClient().setDebugging(true);
         client.setApiKey(System.getProperty("graphhopper.key", "5108091a-dea6-4eb3-88e3-f7049ad14659"));
         return client;

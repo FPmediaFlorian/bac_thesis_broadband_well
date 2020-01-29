@@ -38,33 +38,6 @@ function addBBWmarkersWpopupsDynamic() {
 
 
 }
-//TODO delete and test
-function addBBWmarkersWpopups() {
-
-    var normalIcon = new L.Icon({
-        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
-        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    var BBWIcon = new L.Icon({
-        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
-        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    var markerWS29 = L.marker([48.2200482, 16.3562356],{icon: BBWIcon}).addTo(map); //WS 29
-    var markerVKM = L.marker([48.2131498, 16.3505518],{icon: BBWIcon}).addTo(map); //VKM
-
-    markerWS29.bindPopup('BBW in Währingerstraße 29 <br>Computer Science Institute <br>University of Vienna').openPopup;
-    markerVKM.bindPopup('BBW in  Laudongasse 15–19<br>Volkskundemuseum Wien').openPopup;
-}
 
 
 function labelUpload() {
@@ -186,11 +159,12 @@ function speedtestAndSubmitExpert() {
                 document.getElementById("expertForm").submit();
 
             } else {
-                console.log('Test aborted!');
-                //TODO Error Message
+                console.log('Test aborted! Websiteadmin');
             }
         }
     }else {
+        document.getElementById('loadingAnimationExpert').style.display = "block";
+        document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
         document.getElementById("expertForm").submit();
     }
 }
@@ -227,8 +201,7 @@ function speedtestAndSubmitEasy(){
             document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
             document.getElementById("easyForm").submit();
         }else{
-            console.log('Test aborted!');
-            //TODO Error Message
+            console.log('Test aborted! Contact the Websiteadmin!');
         }
     }
 

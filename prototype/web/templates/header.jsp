@@ -79,7 +79,6 @@
 
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <!-- TODO: add active atribute dynamicly -->
                 <li class="nav-item"><a href="index.jsp#about01" class="nav-link menu-font">About <span class="sr-only">(current)</span></a></li>
                 <li class="nav-item"><a href="index.jsp#figure01" class="nav-link menu-font">BBW in figures</a></li>
                 <li class="nav-item"><a href="index.jsp#use01" class="nav-link menu-font">How to use?</a></li>

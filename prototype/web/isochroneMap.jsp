@@ -9,10 +9,10 @@
 <%@ include file="templates/header.jsp" %>
 
 <section>
-    <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
+    <div class="container-fluid h-75">
         <div class="row h-100">
             <!--<div class="col-md-3 overflow-auto"></div>-->
-                <!-- TODO Mobile Ansicht erstellen-->
+
 
             <div class="col-md-12" id="map"></div>
 

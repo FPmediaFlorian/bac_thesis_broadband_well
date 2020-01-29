@@ -63,8 +63,8 @@ public class ExpertRequestClass {
     private LatLng calculateGeocode() throws InvalidAddressExeption {
         geocode = GeoCalculator.getGeocode(getCurrentLocation());
         if(geocode==null){
+            LOGGER.error("Address could not be found");
             throw new InvalidAddressExeption("The Addres could not be Found!");
-            //TODO Log Error, invalid Address
         }
         return geocode;
     }
@@ -74,8 +74,6 @@ public class ExpertRequestClass {
      * @return return s String with HTML input to be shown an the mapResult Page
      */
     public String getDesicionResponse() {
-        //TODO Auslagern in eigene Klasse
-        //TODO implement desicion response
         double downloadtimeHome;
         double downloadtimeBBW ;
         double totalTraveltime;
@@ -104,7 +102,6 @@ public class ExpertRequestClass {
     }
 
     private void findNearestBBW(){
-        //TODO implement logic to find bbw
         desiredBBW = GeoCalculator.getNearestBBWsetTraveltime(geocode,transportForm);
     }
 
