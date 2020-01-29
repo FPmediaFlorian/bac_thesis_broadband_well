@@ -3,7 +3,7 @@ package Helper;
 import java.util.concurrent.TimeUnit;
 
 public class DesictionFeedbackHTML {
-    public static String getPositiveFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome){
+    public static String getPositiveFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix){
         StringBuilder sb = new StringBuilder();
 
         sb.append("<div class=\"pt-5 pb-3\">\n" +
@@ -30,7 +30,11 @@ public class DesictionFeedbackHTML {
                 "                    <a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTimeinfo\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTimeinfo\">Learn more</a>\n" +
                 "                    <div class=\"collapse pt-2\" id=\"collapseTimeinfo\">\n" +
                 "                        <div class=\"card card-body\">\n" +
-                "                            <p>Time you need downloading <strong>@BBW</strong></p>\n" +
+                "                           <p><strong>Filesize:</strong> ");
+        sb.append(downloadSize+sizeSuffix.toString());
+        sb.append("</p><p><strong>Streamspeed:</strong> ");
+        sb.append(streamSpeed+"MBit/s</p><br>");
+        sb.append("                            <p>Time you need downloading <strong>@BBW</strong></p>\n" +
                 "                            <table class=\"table table-borderless\">\n" +
                 "                                <tbody>\n" +
                 "                                    <tr>\n" +

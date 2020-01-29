@@ -93,7 +93,7 @@ public class ExpertRequestClass {
         }else {
             if (totalTimeForBBW < downloadtimeHome) {
                 //Go to BBW
-                sb.append(DesictionFeedbackHTML.getPositiveFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+                sb.append(DesictionFeedbackHTML.getPositiveFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
             } else {
                 //Download @Home
                 sb.append(DesictionFeedbackHTML.getNegativeFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));

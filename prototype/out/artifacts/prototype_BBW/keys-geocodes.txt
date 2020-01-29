@@ -4,7 +4,7 @@ Targomo: 2J6E470Z6B586DREYFY3213645504
 Google Maps: AIzaSyDx6eRdDR74sQ8IL6v50SnzHwM1QEmKVBA
 locationiq: 4f889e1c07668d
 opencageData: 1d5429a90a96471e96994efd5a38e951
-
+Graphhopper: 0ecf8d53-b70e-468c-ada8-410a51ab778e
 
 GEOCODES:
 Reindorfgasse 42: 48.190830,16.330270

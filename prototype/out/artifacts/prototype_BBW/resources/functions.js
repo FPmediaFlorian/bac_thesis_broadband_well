@@ -108,6 +108,51 @@ function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, B
     }).addTo(map);
 }
 
+function drawPublicRoute(startLat,startLng,stationAlat,stationAlng,stationBlat,stationBlng,destLat,destLng,orangeIcon,greenIcon,BBWIcon,APIkey){
+    //Current Location -> Station A
+    L.Routing.control({
+        waypoints: [
+            L.latLng(startLat,startLng),
+            L.latLng(stationAlat,stationAlng)
+        ],
+        createMarker: function (i, wp, nWps) {
+            if (i === nWps - 1) {
+                return L.marker(wp.latLng, {icon: orangeIcon});
+            } else {
+                return L.marker(wp.latLng, {icon: greenIcon});
+            }
+        },
+        fitSelectedRoutes: false,
+        router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+    }).addTo(map);
+
+    //Station A -> Station B
+
+    pline=[[stationAlat,stationAlng],[stationBlat,stationBlng]]
+
+    var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
+
+    //Station B -> Destination
+    L.Routing.control({
+        waypoints: [
+            L.latLng(stationBlat,stationBlng),
+            L.latLng(destLat,destLng)
+        ],
+        createMarker: function (i, wp, nWps) {
+            if (i === nWps - 1) {
+                return L.marker(wp.latLng, {icon: BBWIcon});
+            } else {
+                return L.marker(wp.latLng, {icon: orangeIcon});
+            }
+        },
+        fitSelectedRoutes: false,
+        router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+    }).addTo(map);
+
+    map.fitBounds(polyline.getBounds());
+}
+
+
 function speedtestAndSubmitExpert() {
     if (document.getElementById('speedtestRadio').checked) {
         document.getElementById('loadingAnimationExpert').style.display = "block";

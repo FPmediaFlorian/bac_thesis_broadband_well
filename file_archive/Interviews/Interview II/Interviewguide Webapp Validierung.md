@@ -13,7 +13,7 @@
 - Haben Sie in manchen Situationen gedacht, dass Sie der BBW dabei unterstützen könnte? 
 - Haben Sie sich bei Szenarien von Bekannten (Arbeite/Studienkollegen) gedacht, dass er für die von Vorteil sein könnte?
 ## Webapp vorstellen
-- Startseite mit kurzer Erklärung
+- Startseite mit kurzer Erklärung (nicht zu schnell)
 - Routing Map, Expert und Easy mode erklären
 ## Bitten die Website zu benutzen
 ### exploration Teil:
@@ -49,4 +49,10 @@ Konzept soll realistischer und nützlicher werden.
 - Würden Sie das Angebot nutzen, wenn es zur Verfügung stände?
 - Wenn nein, was müsste sich am Angebot/der App oder anderem ändern?
 - Technisches Angebot vor Ort?
-- Was wäre für Sie ein realistischer Fall einen BBW zu benutzen?
+	- Wie müsste der BBW vor Ort gestaltet sein? 
+	- Was müsste er können? 
+	- Wie sollte etwa der Download/Upload funktionieren? 
+	- Hätten Sie Bedürfnisse/Anforderungen in Richtung Sicherheit?
+	- Welche?
+- Können Sie sich eine Situation vorstellen, einen BBW zu benutzen?
+	- Welche Situation?

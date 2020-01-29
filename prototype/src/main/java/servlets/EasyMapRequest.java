@@ -48,6 +48,8 @@ public class EasyMapRequest extends HttpServlet {
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse",easyRequest.getDesicionResponse());
+        request.setAttribute("stationA","not");
+        request.setAttribute("stationB","not");
 
 
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);

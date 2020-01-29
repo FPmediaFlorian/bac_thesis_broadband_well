@@ -21,6 +21,7 @@ public class EasyRequestClass {
     private SizeSuffix sizeSuffix;
 
 
+
     /**
      * Loaded Constructor
      * @param currentLocation Address on the current location
@@ -124,7 +125,7 @@ public class EasyRequestClass {
         }else {
             if (totalTimeForBBW < downloadtimeHome) {
                 //Go to BBW
-                sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+                sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome, streamSpeed,downloadSize,sizeSuffix));
             } else {
                 //Download @Home
                 sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));

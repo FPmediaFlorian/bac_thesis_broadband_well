@@ -102,38 +102,29 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
     });
+    var orangeIcon = new L.Icon({
+        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-orange.png',
+        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     // Create map
     createMap();
 
-    //Draw the route
-    //if (${vehicle} === "PUBLIC"){
-        //drawPublicRoute(${latlngStart},${latlngDest},${latlngStationStart},${latlngStationDest},'${ghApiKey}',BBWIcon,greenIcon)
-    //} else {
+    //Draw routes
 
+    if('${vehicle}'==='PUBLIC'){
+        drawPublicRoute(${latlngStart},${stationA},${stationB},${latlngDest},orangeIcon,greenIcon,BBWIcon,'${ghApiKey}');
+    }else{
         drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
-    //}
-
-    function drawPublicRoute(startLat, startLng, destinationLat, destinationLng,stationStartLat, stationStartLng, StationDestinationLat, StationDestinationLng,APIkey, BBWIcon, greenIcon) {
-        //Add start to startstation
-        L.Routing.control({
-            waypoints: [
-                L.latLng(startLat, startLng),
-                L.latLng(stationStartLat, stationStartLng)
-            ],
-            router: L.Routing.graphHopper(APIkey)
-        }).addTo(map);
-        //Add stationDestination to destination
-        L.Routing.control({
-            waypoints: [
-                L.latLng(destinationLat, destinationLng),
-                L.latLng(StationDestinationLat, StationDestinationLng)
-            ],
-            router: L.Routing.graphHopper(APIkey)
-        }).addTo(map);
-        //Add "Public Transport"
-        L.path([[stationStartLat,stationStartLng],[StationDestinationLat,StationDestinationLng]]).addTo(map)
     }
+
+
+
+
 
 
 </script>

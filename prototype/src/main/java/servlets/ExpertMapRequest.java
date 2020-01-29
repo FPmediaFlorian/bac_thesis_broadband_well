@@ -42,6 +42,9 @@ public class ExpertMapRequest extends HttpServlet {
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", expertRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse",expertRequest.getDesicionResponse());
+        request.setAttribute("stationA","not");
+        request.setAttribute("stationB","not");
+
 
 
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);

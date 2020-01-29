@@ -13,8 +13,8 @@
         <div class="row h-100">
             <div class="col-lg-3 overflow-auto">
                 <!-- Request result -->
-                ${desicionResponse}
-                <!--
+
+
                 <div class="pt-5 pb-3">
                     <div class="alert alert-success text-center ">
                         <strong>You should go to the Broadbandwell!</strong>
@@ -70,7 +70,7 @@
                 </div>
 
 
-                -->
+
 
 
 
@@ -114,12 +114,49 @@
     // Create map
     createMap();
 
-    //Draw routes
 
-    if('${vehicle}'==='PUBLIC'){
-        drawPublicRoute(${latlngStart},${stationA},${stationB},${latlngDest},orangeIcon,greenIcon,BBWIcon,'${ghApiKey}');
-    }else{
-        drawRoute(${latlngStart},${latlngDest},'${ghApiKey}',BBWIcon,greenIcon, '${vehicle}');
+    function drawPublicRoute(startLat,startLng,stationAlat,stationAlng,stationBlat,stationBlng,destLat,destLng,orangeIcon,greenIcon,BBWIcon,APIkey){
+        //Current Location -> Station A
+        L.Routing.control({
+            waypoints: [
+                L.latLng(startLat,startLng),
+                L.latLng(stationAlat,stationAlng)
+            ],
+            createMarker: function (i, wp, nWps) {
+                if (i === nWps - 1) {
+                    return L.marker(wp.latLng, {icon: orangeIcon});
+                } else {
+                    return L.marker(wp.latLng, {icon: greenIcon});
+                }
+            },
+            fitSelectedRoutes: false,
+            router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+        }).addTo(map);
+
+        //Station A -> Station B
+
+        pline=[[stationAlat,stationAlng],[stationBlat,stationBlng]]
+
+        var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
+
+        //Station B -> Destination
+        L.Routing.control({
+            waypoints: [
+                L.latLng(stationBlat,stationBlng),
+                L.latLng(destLat,destLng)
+            ],
+            createMarker: function (i, wp, nWps) {
+                if (i === nWps - 1) {
+                    return L.marker(wp.latLng, {icon: BBWIcon});
+                } else {
+                    return L.marker(wp.latLng, {icon: orangeIcon});
+                }
+            },
+            fitSelectedRoutes: false,
+            router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: 'FOOT'}})
+        }).addTo(map);
+
+        map.fitBounds(polyline.getBounds());
     }
 
 

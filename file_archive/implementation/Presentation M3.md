@@ -7,7 +7,3 @@ Nächste Schritte:
 -\> Inhaltsverzeichnis machen (am besten die normale Sturktur von alten arbeiten übernehmen
 
 Interviewpartner:
-
-Klaus Trolp ??
-Christina Brandstötter ??
-Museumsdirektor
