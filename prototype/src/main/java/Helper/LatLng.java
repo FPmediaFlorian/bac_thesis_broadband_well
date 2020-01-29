@@ -9,9 +9,10 @@ public class LatLng {
         this.lng = lng;
     }
 
-    public LatLng(){}
+    public LatLng() {
+    }
 
-    public String getLatLng(){
+    public String getLatLng() {
         StringBuilder sb = new StringBuilder();
         sb.append(lat);
         sb.append(",");
@@ -19,16 +20,20 @@ public class LatLng {
         return sb.toString();
     }
 
+    public double calculateDistance(LatLng latLng) {
+        return Math.sqrt(Math.pow(this.getLat() - latLng.getLat(), 2) + Math.pow(this.getLng() - latLng.getLng(), 2));
+    }
+
     public double getLat() {
         return lat;
     }
 
-    public double getLng() {
-        return lng;
-    }
-
     public void setLat(double lat) {
         this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
     }
 
     public void setLng(double lng) {

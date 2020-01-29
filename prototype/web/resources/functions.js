@@ -1,8 +1,8 @@
 //different function used all over the .jsp's
 //mostly map regarded
 
-function createMap(){
-    map = L.map('map1').setView([48.20809,16.37156], 13);
+function createMap() {
+    map = L.map('map1').setView([48.20809, 16.37156], 13);
 
     //add (c) Infos
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -35,43 +35,15 @@ function addBBWmarkersWpopupsDynamic() {
     });
 
 
-
-
-}
-//TODO delete and test
-function addBBWmarkersWpopups() {
-
-    var normalIcon = new L.Icon({
-        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
-        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    var BBWIcon = new L.Icon({
-        iconUrl: 'resources/leafletRM/markers/marker-icon-2x-grey-wifi.png',
-        shadowUrl: 'resources/leafletRM/markers/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    var markerWS29 = L.marker([48.2200482, 16.3562356],{icon: BBWIcon}).addTo(map); //WS 29
-    var markerVKM = L.marker([48.2131498, 16.3505518],{icon: BBWIcon}).addTo(map); //VKM
-
-    markerWS29.bindPopup('BBW in Währingerstraße 29 <br>Computer Science Institute <br>University of Vienna').openPopup;
-    markerVKM.bindPopup('BBW in  Laudongasse 15–19<br>Volkskundemuseum Wien').openPopup;
 }
 
 
 function labelUpload() {
-    document.getElementById('streamLabel').innerHTML ='Upload in MBit/s';
+    document.getElementById('streamLabel').innerHTML = 'Upload in MBit/s';
 }
+
 function labelDownload() {
-    document.getElementById('streamLabel').innerHTML ='Download in MBit/s';
+    document.getElementById('streamLabel').innerHTML = 'Download in MBit/s';
 
 
 }
@@ -104,24 +76,117 @@ function drawRoute(startLat, startLng, destinationLat, destinationLng, APIkey, B
                 return L.marker(wp.latLng, {icon: greenIcon});
             }
         },
-        router: L.Routing.graphHopper(APIkey,{urlParameters: {vehicle: vehicle}})
+        router: L.Routing.graphHopper(APIkey, {urlParameters: {vehicle: vehicle}})
     }).addTo(map);
 }
 
-function speedtestAndSubmitExpert() {
-    if (document.getElementById('speedtestRadio').checked) {
-        document.getElementById('loadingAnimationExpert').style.display = "block";
+function drawPublicRoute(startLat, startLng, stationAlat, stationAlng, stationBlat, stationBlng, destLat, destLng, orangeIcon, greenIcon, BBWIcon, APIkey) {
+    //Current Location -> Station A
+    L.Routing.control({
+        waypoints: [
+            L.latLng(startLat, startLng),
+            L.latLng(stationAlat, stationAlng)
+        ],
+        createMarker: function (i, wp, nWps) {
+            if (i === nWps - 1) {
+                return L.marker(wp.latLng, {icon: orangeIcon});
+            } else {
+                return L.marker(wp.latLng, {icon: greenIcon});
+            }
+        },
+        fitSelectedRoutes: false,
+        router: L.Routing.graphHopper(APIkey, {urlParameters: {vehicle: 'FOOT'}})
+    }).addTo(map);
 
-        s = new Speedtest();
+    //Station A -> Station B
+
+    pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]]
+
+    var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
+
+    //Station B -> Destination
+    L.Routing.control({
+        waypoints: [
+            L.latLng(stationBlat, stationBlng),
+            L.latLng(destLat, destLng)
+        ],
+        createMarker: function (i, wp, nWps) {
+            if (i === nWps - 1) {
+                return L.marker(wp.latLng, {icon: BBWIcon});
+            } else {
+                return L.marker(wp.latLng, {icon: orangeIcon});
+            }
+        },
+        fitSelectedRoutes: false,
+        router: L.Routing.graphHopper(APIkey, {urlParameters: {vehicle: 'FOOT'}})
+    }).addTo(map);
+
+    map.fitBounds(polyline.getBounds());
+}
+
+
+function speedtestAndSubmitExpert() {
+    var form = document.getElementById('expertForm');
+    if(form.reportValidity()) {
+        if (document.getElementById('speedtestRadio').checked) {
+            document.getElementById('loadingAnimationExpert').style.display = "block";
+
+            s = new Speedtest();
+            //Upload or Download?
+            if (document.getElementById("uploadRadio").checked) {
+                //Upload
+                s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
+                s.setParameter("test_order", "U");
+                s.start();
+
+                s.onupdate = function (data) {
+                    document.getElementById('streamInput').value = data.ulStatus;
+                }
+            } else {
+                //Download
+                s.setParameter("url_dl", "//st-be-bo1.infra.garr.it/garbage.php");
+                s.setParameter("test_order", "D");
+                s.start();
+
+                s.onupdate = function (data) {
+                    document.getElementById('streamInput').value = data.dlStatus;
+                }
+            }
+
+            s.onend = function (aborted) {
+                if (!aborted) {
+                    console.log('Test finished!');
+                    document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+                    document.getElementById("expertForm").submit();
+
+                } else {
+                    console.log('Test aborted! Websiteadmin');
+                }
+            }
+        } else {
+            document.getElementById('loadingAnimationExpert').style.display = "block";
+            document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+            document.getElementById("expertForm").submit();
+        }
+    }
+}
+
+function speedtestAndSubmitEasy() {
+    var form = document.getElementById('easyForm');
+    if(form.reportValidity()) {
+        // show loading animation
+        document.getElementById('loadingAnimation').style.display = "block";
         //Upload or Download?
-        if (document.getElementById("uploadRadio").checked) {
+        s = new Speedtest();
+        var streamspeed;
+        if (document.getElementById("easyUploadRadio").checked) {
             //Upload
             s.setParameter("url_ul", "//st-be-bo1.infra.garr.it/empty.php");
             s.setParameter("test_order", "U");
             s.start();
 
             s.onupdate = function (data) {
-                document.getElementById('streamInput').value = data.ulStatus;
+                document.getElementById('streamspeed').value = data.ulStatus;
             }
         } else {
             //Download
@@ -130,62 +195,20 @@ function speedtestAndSubmitExpert() {
             s.start();
 
             s.onupdate = function (data) {
-                document.getElementById('streamInput').value = data.dlStatus;
+                document.getElementById('streamspeed').value = data.dlStatus;
             }
         }
 
         s.onend = function (aborted) {
             if (!aborted) {
                 console.log('Test finished!');
-                document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
-                document.getElementById("expertForm").submit();
-
+                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
+                document.getElementById("easyForm").submit();
             } else {
-                console.log('Test aborted!');
-                //TODO Error Message
+                console.log('Test aborted! Contact the Websiteadmin!');
             }
         }
-    }else {
-        document.getElementById("expertForm").submit();
+
     }
-}
-
-function speedtestAndSubmitEasy(){
-    // show loading animation
-    document.getElementById('loadingAnimation').style.display = "block";
-    //Upload or Download?
-    s = new Speedtest();
-    var streamspeed;
-    if (document.getElementById("easyUploadRadio").checked){
-        //Upload
-        s.setParameter("url_ul","//st-be-bo1.infra.garr.it/empty.php");
-        s.setParameter("test_order","U");
-        s.start();
-
-        s.onupdate = function (data) {
-            document.getElementById('streamspeed').value = data.ulStatus;
-        }
-    }else {
-        //Download
-        s.setParameter("url_dl","//st-be-bo1.infra.garr.it/garbage.php");
-        s.setParameter("test_order","D");
-        s.start();
-
-        s.onupdate = function (data) {
-            document.getElementById('streamspeed').value = data.dlStatus;
-        }
-    }
-
-    s.onend = function (aborted){
-        if(!aborted){
-            console.log('Test finished!');
-            document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
-            document.getElementById("easyForm").submit();
-        }else{
-            console.log('Test aborted!');
-            //TODO Error Message
-        }
-    }
-
 
 }

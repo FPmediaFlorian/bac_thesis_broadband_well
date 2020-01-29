@@ -9,10 +9,10 @@
 <%@ include file="templates/header.jsp" %>
 
 <section>
-    <div class="container-fluid h-75"> <%--TODO: Höhe dynamisch anpassen --%>
+    <div class="container-fluid h-75">
         <div class="row h-100">
             <!--<div class="col-md-3 overflow-auto"></div>-->
-                <!-- TODO Mobile Ansicht erstellen-->
+
 
             <div class="col-md-12" id="map"></div>
 
@@ -81,18 +81,18 @@
     var lon = 16.356120;
     var lat = 48.220110;
     var profile = 'cycling';
-    var minutes = [6,9,13,16,19,26];
+    var minutes = [6, 9, 13, 16, 19, 26];
     var params = document.getElementById('params');
     var streamspeed = 100; //Mbit
-    var filesizes = [10,15,20,25,30,40];
-    var colors = ['#9EEE00','#00CC00','#00999A','#1141AC','#3815AE','#700BAB']
+    var filesizes = [10, 15, 20, 25, 30, 40];
+    var colors = ['#9EEE00', '#00CC00', '#00999A', '#1141AC', '#3815AE', '#700BAB']
 
     // Add your Mapbox access token
     mapboxgl.accessToken = ${mapboxAPIKEY};
     var map = new mapboxgl.Map({
         container: 'map', // Specify the container ID
         style: 'mapbox://styles/mapbox/streets-v11', // Specify which map style to use
-        center: [lon,lat], // Specify the starting position
+        center: [lon, lat], // Specify the starting position
         zoom: 13, // Specify the starting zoom
 
     });
@@ -107,7 +107,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso1').setData(data);
         })
         //ISO2
@@ -115,7 +115,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso2').setData(data);
         })
         //ISO3
@@ -123,7 +123,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso3').setData(data);
         })
         //ISO4
@@ -131,7 +131,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso4').setData(data);
         })
         //ISO5
@@ -139,7 +139,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso5').setData(data);
         })
         //ISO6
@@ -147,7 +147,7 @@
         $.ajax({
             method: 'GET',
             url: query
-        }).done(function(data) {
+        }).done(function (data) {
             map.getSource('iso6').setData(data);
         })
 
@@ -155,8 +155,7 @@
     };
 
 
-
-    map.on('load', function() {
+    map.on('load', function () {
         // When the map loads, add the source and layer
         //ISO6
         map.addSource('iso6', {
@@ -291,7 +290,7 @@
         refreshIsoAndMarker();
     });
 
-    function createLegend(){
+    function createLegend() {
         var element = document.getElementById("legend");
         while (element.firstChild) {
             element.removeChild(element.firstChild);
@@ -299,7 +298,7 @@
 
         var item = document.createElement('div');
         var value = document.createElement('span');
-        value.innerHTML='<strong>Downloadsizes<strong>';
+        value.innerHTML = '<strong>Downloadsizes<strong>';
         item.appendChild(value);
         legend.appendChild(item);
 
@@ -312,7 +311,7 @@
             key.style.backgroundColor = color;
 
             var value = document.createElement('span');
-            value.innerHTML = filesize+' GB <small>('+minutes[i]+'min)</small>';
+            value.innerHTML = filesize + ' GB <small>(' + minutes[i] + 'min)</small>';
             item.appendChild(key);
             item.appendChild(value);
             legend.appendChild(item);
@@ -320,12 +319,12 @@
     }
 
 
-    params.addEventListener('change', function(e) {
-        if (e.target.name === 'bbwSelector'){
-            var hlp= e.target.value.split(',');
-            lon=hlp[1];
-            lat=hlp[0];
-        }else {
+    params.addEventListener('change', function (e) {
+        if (e.target.name === 'bbwSelector') {
+            var hlp = e.target.value.split(',');
+            lon = hlp[1];
+            lat = hlp[0];
+        } else {
             if (e.target.name === 'profile') {
                 profile = e.target.value;
 
@@ -339,17 +338,16 @@
 
     function calculateMinutes() {
         var i;
-        for(i=0;i<minutes.length;i++){
-            var timeHome = (filesizes[i]*8000)/streamspeed;
-            var timeBBW = (filesizes[i]*8)/10;
-            var Cminutes = Math.floor(((timeHome-timeBBW)/60)/2);
-            console.log('Calculated Minutes:'+Cminutes);
-            if(Cminutes>60){
+        for (i = 0; i < minutes.length; i++) {
+            var timeHome = (filesizes[i] * 8000) / streamspeed;
+            var timeBBW = (filesizes[i] * 8) / 10;
+            var Cminutes = Math.floor(((timeHome - timeBBW) / 60) / 2);
+            console.log('Calculated Minutes:' + Cminutes);
+            if (Cminutes > 60) {
                 document.getElementById("areaExceedMessage").style.display = "block";
-            }
-            else {
+            } else {
                 document.getElementById("areaExceedMessage").style.display = "none";
-                minutes[i]=Cminutes;
+                minutes[i] = Cminutes;
             }
         }
         createLegend();

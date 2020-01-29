@@ -28,19 +28,25 @@
                         <form action="EasyMapRequest" method="post" accept-charset="ISO-8859-1">
                             <div class="form-group">
                                 <label for="easyCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="easyCurrentLocation" name="CurrentLocation" placeholder="Current Location" required>
-                                <small id="easyCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
+                                <input type="text" class="form-control" id="easyCurrentLocation" name="CurrentLocation"
+                                       placeholder="Current Location" required>
+                                <small id="easyCurrentLocationHelp" class="form-text text-muted">Please fill in your
+                                    current location!</small>
                             </div>
 
-                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons"
+                                 aria-label="transport" required>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle"
+                                           autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="car" id="transport-car" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                    <input type="radio" name="transport-option" value="car" id="transport-car"
+                                           autocomplete="off"> <i class="fas fa-car"></i> Car
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="walk" id="transport-walk" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                    <input type="radio" name="transport-option" value="walk" id="transport-walk"
+                                           autocomplete="off"> <i class="fas fa-walking"></i> Walk
                                 </label>
                             </div>
 
@@ -51,21 +57,28 @@
                                     <option><i class="fas fa-network-wired"></i> Fixed Broadband Connection</option>
                                     <option><i class="fas fa-question"></i> i dont know</option>
                                 </select>
-                                <small id="easyInternetAccessHelp" class="form-text text-muted">Please select your internet connection!</small>
+                                <small id="easyInternetAccessHelp" class="form-text text-muted">Please select your
+                                    internet connection!</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="easyDownloadSize">Filesize in Gigabyte</label>
-                                <input type="number" class="form-control" id="easyDownloadSize" name="easyDownloadSize" placeholder="Filesize eg. 100 GB" required><!--https://getbootstrap.com/docs/4.0/components/input-group/#buttons-with-dropdowns-->
-                                <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file to download in GB!</small>
+                                <input type="number" class="form-control" id="easyDownloadSize" name="easyDownloadSize"
+                                       placeholder="Filesize eg. 100 GB" required>
+                                <!--https://getbootstrap.com/docs/4.0/components/input-group/#buttons-with-dropdowns-->
+                                <small id="easyDownloadSizeHelp" class="form-text text-muted">Please fill in the size of
+                                    file to download in GB!</small>
                             </div>
 
-                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons"
+                                 aria-label="transport" required>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio"  name="updownloadRadio" id="easyUploadRadio" value="upload" checkedautocomplete="off" checked> <i class="fas fa-upload"></i>Upload File
+                                    <input type="radio" name="updownloadRadio" id="easyUploadRadio" value="upload"
+                                           checkedautocomplete="off" checked> <i class="fas fa-upload"></i>Upload File
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download"> <i class="fas fa-download"></i> Download File
+                                    <input type="radio" name="updownloadRadio" id="easyDownloadRadio" value="download">
+                                    <i class="fas fa-download"></i> Download File
                                 </label>
                             </div>
                             <br/>
@@ -83,67 +96,88 @@
                         <form style="height: 100%" accept-charset="ISO-8859-1">
                             <div class="form-group">
                                 <label for="expertCurrentLocation">Current Location</label>
-                                <input type="text" class="form-control" id="expertCurrentLocation" name="CurrentLocation" placeholder="Current Location">
-                                <small id="expertCurrentLocationHelp" class="form-text text-muted">Please fill in your current location!</small>
+                                <input type="text" class="form-control" id="expertCurrentLocation"
+                                       name="CurrentLocation" placeholder="Current Location">
+                                <small id="expertCurrentLocationHelp" class="form-text text-muted">Please fill in your
+                                    current location!</small>
                             </div>
-                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons" aria-label="transport" required>
+                            <div class="btn-group btn-group-toggle pb-3" role="group" data-toggle="buttons"
+                                 aria-label="transport" required>
                                 <label class="btn btn-secondary active">
-                                    <input type="radio" name="transport-option" value="bycicle" id="transport-bicycle-expert" autocomplete="off" checked> <i class="fas fa-bicycle"></i> Bicycle
+                                    <input type="radio" name="transport-option" value="bycicle"
+                                           id="transport-bicycle-expert" autocomplete="off" checked> <i
+                                        class="fas fa-bicycle"></i> Bicycle
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="car" id="transport-car-expert" autocomplete="off"> <i class="fas fa-car"></i> Car
+                                    <input type="radio" name="transport-option" value="car" id="transport-car-expert"
+                                           autocomplete="off"> <i class="fas fa-car"></i> Car
                                 </label>
                                 <label class="btn btn-secondary">
-                                    <input type="radio" name="transport-option" value="walk" id="transport-walk-expert" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+                                    <input type="radio" name="transport-option" value="walk" id="transport-walk-expert"
+                                           autocomplete="off"> <i class="fas fa-walking"></i> Walk
                                 </label>
                             </div>
                             <label for="speedtestRadio">Information about your internet connection</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="expertInternetAccess" id="speedtestRadio" value="speedtest" onclick="toogleSpeedForm()" checked>
+                                <input class="form-check-input" type="radio" name="expertInternetAccess"
+                                       id="speedtestRadio" value="speedtest" onclick="toogleSpeedForm()" checked>
                                 <label class="form-check-label" for="speedtestRadio">
-                                    perform Speedtest <small id="expertPreformSpeedtest" class="form-text text-muted">Takes about 10 seconds!</small>
+                                    perform Speedtest <small id="expertPreformSpeedtest" class="form-text text-muted">Takes
+                                    about 10 seconds!</small>
 
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="expertInternetAccess" id="speedformRadio" value="speedform" onclick="toogleSpeedForm()">
+                                <input class="form-check-input" type="radio" name="expertInternetAccess"
+                                       id="speedformRadio" value="speedform" onclick="toogleSpeedForm()">
                                 <label class="form-check-label" for="speedformRadio">
                                     i know my Up- & Downstreams
                                 </label>
                             </div>
                             <div class="form-group pl-3">
-                                <label for="expertUpstream" id="expertUpstreamLabel" style="display: none;">Upstream in kb/s</label>
-                                <input type="number" class="form-control" id="expertUpstream" placeholder="Upstream eg. 20 kb/s" style="display: none;">
-                                <small id="expertUpstreamHelp" class="form-text text-muted" style="display: none;">Please fill in your Upstream in kb/s!</small>
+                                <label for="expertUpstream" id="expertUpstreamLabel" style="display: none;">Upstream in
+                                    kb/s</label>
+                                <input type="number" class="form-control" id="expertUpstream"
+                                       placeholder="Upstream eg. 20 kb/s" style="display: none;">
+                                <small id="expertUpstreamHelp" class="form-text text-muted" style="display: none;">Please
+                                    fill in your Upstream in kb/s!</small>
                             </div>
                             <div class="form-group pl-3">
-                                <label for="expertUpstream" id="expertDownstreamLabel" style="display: none;">Downstream in kb/s</label>
-                                <input type="number" class="form-control" id="expertDownstream" placeholder="Downstream eg. 20 kb/s" style="display: none;">
-                                <small id="expertDownstreamHelp" class="form-text text-muted" style="display: none;">Please fill in your Downstream in kb/s!</small>
+                                <label for="expertUpstream" id="expertDownstreamLabel" style="display: none;">Downstream
+                                    in kb/s</label>
+                                <input type="number" class="form-control" id="expertDownstream"
+                                       placeholder="Downstream eg. 20 kb/s" style="display: none;">
+                                <small id="expertDownstreamHelp" class="form-text text-muted" style="display: none;">Please
+                                    fill in your Downstream in kb/s!</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="expertDownloadSize">Filesize in Gigabyte</label>
-                                <input type="number" class="form-control" id="expertDownloadSize" placeholder="Filesize eg. 100 GB">
-                                <small id="expertDownloadSizeHelp" class="form-text text-muted">Please fill in the size of file to download in GB!</small>
+                                <input type="number" class="form-control" id="expertDownloadSize"
+                                       placeholder="Filesize eg. 100 GB">
+                                <small id="expertDownloadSizeHelp" class="form-text text-muted">Please fill in the size
+                                    of file to download in GB!</small>
                             </div>
                             <div class="form-group">
                                 <label for="expertRequestedBBW">Select your desired BBW</label>
                                 <select class="form-control" id="expertRequestedBBW">
                                     <option>autoselect the nearest</option>
                                     <option>Währingerstraße 29, 1090 Wien</option>
-                                    <option>Laudongasse 15,  1080 Wien</option>
+                                    <option>Laudongasse 15, 1080 Wien</option>
                                 </select>
-                                <small id="expertRequestedBBWHelp" class="form-text text-muted">Please select your desiered BBW, for autoselect choose the nearest</small>
+                                <small id="expertRequestedBBWHelp" class="form-text text-muted">Please select your
+                                    desiered BBW, for autoselect choose the nearest</small>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="updownloadRadio" id="expertUploadRadio" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="updownloadRadio"
+                                       id="expertUploadRadio" value="option1" checked>
                                 <label class="form-check-label" for="expertUploadRadio">
                                     Upload File
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="updownloadRadio" id="expertDownloadRadio" value="option2">
+                                <input class="form-check-input" type="radio" name="updownloadRadio"
+                                       id="expertDownloadRadio" value="option2">
                                 <label class="form-check-label" for="expertDownloadRadio">
                                     Download File
                                 </label>
@@ -189,9 +223,9 @@
     ${createMarker}
 
 
-/*    var geocoder = new maptiler.Geocoder({
-        input: 'easyCurrentLocation',
-        key: ${maptiperAPIKEY},
+    /*    var geocoder = new maptiler.Geocoder({
+            input: 'easyCurrentLocation',
+            key: ${maptiperAPIKEY},
         language: 'de',
         proximity: [48.20809,16.37156]
     });

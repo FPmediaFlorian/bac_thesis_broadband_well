@@ -7,6 +7,7 @@
 --%>
 <%@ page import="java.time.LocalDateTime" %>
 
+<<<<<<< HEAD
         <footer>
             <div class="container mb-2">
                 <div class="row align-items-center ">
@@ -14,6 +15,16 @@
                         <a href="mailt:bbw@randomurl.net">Contact us</a> | <a href="#">Privacy</a> | <a href="#">Terms of Use</a> <br>
                         &copy; <%out.print(LocalDateTime.now().getYear());%> Broadbandwell Prototype
                     </div> <!--TODO Write legal documents-->
+=======
+<footer>
+    <div class="container mb-2">
+        <div class="row align-items-center ">
+            <div class="col-lg-6">
+                <a href="mailt:bbw@randomurl.net">Contact us</a> | <a href="#">Privacy</a> | <a href="#">Terms of
+                Use</a> <br>
+                &copy; <%out.print(LocalDateTime.now().getYear());%> Broadbandwell Prototype
+            </div>
+>>>>>>> develop
 
                     <div class="col-lg-6">
                         <img src="resources/img/BBW_Logo_trans.png" class="d-inline-block align-middle mr-2 logo-small">

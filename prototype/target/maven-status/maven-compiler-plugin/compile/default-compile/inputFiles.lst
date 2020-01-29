@@ -1,6 +1,9 @@
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/servlets/BuildIsochrone.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/SizeSuffix.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/APIKeys.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/LatLng.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/WLstation.java
+/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/TransportForm.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Requests/ExpertRequestClass.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/Helper/DesictionFeedbackHTML.java
 /Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/servlets/ExpertMapRequest.java
