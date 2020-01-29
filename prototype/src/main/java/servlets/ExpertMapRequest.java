@@ -3,6 +3,7 @@ package servlets;
 import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
 import Helper.SizeSuffix;
+import Helper.TransportForm;
 import Requests.EasyRequestClass;
 import Requests.ExpertRequestClass;
 import org.apache.log4j.Logger;
@@ -18,12 +19,15 @@ public class ExpertMapRequest extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ExpertRequestClass expertRequest;
+
+        TransportForm transportOption = TransportForm.valueOf(request.getParameter("transport-option"));
+
         try {
                 expertRequest= new ExpertRequestClass(request.getParameter("CurrentLocation"),
                 Double.valueOf(request.getParameter("streamspeed")),
                 Double.valueOf(request.getParameter("downloadSize")),
                 SizeSuffix.valueOf(request.getParameter("sizeAppend")),
-                request.getParameter("transport-option"),
+                        transportOption,
                 Integer.valueOf(request.getParameter("desiredBBW")));
         } catch (InvalidAddressExeption ex){
             request.setAttribute("error","Your Address could not be found! Please try another spelling or address!");
@@ -42,8 +46,13 @@ public class ExpertMapRequest extends HttpServlet {
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", expertRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse",expertRequest.getDesicionResponse());
-        request.setAttribute("stationA","not");
-        request.setAttribute("stationB","not");
+        if(transportOption==TransportForm.PUBLIC){
+            request.setAttribute("stationA","not"); // TODO get stationA coordinates
+            request.setAttribute("stationB","not"); // TODO get stationB coordinates
+        }else{
+            request.setAttribute("stationA","not");
+            request.setAttribute("stationB","not");
+        }
 
 
 

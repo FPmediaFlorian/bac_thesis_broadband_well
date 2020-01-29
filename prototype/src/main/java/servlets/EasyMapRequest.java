@@ -4,6 +4,7 @@ import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
 import Helper.LatLng;
 import Helper.SizeSuffix;
+import Helper.TransportForm;
 import Requests.EasyRequestClass;
 import org.apache.log4j.Logger;
 
@@ -19,12 +20,14 @@ public class EasyMapRequest extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        TransportForm transportOption = TransportForm.valueOf(request.getParameter("transport-option"));
+
         //Create request instance
         EasyRequestClass easyRequest = new EasyRequestClass(request.getParameter("CurrentLocation"),
                 Double.valueOf(request.getParameter("streamspeed")),
                 Double.valueOf(request.getParameter("downloadSize")),
                 SizeSuffix.valueOf(request.getParameter("sizeAppend")),
-                request.getParameter("transport-option"));
+                transportOption);
 
         //LOGGER.info("Request: " + easyRequest.toString());
 
@@ -48,8 +51,14 @@ public class EasyMapRequest extends HttpServlet {
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse",easyRequest.getDesicionResponse());
-        request.setAttribute("stationA","not");
-        request.setAttribute("stationB","not");
+        if(transportOption==TransportForm.PUBLIC){
+            request.setAttribute("stationA","not"); // TODO get stationA coordinates
+            request.setAttribute("stationB","not"); // TODO get stationB coordinates
+        }else{
+            request.setAttribute("stationA","not");
+            request.setAttribute("stationB","not");
+        }
+
 
 
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);

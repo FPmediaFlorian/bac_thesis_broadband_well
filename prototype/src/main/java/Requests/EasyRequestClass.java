@@ -28,7 +28,7 @@ public class EasyRequestClass {
      * @param streamSpeed speed of down or uploadspeed
      * @param downloadSize Filesize to be downloaded in GB
      */
-    public EasyRequestClass(String currentLocation, double streamSpeed , double downloadSize, SizeSuffix sizeSuffix,  String transportOption) {
+    public EasyRequestClass(String currentLocation, double streamSpeed , double downloadSize, SizeSuffix sizeSuffix,  TransportForm transportOption) {
         this.currentLocation = currentLocation;
         this.downloadSize = downloadSize;
         this.streamSpeed =streamSpeed;
@@ -36,7 +36,7 @@ public class EasyRequestClass {
         geocode = null;
         nearestBBW=null;
         //Set Transportform
-        setTransportFormFromString(transportOption);
+        transportForm=transportOption;
     }
 
 
@@ -121,14 +121,14 @@ public class EasyRequestClass {
         StringBuilder sb = new StringBuilder();
         if(Math.abs(totalTimeForBBW-downloadtimeHome)<300){
             //Neutral, doesn't really matter
-            sb.append(DesictionFeedbackHTML.getNeutralFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+            sb.append(DesictionFeedbackHTML.getNeutralFeedback(nearestBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
         }else {
             if (totalTimeForBBW < downloadtimeHome) {
                 //Go to BBW
                 sb.append(DesictionFeedbackHTML.getPositiveFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome, streamSpeed,downloadSize,sizeSuffix));
             } else {
                 //Download @Home
-                sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+                sb.append(DesictionFeedbackHTML.getNegativeFeedback(nearestBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
             }
         }
         return sb.toString();
@@ -152,16 +152,10 @@ public class EasyRequestClass {
         this.currentLocation = currentLocation;
     }
 
-
-
-
     public TransportForm getTransportForm() {
         return transportForm;
     }
 
-    public void setTransportFormFromString(String transportOption) {
-        this.transportForm=TransportForm.valueOf(transportOption);
-    }
 
 
 

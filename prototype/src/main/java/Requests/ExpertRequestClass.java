@@ -18,7 +18,7 @@ public class ExpertRequestClass {
     private double streamSpeed;
     private SizeSuffix sizeSuffix;
 
-    public ExpertRequestClass(String currentLocation, double streamSpeed , double downloadSize, SizeSuffix sizeSuffix, String transportOption, int desiredBBW) throws InvalidAddressExeption {
+    public ExpertRequestClass(String currentLocation, double streamSpeed , double downloadSize, SizeSuffix sizeSuffix, TransportForm transportOption, int desiredBBW) throws InvalidAddressExeption {
         this.currentLocation=currentLocation;
         this.downloadSize = downloadSize;
         this.streamSpeed =streamSpeed;
@@ -28,7 +28,8 @@ public class ExpertRequestClass {
         calculateGeocode();
 
         //Set Transportforf
-        setTransportFormFromString(transportOption);
+        transportForm=transportOption;
+        //setTransportFormFromString(transportOption);
         if (desiredBBW==-1){
             findNearestBBW();
         } else {
@@ -87,16 +88,16 @@ public class ExpertRequestClass {
         totalTimeForBBW = totalTraveltime+downloadtimeBBW;
 
         StringBuilder sb = new StringBuilder();
-        if(totalTimeForBBW-downloadtimeHome<300){
+        if(Math.abs(totalTimeForBBW-downloadtimeHome)<300){
             //Neutral, doesn't really matter
-            sb.append(DesictionFeedbackHTML.getNeutralFeedback(desiredBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome));
+            sb.append(DesictionFeedbackHTML.getNeutralFeedback(desiredBBW,(long)totalTraveltime,(long) downloadtimeBBW,(long)totalTimeForBBW,(long)downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
         }else {
             if (totalTimeForBBW < downloadtimeHome) {
                 //Go to BBW
                 sb.append(DesictionFeedbackHTML.getPositiveFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
             } else {
                 //Download @Home
-                sb.append(DesictionFeedbackHTML.getNegativeFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome));
+                sb.append(DesictionFeedbackHTML.getNegativeFeedback(desiredBBW, (long) totalTraveltime, (long) downloadtimeBBW, (long) totalTimeForBBW, (long) downloadtimeHome,streamSpeed,downloadSize,sizeSuffix));
             }
         }
         return sb.toString();
@@ -128,8 +129,5 @@ public class ExpertRequestClass {
         return desiredBBW;
     }
 
-    public void setTransportFormFromString(String transportOption) {
-        this.transportForm=TransportForm.valueOf(transportOption);
-    }
 
 }
