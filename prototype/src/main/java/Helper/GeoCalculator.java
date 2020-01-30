@@ -56,30 +56,35 @@ public class GeoCalculator {
     }
 
 
-    public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw) {
-        double traveltime = 0;
-        RouteResponse rsp = null;
-        RoutingApi routing = new RoutingApi();
-        routing.setApiClient(createClient());
+    public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw) throws Exception {
+        if(transportForm == TransportForm.PUBLIC){
+            bbw.setCurrentLocationPTstation(getNearestPTStation(geocode));
+            return getPublicTransportTraveltime(bbw);
+        }else {
+            double traveltime = 0;
+            RouteResponse rsp = null;
+            RoutingApi routing = new RoutingApi();
+            routing.setApiClient(createClient());
 
-        try {
-            rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
-                    Collections.<String>emptyList(), Collections.<String>emptyList(),
-                    VehicleProfileId.valueOf(transportForm.toString()), "en", true, Collections.<String>emptyList(), false,
-                    true, true, false, true, null, false,
-                    "fastest", Collections.<Integer>emptyList(), null, null, null,
-                    null, null, null, null, null,
-                    null, null);
-        } catch (ApiException e) {
-            LOGGER.error(e.getMessage());
-        }
+            try {
+                rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
+                        Collections.<String>emptyList(), Collections.<String>emptyList(),
+                        VehicleProfileId.valueOf(transportForm.toString()), "en", true, Collections.<String>emptyList(), false,
+                        true, true, false, true, null, false,
+                        "fastest", Collections.<Integer>emptyList(), null, null, null,
+                        null, null, null, null, null,
+                        null, null);
+            } catch (ApiException e) {
+                LOGGER.error(e.getMessage());
+            }
 
-        try {
-            traveltime = rsp.getPaths().get(0).getTime();
-        } catch (NullPointerException e) {
-            LOGGER.error(e.getMessage());
+            try {
+                traveltime = rsp.getPaths().get(0).getTime();
+            } catch (NullPointerException e) {
+                LOGGER.error(e.getMessage());
+            }
+            return traveltime;
         }
-        return traveltime;
     }
 
     public static BBW getNearestBBWsetTraveltime(LatLng geocode, TransportForm transportForm) {
@@ -125,7 +130,6 @@ public class GeoCalculator {
         } else {
             //public Transport routing
             double distance = 0;
-            WLstation nearestStation = null;
             //Get nearest BBW by distance
             for (BBW bbw : BBW.BBW_LIST) {
                 if (nearestBBW == null) {
@@ -138,12 +142,12 @@ public class GeoCalculator {
                 }
             }
             try {
-                nearestStation = getNearestPTStation(geocode);
+                nearestBBW.setCurrentLocationPTstation(getNearestPTStation(geocode));
             } catch (Exception e) {
                 e.printStackTrace();
             }
             try {
-                traveltime = getPublicTransportTraveltime(nearestStation.getLatLng(), nearestBBW);
+                traveltime = getPublicTransportTraveltime(nearestBBW);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -156,7 +160,7 @@ public class GeoCalculator {
         return nearestBBW;
     }
 
-    public static double getPublicTransportTraveltime(LatLng geocode, BBW bbw) throws Exception {
+    public static double getPublicTransportTraveltime(BBW bbw) throws Exception {
         double secRet = 0;
 
         URL url = new URL("http://www.wienerlinien.at/ogd_routing/XML_TRIP_REQUEST2?");
@@ -169,9 +173,9 @@ public class GeoCalculator {
         params.put("outputFormat", "JSON");
         params.put("locationServerActive", "1");
         params.put("type_origin", "any");
-        params.put("name_origin", String.valueOf(getNearestPTStation(geocode).getID()));
+        params.put("name_origin", String.valueOf(bbw.getCurrentLocationPTstation().getID()));
         params.put("type_destination", "any");
-        params.put("name_destination", bbw.getNearestPTStation());
+        params.put("name_destination", Integer.toString(bbw.getNearestPTStation().getID()));
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream((con.getOutputStream()));

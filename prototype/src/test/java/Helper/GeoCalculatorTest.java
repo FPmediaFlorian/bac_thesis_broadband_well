@@ -11,7 +11,8 @@ public class GeoCalculatorTest {
     @Test
     public void getPublicTransportTest() throws Exception {
         BBW.initBBWList();
-        double time = GeoCalculator.getPublicTransportTraveltime(new LatLng(48.190830, 16.330270), BBW.BBW_LIST.get(0));
+        BBW.BBW_LIST.get(0).setCurrentLocationPTstation(GeoCalculator.getNearestPTStation(new LatLng(48.190830, 16.330270)));
+        double time = GeoCalculator.getPublicTransportTraveltime(BBW.BBW_LIST.get(0));
         LOGGER.debug("Traveltime: " + time);
         //Can not be asserted, changes depending on public transport situation
         //Assert.assertEquals(1560.0, time,1);

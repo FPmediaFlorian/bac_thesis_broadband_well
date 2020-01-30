@@ -19,9 +19,10 @@ public class BBW {
     String descMarker;
     String info;
     double travelTime;
-    String nearestPTStation;
+    WLstation nearestPTStation;
+    WLstation currentLocationPTstation;
 
-    public BBW(String name, LatLng latLng, String descMarker, String info, String nearestPTStation) {
+    public BBW(String name, LatLng latLng, String descMarker, String info, WLstation nearestPTStation) {
         this.name = name;
         this.latLng = latLng;
         this.descMarker = descMarker;
@@ -42,10 +43,13 @@ public class BBW {
             JSONArray a = (JSONArray) parser.parse(new FileReader("/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/config/BBW_config.json"));//"src/config/BBW_config.json"));
 
 
+
+
             for (Object o : a) {
                 JSONObject bb = (JSONObject) o;
                 JSONObject ll = (JSONObject) bb.get("latLng");
-                bbw = new BBW(bb.get("name").toString(), new LatLng((double) ll.get("lat"), (double) ll.get("lng")), bb.get("descMarker").toString(), bb.get("info").toString(), bb.get("nearestPTStation").toString().replace("\"", ""));
+                JSONObject ptStation = (JSONObject) bb.get("nearestPTStation");
+                bbw = new BBW(bb.get("name").toString(), new LatLng((double) ll.get("lat"), (double) ll.get("lng")), bb.get("descMarker").toString(), bb.get("info").toString(), new WLstation(ptStation.get("name").toString(), Integer.parseInt(ptStation.get("id").toString()), new LatLng((double)ptStation.get("lat"),(double)ptStation.get("lng"))));
                 BBW_LIST.add(bbw);
             }
         } catch (IOException e) {
@@ -100,12 +104,20 @@ public class BBW {
         this.travelTime = travelTime;
     }
 
-    public String getNearestPTStation() {
+    public WLstation getNearestPTStation() {
         return nearestPTStation;
     }
 
-    public void setNearestPTStation(String nearestPTStation) {
+    public void setNearestPTStation(WLstation nearestPTStation) {
         this.nearestPTStation = nearestPTStation;
+    }
+
+    public WLstation getCurrentLocationPTstation() {
+        return currentLocationPTstation;
+    }
+
+    public void setCurrentLocationPTstation(WLstation currentLocationPTstation) {
+        this.currentLocationPTstation = currentLocationPTstation;
     }
 
     @Override
@@ -116,6 +128,7 @@ public class BBW {
                 ", descMarker='" + descMarker + '\'' +
                 ", info='" + info + '\'' +
                 ", travelTime=" + travelTime +
+                ", nearestPTStation=" + nearestPTStation +
                 '}';
     }
 }

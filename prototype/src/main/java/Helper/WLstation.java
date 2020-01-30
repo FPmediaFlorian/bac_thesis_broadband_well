@@ -23,7 +23,7 @@ public class WLstation {
     public static List<WLstation> initWLstationList() {
         List<WLstation> retList = new ArrayList<>();
 
-        String csvFile = "/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/main/java/WLstops.csv";
+        String csvFile = "/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/config/WLstops.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ";";

@@ -17,7 +17,7 @@ public class ExpertRequestClass {
     private double streamSpeed;
     private SizeSuffix sizeSuffix;
 
-    public ExpertRequestClass(String currentLocation, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix, TransportForm transportOption, int desiredBBW) throws InvalidAddressExeption {
+    public ExpertRequestClass(String currentLocation, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix, TransportForm transportOption, int desiredBBW) throws Exception {
         this.currentLocation = currentLocation;
         this.downloadSize = downloadSize;
         this.streamSpeed = streamSpeed;

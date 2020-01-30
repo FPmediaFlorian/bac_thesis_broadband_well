@@ -23,12 +23,12 @@ public class BBWtest {
             // Java objects to JSON string - compact-print
             String jsonString = mapper.writeValueAsString(BBW.BBW_LIST);
 
-            System.out.println(jsonString);
+            LOGGER.debug(jsonString);
 
             // Java objects to JSON string - pretty-print
             String jsonInString2 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(BBW.BBW_LIST);
 
-            System.out.println(jsonInString2);
+            LOGGER.debug(jsonInString2);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,5 +41,7 @@ public class BBWtest {
     public void mapFromJson() {
 
         BBW.initBBWList();
+
+        LOGGER.debug("BBW List:" + BBW.BBW_LIST.toString());
     }
 }

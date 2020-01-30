@@ -2,6 +2,7 @@ package servlets;
 
 import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
+import Helper.BBW;
 import Helper.SizeSuffix;
 import Helper.TransportForm;
 import Requests.EasyRequestClass;
@@ -44,15 +45,17 @@ public class EasyMapRequest extends HttpServlet {
         LOGGER.debug("Downloadtime BBW: " + easyRequest.getBBWdownloadtime());
 
 
+        BBW nearestBBW = easyRequest.getNearestBBW();
+
         //Set Parameters for Webform
         request.setAttribute("latlngStart", geocode);
-        request.setAttribute("latlngDest", easyRequest.getNearestBBW().getLatLng().getLatLng());
+        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLng());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse", easyRequest.getDesicionResponse());
         if (transportOption == TransportForm.PUBLIC) {
-            request.setAttribute("stationA", "not"); // TODO get stationA coordinates
-            request.setAttribute("stationB", "not"); // TODO get stationB coordinates
+            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLng());
+            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLng());
         } else {
             request.setAttribute("stationA", "not");
             request.setAttribute("stationB", "not");

@@ -2,6 +2,7 @@ package servlets;
 
 import Exceptions.InvalidAddressExeption;
 import Helper.APIKeys;
+import Helper.BBW;
 import Helper.SizeSuffix;
 import Helper.TransportForm;
 import Requests.ExpertRequestClass;
@@ -17,7 +18,7 @@ public class ExpertMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(ExpertMapRequest.class.getName());
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ExpertRequestClass expertRequest;
+        ExpertRequestClass expertRequest = null;
 
         TransportForm transportOption = TransportForm.valueOf(request.getParameter("transport-option"));
 
@@ -28,26 +29,31 @@ public class ExpertMapRequest extends HttpServlet {
                     SizeSuffix.valueOf(request.getParameter("sizeAppend")),
                     transportOption,
                     Integer.valueOf(request.getParameter("desiredBBW")));
+
         } catch (InvalidAddressExeption ex) {
             request.setAttribute("error", "Your Address could not be found! Please try another spelling or address!");
             request.getRequestDispatcher("BuildMap").forward(request, response);
             return;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         LOGGER.debug("Geocoding:" + expertRequest.getGeocode().getLatLng());
         LOGGER.debug("Downloadtime: " + expertRequest.getDownloadtime());
         LOGGER.debug("Downloadtime BBW: " + expertRequest.getBBWdownloadtime());
 
+        BBW nearestBBW = expertRequest.getDesiredBBW();
+
 
         //Set Parameters for Webform
         request.setAttribute("latlngStart", expertRequest.getGeocode().getLatLng());
-        request.setAttribute("latlngDest", expertRequest.getDesiredBBW().getLatLng().getLatLng());
+        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLng());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", expertRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse", expertRequest.getDesicionResponse());
         if (transportOption == TransportForm.PUBLIC) {
-            request.setAttribute("stationA", "not"); // TODO get stationA coordinates
-            request.setAttribute("stationB", "not"); // TODO get stationB coordinates
+            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLng());
+            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLng());
         } else {
             request.setAttribute("stationA", "not");
             request.setAttribute("stationB", "not");

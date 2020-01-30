@@ -12,7 +12,7 @@ public class ExpertRequestClassTest {
     private static Logger LOGGER = Logger.getLogger(ExpertRequestClassTest.class.getName());
 
     @Test
-    public void downloadtimeTest() throws InvalidAddressExeption {
+    public void downloadtimeTest() throws Exception {
         BBW.initBBWList();
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 42, 52, SizeSuffix.valueOf("GB"), TransportForm.CAR, -1);
 
@@ -21,7 +21,7 @@ public class ExpertRequestClassTest {
     }
 
     @Test
-    public void geolocationTest() throws InvalidAddressExeption {
+    public void geolocationTest() throws Exception {
         BBW.initBBWList();
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 42, 52, SizeSuffix.valueOf("GB"), TransportForm.CAR, -1);
 
@@ -36,7 +36,7 @@ public class ExpertRequestClassTest {
     }
 
     @Test
-    public void routingTest() throws InvalidAddressExeption {
+    public void routingTest() throws Exception {
         BBW.initBBWList();
         //Auto calculate nearest BBW
         ExpertRequestClass expertRequestClass = new ExpertRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"), TransportForm.CAR, -1);
