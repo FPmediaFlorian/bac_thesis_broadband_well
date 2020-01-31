@@ -3,6 +3,18 @@ package Helper;
 import java.util.concurrent.TimeUnit;
 
 public class DesictionFeedbackHTML {
+    /**
+     * Returns a positive HTML styled string for frontend with information about the download
+     * @param nearestBBW nearest BBW
+     * @param totalTraveltime Traveltime in milliseconds
+     * @param downloadtimeBBW downloadtime @ bbw in milliseconds
+     * @param totalTimeForBBW totaltime for BBW in milliseconds
+     * @param downloadtimeHome downloastime @currentlocation in milliseconds
+     * @param streamSpeed Streamspeed (Up- or Download) un MBit/s
+     * @param downloadSize Filesize of downloadable file
+     * @param sizeSuffix Size suffix of downloadsize (MB, GB, TB)
+     * @return returns a Sting with a HTML Message to go to the BBW
+     */
     public static String getPositiveFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix) {
         StringBuilder sb = new StringBuilder();
 
@@ -78,6 +90,18 @@ public class DesictionFeedbackHTML {
         return sb.toString();
     }
 
+    /**
+     * Returns a negative HTML styled string for frontend with information about the download
+     * @param nearestBBW nearest BBW
+     * @param totalTraveltime Traveltime in milliseconds
+     * @param downloadtimeBBW downloadtime @ bbw in milliseconds
+     * @param totalTimeForBBW totaltime for BBW in milliseconds
+     * @param downloadtimeHome downloastime @currentlocation in milliseconds
+     * @param streamSpeed Streamspeed (Up- or Download) un MBit/s
+     * @param downloadSize Filesize of downloadable file
+     * @param sizeSuffix Size suffix of downloadsize (MB, GB, TB)
+     * @return returns a Sting with a HTML Message to download @ current Location
+     */
     public static String getNegativeFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix) {
         StringBuilder sb = new StringBuilder();
 
@@ -151,7 +175,18 @@ public class DesictionFeedbackHTML {
         return sb.toString();
     }
 
-
+    /**
+     * Returns a neutral HTML styled string for frontend with information about the download
+     * @param nearestBBW nearest BBW
+     * @param totalTraveltime Traveltime in milliseconds
+     * @param downloadtimeBBW downloadtime @ bbw in milliseconds
+     * @param totalTimeForBBW totaltime for BBW in milliseconds
+     * @param downloadtimeHome downloastime @currentlocation in milliseconds
+     * @param streamSpeed Streamspeed (Up- or Download) un MBit/s
+     * @param downloadSize Filesize of downloadable file
+     * @param sizeSuffix Size suffix of downloadsize (MB, GB, TB
+     * @return returns a Sting with a HTML Mesage that ist does not matter where to download.
+     */
     public static String getNeutralFeedback(BBW nearestBBW, long totalTraveltime, long downloadtimeBBW, long totalTimeForBBW, long downloadtimeHome, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix) {
         StringBuilder sb = new StringBuilder();
 
