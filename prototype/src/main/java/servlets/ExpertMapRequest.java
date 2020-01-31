@@ -38,7 +38,7 @@ public class ExpertMapRequest extends HttpServlet {
             e.printStackTrace();
         }
 
-        LOGGER.debug("Geocoding:" + expertRequest.getGeocode().getLatLng());
+        LOGGER.debug("Geocoding:" + expertRequest.getGeocode().getLatLngAsString());
         LOGGER.debug("Downloadtime: " + expertRequest.getDownloadtime());
         LOGGER.debug("Downloadtime BBW: " + expertRequest.getBBWdownloadtime());
 
@@ -46,14 +46,14 @@ public class ExpertMapRequest extends HttpServlet {
 
 
         //Set Parameters for Webform
-        request.setAttribute("latlngStart", expertRequest.getGeocode().getLatLng());
-        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLng());
+        request.setAttribute("latlngStart", expertRequest.getGeocode().getLatLngAsString());
+        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLngAsString());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", expertRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse", expertRequest.getDesicionResponse());
         if (transportOption == TransportForm.PUBLIC) {
-            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLng());
-            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLng());
+            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLngAsString());
+            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLngAsString());
         } else {
             request.setAttribute("stationA", "not");
             request.setAttribute("stationB", "not");

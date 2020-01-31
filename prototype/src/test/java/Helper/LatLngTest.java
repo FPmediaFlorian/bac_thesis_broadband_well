@@ -8,7 +8,7 @@ public class LatLngTest {
     public void testLatLng() {
         LatLng latLng = new LatLng(13.13, 14.14);
 
-        Assert.assertEquals("13.13,14.14", latLng.getLatLng());
+        Assert.assertEquals("13.13,14.14", latLng.getLatLngAsString());
     }
 
     @Test

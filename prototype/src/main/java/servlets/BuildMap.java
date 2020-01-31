@@ -21,7 +21,7 @@ public class BuildMap extends HttpServlet {
         int i = 1;
         for (BBW bbw : BBW.BBW_LIST) {
             sb.append("var marker" + i + " = L.marker([");
-            sb.append(bbw.getLatLng().getLatLng());
+            sb.append(bbw.getLatLng().getLatLngAsString());
             sb.append("],{icon: BBWIcon}).addTo(map);");
             sb.append(System.getProperty("line.separator"));
             sb.append("marker" + i + ".bindPopup('");

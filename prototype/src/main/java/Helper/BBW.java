@@ -136,7 +136,7 @@ public class BBW {
      * @return String of latlang
      */
     public String getLatLngString() {
-        return latLng.getLatLng();
+        return latLng.getLatLngAsString();
     }
 
     /**

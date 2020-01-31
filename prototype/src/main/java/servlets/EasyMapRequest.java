@@ -33,7 +33,7 @@ public class EasyMapRequest extends HttpServlet {
 
         String geocode = null;
         try {
-            geocode = easyRequest.getGeolocation().getLatLng();
+            geocode = easyRequest.getGeolocation().getLatLngAsString();
         } catch (InvalidAddressExeption ex) {
             request.setAttribute("error", "Your Address could not be found! Please try another spelling or address!");
             request.getRequestDispatcher("BuildMap").forward(request, response);
@@ -51,13 +51,13 @@ public class EasyMapRequest extends HttpServlet {
 
         //Set Parameters for Webform
         request.setAttribute("latlngStart", geocode);
-        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLng());
+        request.setAttribute("latlngDest", nearestBBW.getLatLng().getLatLngAsString());
         request.setAttribute("ghApiKey", APIKeys.GHAPI);
         request.setAttribute("vehicle", easyRequest.getTransportForm().toString());
         request.setAttribute("desicionResponse", easyRequest.getDesicionResponse());
         if (transportOption == TransportForm.PUBLIC) {
-            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLng());
-            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLng());
+            request.setAttribute("stationA", nearestBBW.getCurrentLocationPTstation().getLatLng().getLatLngAsString());
+            request.setAttribute("stationB", nearestBBW.getNearestPTStation().getLatLng().getLatLngAsString());
         } else {
             request.setAttribute("stationA", "not");
             request.setAttribute("stationB", "not");
