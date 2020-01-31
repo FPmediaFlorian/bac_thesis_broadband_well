@@ -22,6 +22,14 @@ public class BBW {
     WLstation nearestPTStation;
     WLstation currentLocationPTstation;
 
+    /**
+     * Constructor for BBW
+     * @param name Name of BBW
+     * @param latLng coordinates of BBW
+     * @param descMarker description for Map popup
+     * @param info Info for Frontend
+     * @param nearestPTStation nearest Public Transport station
+     */
     public BBW(String name, LatLng latLng, String descMarker, String info, WLstation nearestPTStation) {
         this.name = name;
         this.latLng = latLng;
@@ -31,9 +39,16 @@ public class BBW {
 
     }
 
+    /**
+     * Default constructor
+     */
     public BBW() {
     }
 
+    /**
+     * Initializes the BBW List.
+     * Reads all infos from BBW_config in config dir
+     */
     public static void initBBWList() {
 
         BBW_LIST = new ArrayList<>();
@@ -60,62 +75,114 @@ public class BBW {
         //LOGGER.debug(BBW_LIST.toString());
     }
 
+    /**
+     * Get name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set name
+     * @param name sets name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get latLng
+     * @return latLng
+     */
     public LatLng getLatLng() {
         return latLng;
     }
 
+    /**
+     * Set latLng
+     * @param latLng sets latLng
+     */
     public void setLatLng(LatLng latLng) {
         this.latLng = latLng;
     }
 
+    /**
+     * Get descMarker
+     * @return descMarker
+     */
     public String getDescMarker() {
         return descMarker;
     }
 
-    public void setDescMarker(String descMarker) {
-        this.descMarker = descMarker;
-    }
-
+    /**
+     * Get info
+     * @return info
+     */
     public String getInfo() {
         return info;
     }
 
+    /**
+     * Set info
+     * @param info sets info
+     */
     public void setInfo(String info) {
         this.info = info;
     }
 
+    /**
+     * Get String of latlang
+     * @return String of latlang
+     */
     public String getLatLngString() {
         return latLng.getLatLng();
     }
 
+    /**
+     * Get travelTime
+     * @return travelTime
+     */
     public double getTravelTime() {
         return travelTime;
     }
 
+    /**
+     * Set travelTime
+     * @param travelTime sets travelTime
+     */
     public void setTravelTime(double travelTime) {
         this.travelTime = travelTime;
     }
 
+    /**
+     * Get nearestPTStation
+     * @return nearestPTStation
+     */
     public WLstation getNearestPTStation() {
         return nearestPTStation;
     }
 
+    /**
+     * Set nearestPTStation
+     * @param nearestPTStation sets nearestPTStation
+     */
     public void setNearestPTStation(WLstation nearestPTStation) {
         this.nearestPTStation = nearestPTStation;
     }
 
+    /**
+     * Get currentLocationPTstation
+     * @return nacurrentLocationPTstationme
+     */
     public WLstation getCurrentLocationPTstation() {
         return currentLocationPTstation;
     }
 
+    /**
+     * Set currentLocationPTstation
+     * @param currentLocationPTstation sets currentLocationPTstation
+     */
     public void setCurrentLocationPTstation(WLstation currentLocationPTstation) {
         this.currentLocationPTstation = currentLocationPTstation;
     }
