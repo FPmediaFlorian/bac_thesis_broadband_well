@@ -9,22 +9,11 @@ import com.graphhopper.directions.api.client.api.RoutingApi;
 import com.graphhopper.directions.api.client.model.RouteResponse;
 import com.graphhopper.directions.api.client.model.VehicleProfileId;
 import org.apache.log4j.Logger;
-//import org.json.JSONObject;
-//import org.json.JSONPointer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import servlets.EasyMapRequest;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -113,7 +102,7 @@ public class GeoCalculator {
      * @param transportForm Form of transport as TransportForm Object (enum)
      * @param bbw nearest or desired BBW
      * @return returns the Traveltime as double
-     * @throws Exception
+     * @throws Exception Throws exception if the Travel getPublicTransportTraveltime Mathod throws Error
      */
     public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw) throws Exception {
         if(transportForm == TransportForm.PUBLIC){
@@ -123,7 +112,7 @@ public class GeoCalculator {
             double traveltime = 0;
             RouteResponse rsp = null;
             RoutingApi routing = new RoutingApi();
-            routing.setApiClient(createClient());
+            routing.setApiClient(createGHClient());
 
             try {
                 rsp = routing.getRoute(Arrays.asList(geocode.getLat() + "," + geocode.getLng(), bbw.getLatLngString()),
@@ -146,6 +135,12 @@ public class GeoCalculator {
         }
     }
 
+    /**
+     * Calculates the nearest BBW to given geocode in consideration of the transport form
+     * @param geocode Geocode as LatLng Object from current Location
+     * @param transportForm Form of transport as TransportForm Object (enum)
+     * @return returns nearest BBW which has the Traveltime in it
+     */
     public static BBW getNearestBBWsetTraveltime(LatLng geocode, TransportForm transportForm) {
         BBW nearestBBW = null;
         double traveltime = 0;
@@ -153,7 +148,7 @@ public class GeoCalculator {
             //Normal routing
 
             RoutingApi routing = new RoutingApi();
-            routing.setApiClient(createClient());
+            routing.setApiClient(createGHClient());
 
             for (BBW bbw : BBW.BBW_LIST) {
                 //Calculate time with Graphhopper APIkey
@@ -219,6 +214,12 @@ public class GeoCalculator {
         return nearestBBW;
     }
 
+    /**
+     * Calculates the traveltime from Station A (nearest Station @current Location) to Station B (nearest Station @BBW) by calling the Wiener Linien API
+     * @param bbw Nearest BBW
+     * @return returns traveltime in second
+     * @throws Exception
+     */
     public static double getPublicTransportTraveltime(BBW bbw) throws Exception {
         double secRet = 0;
 
@@ -278,8 +279,12 @@ public class GeoCalculator {
         return secRet;
     }
 
-
-    public static WLstation getNearestPTStation(LatLng latLng) throws Exception {
+    /**
+     * Finds nearest BBW station.
+     * @param latLng Latitude & Longitude of current Location
+     * @return Returns the nearest station to the given coordinates
+     */
+    public static WLstation getNearestPTStation(LatLng latLng) {
         List<WLstation> stationList = WLstation.initWLstationList();
         WLstation minStation = null;
         double minDist = 0;
@@ -298,43 +303,13 @@ public class GeoCalculator {
         return minStation;
     }
 
-    private static List<String> evaluateXPath(Document document, String xpathExpression) throws Exception {
-        // Create XPathFactory object
-        XPathFactory xpathFactory = XPathFactory.newInstance();
 
-        // Create XPath object
-        XPath xpath = xpathFactory.newXPath();
-
-        List<String> values = new ArrayList<>();
-        try {
-            // Create XPathExpression object
-            XPathExpression expr = xpath.compile(xpathExpression);
-
-
-            // Evaluate expression result on XML document
-            NodeList nodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-
-            for (int i = 0; i < nodes.getLength(); i++) {
-                values.add(nodes.item(i).getNodeValue());
-            }
-
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        return values;
-    }
-
-    private static String nodeToString(Node node) throws Exception {
-        StringWriter sw = new StringWriter();
-
-        Transformer t = TransformerFactory.newInstance().newTransformer();
-        t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        t.setOutputProperty(OutputKeys.INDENT, "yes");
-        t.transform(new DOMSource(node), new StreamResult(sw));
-
-        return sw.toString();
-    }
-
+    /**
+     *
+     * @param params Map with all parameters for a REST request
+     * @return Returns parameters streamlined & URL encoded as String
+     * @throws UnsupportedEncodingException
+     */
     private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
 
@@ -351,8 +326,11 @@ public class GeoCalculator {
                 : resultString;
     }
 
-    private static ApiClient createClient() {
-
+    /**
+     * creates Graphhopper Client
+     * @return returns created graphhopper Client
+     */
+    private static ApiClient createGHClient() {
         ApiClient client = new ApiClient().setDebugging(true);
         client.setApiKey(System.getProperty("graphhopper.key", "5108091a-dea6-4eb3-88e3-f7049ad14659"));
         return client;
