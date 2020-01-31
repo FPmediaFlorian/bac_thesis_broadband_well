@@ -38,6 +38,8 @@ public class EasyMapRequest extends HttpServlet {
             request.setAttribute("error", "Your Address could not be found! Please try another spelling or address!");
             request.getRequestDispatcher("BuildMap").forward(request, response);
             return;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         LOGGER.debug("Geocoding:" + geocode);

@@ -40,5 +40,26 @@ public class GeoCalculatorTest {
         BBW bbw = GeoCalculator.getNearestBBWsetTraveltime(new LatLng(48.190830, 16.330270), TransportForm.PUBLIC);
 
         LOGGER.debug("Nearst BBW incl. Traveltime" + bbw.toString());
+
+        //Can not be asserted, changes depending on traffic and public transport situation
     }
+    @Test
+    public void getGeocodeTest() throws Exception {
+        LatLng latLng = GeoCalculator.getGeocode("Reindorfgasse 42");
+
+        Assert.assertEquals(48.19084, latLng.getLat(),0.0001);
+        Assert.assertEquals(16.33009, latLng.getLng(),0.0001);
+
+        latLng= GeoCalculator.getGeocode("Währingerstraße 29");
+
+        Assert.assertEquals(48.22009, latLng.getLat(),0.0001);
+        Assert.assertEquals(16.35641, latLng.getLng(),0.0001);
+
+        latLng = GeoCalculator.getGeocode("adsfadfa23");
+
+        Assert.assertNull(latLng);
+
+    }
+
+
 }

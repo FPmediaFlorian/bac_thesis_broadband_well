@@ -68,7 +68,7 @@ public class EasyRequestClass {
         geocode = GeoCalculator.getGeocode(getCurrentLocation());
         if (geocode == null) {
             LOGGER.error("Address could not be found");
-            throw new InvalidAddressExeption("The Addres could not be Found!");
+            throw new InvalidAddressExeption("The Address could not be Found!");
         }
         return geocode;
     }
@@ -84,6 +84,8 @@ public class EasyRequestClass {
                 getGeolocation();
             } catch (InvalidAddressExeption invalidAddressExeption) {
                 LOGGER.error(invalidAddressExeption.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         nearestBBW = GeoCalculator.getNearestBBWsetTraveltime(geocode, transportForm);

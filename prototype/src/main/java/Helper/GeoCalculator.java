@@ -1,9 +1,5 @@
 package Helper;
 
-import com.byteowls.jopencage.JOpenCageGeocoder;
-import com.byteowls.jopencage.model.JOpenCageForwardRequest;
-import com.byteowls.jopencage.model.JOpenCageLatLng;
-import com.byteowls.jopencage.model.JOpenCageResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -13,6 +9,11 @@ import com.graphhopper.directions.api.client.api.RoutingApi;
 import com.graphhopper.directions.api.client.model.RouteResponse;
 import com.graphhopper.directions.api.client.model.VehicleProfileId;
 import org.apache.log4j.Logger;
+//import org.json.JSONObject;
+//import org.json.JSONPointer;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -27,17 +28,68 @@ import javax.xml.xpath.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.*;
 
 public class GeoCalculator {
     private static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
+    /**
+     * Calculates the Latitude and Longitude from given Address by calling the HERE MAP API
+     * @param currentLocation Address of the current location
+     * @return Returns a LatLng Object with the coordinates of the given address
+     */
+    private static LatLng getLocation(String currentLocation) {
+        //Parts of implementation from https://github.com/venkatramanm/common/blob/167e39dfa35b3b495dec90f0e2812f6296086b4d/src/main/java/com/venky/geo/GeoCoder.java
+        try {
+            Map<String, String> params = new HashMap<>();
+            params.put("searchtext", currentLocation);
+            params.put("mapview", "48.3752,16.1200;48.0163,16.6199");
+            params.put("apiKey", "yWoJnTL5n9Lxjcjo-SOOrteMkQfC3clriQ8wGV6Mt1c");
 
+
+            String url = "https://geocoder.ls.hereapi.com/6.2/geocode.json?";
+
+            URL u = new URL(url+getParamsString(params));
+            URLConnection connection = u.openConnection();
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            JSONObject doc = (JSONObject) JSONValue.parse(new InputStreamReader(connection.getInputStream()));
+            JSONObject place = (JSONObject) doc.get("Response");
+            JSONArray views = (JSONArray) place.get("View");
+            JSONObject position = null;
+
+            if (views != null && !views.isEmpty()) {
+                JSONObject view = (JSONObject) views.get(0);
+                JSONObject location = (JSONObject) ((JSONObject) ((JSONArray) view.get("Result")).get(0)).get("Location");
+                position = (JSONObject) ((JSONArray)location.get("NavigationPosition")).get(0);
+                }
+
+            if (position != null) {
+                LOGGER.info("URL:" + url);
+                return new LatLng((Double) position.get("Latitude"), (Double) position.get("Longitude"));
+            }
+
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return null;
+    }
+
+
+    /**
+     * Calculates the Latitude and Longitude from given Address by calling the HERE MAP API
+     * @param currentLocation Address of the current location
+     * @return Returns a LatLng Object with the coordinates of the given address
+     */
     public static LatLng getGeocode(String currentLocation) {
+        //New implementation with here Maps API
+        return getLocation(currentLocation);
 
-        LatLng geocode = null;
 
+        //Old implementation with OpenCageMaps
+        /*
         //Get geocode from API
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder(APIKeys.OPENCAGEAPI);
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(currentLocation);
@@ -51,11 +103,18 @@ public class GeoCalculator {
             LOGGER.error(e.getMessage());
         }
 
+         */
 
-        return geocode;
     }
 
-
+    /**
+     * Calculates the Traveltime from the current Location (geocode) to the nearest BBW with given Transportform
+     * @param geocode Geocode as LatLng Object from current Location
+     * @param transportForm Form of transport as TransportForm Object (enum)
+     * @param bbw nearest or desired BBW
+     * @return returns the Traveltime as double
+     * @throws Exception
+     */
     public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw) throws Exception {
         if(transportForm == TransportForm.PUBLIC){
             bbw.setCurrentLocationPTstation(getNearestPTStation(geocode));

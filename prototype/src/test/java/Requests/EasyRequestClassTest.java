@@ -23,7 +23,7 @@ public class EasyRequestClassTest {
     }
 
     @Test
-    public void geolocationTest() throws InvalidAddressExeption {
+    public void geolocationTest() throws Exception {
         BBW.initBBWList();
         EasyRequestClass easyRequestClass = new EasyRequestClass("Reindorfgasse 42", 100, 52, SizeSuffix.valueOf("GB"), TransportForm.CAR);
 

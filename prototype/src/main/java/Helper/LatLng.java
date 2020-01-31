@@ -39,4 +39,12 @@ public class LatLng {
     public void setLng(double lng) {
         this.lng = lng;
     }
+
+    @Override
+    public String toString() {
+        return "LatLng{" +
+                "lat=" + lat +
+                ", lng=" + lng +
+                '}';
+    }
 }

@@ -67,7 +67,7 @@ public class ExpertRequestClass {
         geocode = GeoCalculator.getGeocode(getCurrentLocation());
         if (geocode == null) {
             LOGGER.error("Address could not be found");
-            throw new InvalidAddressExeption("The Addres could not be Found!");
+            throw new InvalidAddressExeption("The Address could not be Found!");
         }
         return geocode;
     }

@@ -1,0 +1,86 @@
+{
+  "Response": {
+    "MetaInfo": {
+      "Timestamp": "2020-01-30T11:19:33.391+0000"
+    },
+    "View": [
+      {
+        "_type": "SearchResultsViewType",
+        "ViewId": 0,
+        "Result": [
+          {
+            "Relevance": 0.97,
+            "MatchLevel": "houseNumber",
+            "MatchQuality": {
+              "City": 1.0,
+              "Street": [
+                1.0
+              ],
+              "HouseNumber": 0.74
+            },
+            "MatchType": "pointAddress",
+            "Location": {
+              "LocationId": "NT_J.0BHv88F1vF-xUTmsBDVA_20CO",
+              "LocationType": "point",
+              "DisplayPosition": {
+                "Latitude": 48.23053,
+                "Longitude": 16.33763
+              },
+              "NavigationPosition": [
+                {
+                  "Latitude": 48.23056,
+                  "Longitude": 16.33739
+                }
+              ],
+              "MapView": {
+                "TopLeft": {
+                  "Latitude": 48.2316542,
+                  "Longitude": 16.3359424
+                },
+                "BottomRight": {
+                  "Latitude": 48.2294058,
+                  "Longitude": 16.3393176
+                }
+              },
+              "Address": {
+                "Label": "Gregor-Mendel-Straße 6-8, 1180 Wien, Österreich",
+                "Country": "AUT",
+                "State": "Wien",
+                "County": "Wien",
+                "City": "Wien",
+                "District": "18. Bezirk-Währing",
+                "Street": "Gregor-Mendel-Straße",
+                "HouseNumber": "6-8",
+                "PostalCode": "1180",
+                "AdditionalData": [
+                  {
+                    "value": "Österreich",
+                    "key": "CountryName"
+                  },
+                  {
+                    "value": "Wien",
+                    "key": "StateName"
+                  },
+                  {
+                    "value": "Wien",
+                    "key": "CountyName"
+                  }
+                ]
+              }
+            },
+            "AdditionalData": [
+              {
+                "value": "true",
+                "key": "houseNumberFallback"
+              },
+              {
+                "value": "26",
+                "key": "houseNumberFallbackDifference"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
