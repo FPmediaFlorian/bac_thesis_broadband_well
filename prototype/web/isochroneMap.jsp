@@ -85,7 +85,7 @@
     var params = document.getElementById('params');
     var streamspeed = 100; //Mbit
     var filesizes = [10, 15, 20, 25, 30, 40];
-    var colors = ['#9EEE00', '#00CC00', '#00999A', '#1141AC', '#3815AE', '#700BAB']
+    var colors = ['#9EEE00', '#00CC00', '#00999A', '#1141AC', '#3815AE', '#700BAB'];
 
     // Add your Mapbox access token
     mapboxgl.accessToken = ${mapboxAPIKEY};
@@ -109,7 +109,7 @@
             url: query
         }).done(function (data) {
             map.getSource('iso1').setData(data);
-        })
+        });
         //ISO2
         query = urlBase + profile + '/' + lon + ',' + lat + '?contours_minutes=' + minutes[1] + '&polygons=true&access_token=' + mapboxgl.accessToken;
         $.ajax({
@@ -117,7 +117,7 @@
             url: query
         }).done(function (data) {
             map.getSource('iso2').setData(data);
-        })
+        });
         //ISO3
         query = urlBase + profile + '/' + lon + ',' + lat + '?contours_minutes=' + minutes[2] + '&polygons=true&access_token=' + mapboxgl.accessToken;
         $.ajax({
@@ -125,7 +125,7 @@
             url: query
         }).done(function (data) {
             map.getSource('iso3').setData(data);
-        })
+        });
         //ISO4
         query = urlBase + profile + '/' + lon + ',' + lat + '?contours_minutes=' + minutes[3] + '&polygons=true&access_token=' + mapboxgl.accessToken;
         $.ajax({
@@ -133,7 +133,7 @@
             url: query
         }).done(function (data) {
             map.getSource('iso4').setData(data);
-        })
+        });
         //ISO5
         query = urlBase + profile + '/' + lon + ',' + lat + '?contours_minutes=' + minutes[4] + '&polygons=true&access_token=' + mapboxgl.accessToken;
         $.ajax({
@@ -141,7 +141,7 @@
             url: query
         }).done(function (data) {
             map.getSource('iso5').setData(data);
-        })
+        });
         //ISO6
         query = urlBase + profile + '/' + lon + ',' + lat + '?contours_minutes=' + minutes[5] + '&polygons=true&access_token=' + mapboxgl.accessToken;
         $.ajax({
@@ -152,7 +152,7 @@
         })
 
 
-    };
+    }
 
 
     map.on('load', function () {
@@ -284,7 +284,7 @@
         }, "poi-label");
 
 
-        createLegend()
+        createLegend();
 
 
         refreshIsoAndMarker();

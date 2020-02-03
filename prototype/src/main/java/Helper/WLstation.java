@@ -14,8 +14,9 @@ public class WLstation {
 
     /**
      * Constructor for Wiener Linien station
-     * @param name Name of the station
-     * @param ID WL specific id
+     *
+     * @param name   Name of the station
+     * @param ID     WL specific id
      * @param latLng Latitude and Longitude of the station
      */
     public WLstation(String name, int ID, LatLng latLng) {
@@ -26,6 +27,7 @@ public class WLstation {
 
     /**
      * initializes a List of the Stations from a csv
+     *
      * @return returns a List of Stations
      */
     public static List<WLstation> initWLstationList() {
@@ -66,6 +68,7 @@ public class WLstation {
 
     /**
      * returns Name of the station
+     *
      * @return Name of the station
      */
     public String getName() {
@@ -74,6 +77,7 @@ public class WLstation {
 
     /**
      * sets Name of the station
+     *
      * @param name sets Name of the station
      */
     public void setName(String name) {
@@ -82,6 +86,7 @@ public class WLstation {
 
     /**
      * returns WL specific id
+     *
      * @return WL specific id
      */
     public int getID() {
@@ -90,6 +95,7 @@ public class WLstation {
 
     /**
      * sets WL specific id
+     *
      * @param ID WL specific id
      */
     public void setID(int ID) {
@@ -98,6 +104,7 @@ public class WLstation {
 
     /**
      * returns Latitude and Longitude of the station
+     *
      * @return Latitude and Longitude of the station
      */
     public LatLng getLatLng() {
@@ -106,6 +113,7 @@ public class WLstation {
 
     /**
      * sets Latitude and Longitude of the station
+     *
      * @param latLng Latitude and Longitude of the station
      */
     public void setLatLng(LatLng latLng) {
@@ -114,6 +122,7 @@ public class WLstation {
 
     /**
      * Builds readable string ob WLstation Object
+     *
      * @return readable string ob WLstation Object
      */
     @Override

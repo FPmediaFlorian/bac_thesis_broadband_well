@@ -132,7 +132,7 @@
 
         //Station A -> Station B
 
-        pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]]
+        pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]];
 
         var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
 

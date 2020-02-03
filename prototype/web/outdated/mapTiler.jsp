@@ -31,7 +31,7 @@
     }).setView([48.2094, 16.3708], 13);
 
     // set the attribution
-    const attributionText = `<a href='https://targomo.com/developers/resources/attribution/' target='_blank'>&copy; Targomo</a>`
+    const attributionText = `<a href='https://targomo.com/developers/resources/attribution/' target='_blank'>&copy; Targomo</a>`;
     map.attributionControl.addAttribution(attributionText);
 
 

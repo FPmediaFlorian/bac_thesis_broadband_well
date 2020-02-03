@@ -6,6 +6,7 @@ public class LatLng {
 
     /**
      * loaded constructor
+     *
      * @param lat Latitude of coordinate
      * @param lng Logitude of coordinate
      */
@@ -22,6 +23,7 @@ public class LatLng {
 
     /**
      * Returns the coordinates separated by a comma
+     *
      * @return coordinates separated by a comma
      */
     public String getLatLngAsString() {
@@ -34,6 +36,7 @@ public class LatLng {
 
     /**
      * calculates the distance between this LatLng object and the committed
+     *
      * @param latLng second Latlng object
      * @return distance between coordinates as double
      */
@@ -43,6 +46,7 @@ public class LatLng {
 
     /**
      * get the Latitude
+     *
      * @return Latitude
      */
     public double getLat() {
@@ -51,6 +55,7 @@ public class LatLng {
 
     /**
      * sets the Latitude
+     *
      * @param lat Latitude
      */
     public void setLat(double lat) {
@@ -59,6 +64,7 @@ public class LatLng {
 
     /**
      * get the Longitude
+     *
      * @return Longitude
      */
     public double getLng() {
@@ -67,6 +73,7 @@ public class LatLng {
 
     /**
      * sets the longitude
+     *
      * @param lng longitude
      */
     public void setLng(double lng) {
@@ -75,6 +82,7 @@ public class LatLng {
 
     /**
      * Builds readable string ob LatLng Object
+     *
      * @return readable string ob WLstation Object
      */
     @Override

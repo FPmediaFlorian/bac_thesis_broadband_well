@@ -100,7 +100,7 @@ function drawPublicRoute(startLat, startLng, stationAlat, stationAlng, stationBl
 
     //Station A -> Station B
 
-    pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]]
+    pline = [[stationAlat, stationAlng], [stationBlat, stationBlng]];
 
     var polyline = L.polyline(pline, {color: 'orange'}).addTo(map);
 
@@ -127,7 +127,7 @@ function drawPublicRoute(startLat, startLng, stationAlat, stationAlng, stationBl
 
 function speedtestAndSubmitExpert() {
     var form = document.getElementById('expertForm');
-    if(form.reportValidity()) {
+    if (form.reportValidity()) {
         if (document.getElementById('speedtestRadio').checked) {
             document.getElementById('loadingAnimationExpert').style.display = "block";
 
@@ -156,7 +156,7 @@ function speedtestAndSubmitExpert() {
             s.onend = function (aborted) {
                 if (!aborted) {
                     console.log('Test finished!');
-                    document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+                    document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!";
                     document.getElementById("expertForm").submit();
 
                 } else {
@@ -165,7 +165,7 @@ function speedtestAndSubmitExpert() {
             }
         } else {
             document.getElementById('loadingAnimationExpert').style.display = "block";
-            document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!"
+            document.getElementById("loadingTextExpert").innerHTML = "Calculating routes and downloadtimes!";
             document.getElementById("expertForm").submit();
         }
     }
@@ -173,7 +173,7 @@ function speedtestAndSubmitExpert() {
 
 function speedtestAndSubmitEasy() {
     var form = document.getElementById('easyForm');
-    if(form.reportValidity()) {
+    if (form.reportValidity()) {
         // show loading animation
         document.getElementById('loadingAnimation').style.display = "block";
         //Upload or Download?
@@ -202,7 +202,7 @@ function speedtestAndSubmitEasy() {
         s.onend = function (aborted) {
             if (!aborted) {
                 console.log('Test finished!');
-                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!"
+                document.getElementById("loadingText").innerHTML = "Calculating routes and downloadtimes!";
                 document.getElementById("easyForm").submit();
             } else {
                 console.log('Test aborted! Contact the Websiteadmin!');

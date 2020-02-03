@@ -31,7 +31,7 @@
     function speedtest() {
         log("Start button pushed");
 
-        var o = new Object();
+        var o = {};
 
         // Can hint connection type
         // from 0..

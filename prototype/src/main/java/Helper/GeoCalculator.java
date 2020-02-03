@@ -14,7 +14,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import servlets.EasyMapRequest;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -26,6 +29,7 @@ public class GeoCalculator {
 
     /**
      * Calculates the Latitude and Longitude from given Address by calling the HERE MAP API
+     *
      * @param currentLocation Address of the current location
      * @return Returns a LatLng Object with the coordinates of the given address
      */
@@ -40,7 +44,7 @@ public class GeoCalculator {
 
             String url = "https://geocoder.ls.hereapi.com/6.2/geocode.json?";
 
-            URL u = new URL(url+getParamsString(params));
+            URL u = new URL(url + getParamsString(params));
             URLConnection connection = u.openConnection();
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
@@ -52,8 +56,8 @@ public class GeoCalculator {
             if (views != null && !views.isEmpty()) {
                 JSONObject view = (JSONObject) views.get(0);
                 JSONObject location = (JSONObject) ((JSONObject) ((JSONArray) view.get("Result")).get(0)).get("Location");
-                position = (JSONObject) ((JSONArray)location.get("NavigationPosition")).get(0);
-                }
+                position = (JSONObject) ((JSONArray) location.get("NavigationPosition")).get(0);
+            }
 
             if (position != null) {
                 LOGGER.info("URL:" + url);
@@ -69,6 +73,7 @@ public class GeoCalculator {
 
     /**
      * Calculates the Latitude and Longitude from given Address by calling the HERE MAP API
+     *
      * @param currentLocation Address of the current location
      * @return Returns a LatLng Object with the coordinates of the given address
      */
@@ -98,17 +103,18 @@ public class GeoCalculator {
 
     /**
      * Calculates the Traveltime from the current Location (geocode) to the nearest BBW with given Transportform
-     * @param geocode Geocode as LatLng Object from current Location
+     *
+     * @param geocode       Geocode as LatLng Object from current Location
      * @param transportForm Form of transport as TransportForm Object (enum)
-     * @param bbw nearest or desired BBW
+     * @param bbw           nearest or desired BBW
      * @return returns the Traveltime as double
      * @throws Exception Throws exception if the Travel getPublicTransportTraveltime Mathod throws Error
      */
     public static double calculateTraveltime(LatLng geocode, TransportForm transportForm, BBW bbw) throws Exception {
-        if(transportForm == TransportForm.PUBLIC){
+        if (transportForm == TransportForm.PUBLIC) {
             bbw.setCurrentLocationPTstation(getNearestPTStation(geocode));
             return getPublicTransportTraveltime(bbw);
-        }else {
+        } else {
             double traveltime = 0;
             RouteResponse rsp = null;
             RoutingApi routing = new RoutingApi();
@@ -137,7 +143,8 @@ public class GeoCalculator {
 
     /**
      * Calculates the nearest BBW to given geocode in consideration of the transport form
-     * @param geocode Geocode as LatLng Object from current Location
+     *
+     * @param geocode       Geocode as LatLng Object from current Location
      * @param transportForm Form of transport as TransportForm Object (enum)
      * @return returns nearest BBW which has the Traveltime in it
      */
@@ -216,6 +223,7 @@ public class GeoCalculator {
 
     /**
      * Calculates the traveltime from Station A (nearest Station @current Location) to Station B (nearest Station @BBW) by calling the Wiener Linien API
+     *
      * @param bbw Nearest BBW
      * @return returns traveltime in second
      * @throws Exception
@@ -281,6 +289,7 @@ public class GeoCalculator {
 
     /**
      * Finds nearest BBW station.
+     *
      * @param latLng Latitude & Longitude of current Location
      * @return Returns the nearest station to the given coordinates
      */
@@ -305,7 +314,6 @@ public class GeoCalculator {
 
 
     /**
-     *
      * @param params Map with all parameters for a REST request
      * @return Returns parameters streamlined & URL encoded as String
      * @throws UnsupportedEncodingException
@@ -328,6 +336,7 @@ public class GeoCalculator {
 
     /**
      * creates Graphhopper Client
+     *
      * @return returns created graphhopper Client
      */
     private static ApiClient createGHClient() {

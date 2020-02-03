@@ -8,7 +8,8 @@ public class DownloadCalculator {
 
     /**
      * Constructor for a Downloadcalculator
-     * @param size Filesize
+     *
+     * @param size   Filesize
      * @param stream Streamspeed (in MBit/s)
      * @param suffix Size suffix for size of File
      */
@@ -44,6 +45,7 @@ public class DownloadCalculator {
 
     /**
      * calculates downloadtime @ current location in seconds
+     *
      * @return downloadtime @ current location in seconds
      */
     public double getDownloadtimeSec() {
@@ -52,6 +54,7 @@ public class DownloadCalculator {
 
     /**
      * calculates downloadtime @ BBW in seconds
+     *
      * @return downloadtime @ BBW in seconds
      */
     public double getBBWdownloadtimeSec() {
@@ -60,7 +63,8 @@ public class DownloadCalculator {
 
     /**
      * sets filesize and size suffix
-     * @param size size of file
+     *
+     * @param size       size of file
      * @param sizeSuffix size Suffix
      */
     public void setSize(double size, SizeSuffix sizeSuffix) {
@@ -71,6 +75,7 @@ public class DownloadCalculator {
 
     /**
      * sets streamspeed
+     *
      * @param stream streamspeed (MBit/s)
      */
     public void setStream(double stream) {
@@ -79,6 +84,7 @@ public class DownloadCalculator {
 
     /**
      * returns filesize in Mbit
+     *
      * @return filesize in Mbit
      */
     public double getSize() {

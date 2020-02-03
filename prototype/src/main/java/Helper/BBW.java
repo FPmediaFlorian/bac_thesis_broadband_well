@@ -24,10 +24,11 @@ public class BBW {
 
     /**
      * Constructor for BBW
-     * @param name Name of BBW
-     * @param latLng coordinates of BBW
-     * @param descMarker description for Map popup
-     * @param info Info for Frontend
+     *
+     * @param name             Name of BBW
+     * @param latLng           coordinates of BBW
+     * @param descMarker       description for Map popup
+     * @param info             Info for Frontend
      * @param nearestPTStation nearest Public Transport station
      */
     public BBW(String name, LatLng latLng, String descMarker, String info, WLstation nearestPTStation) {
@@ -58,13 +59,11 @@ public class BBW {
             JSONArray a = (JSONArray) parser.parse(new FileReader("/Users/florianpichlmann/projects/bac_thesis_broadband_well/prototype/src/config/BBW_config.json"));//"src/config/BBW_config.json"));
 
 
-
-
             for (Object o : a) {
                 JSONObject bb = (JSONObject) o;
                 JSONObject ll = (JSONObject) bb.get("latLng");
                 JSONObject ptStation = (JSONObject) bb.get("nearestPTStation");
-                bbw = new BBW(bb.get("name").toString(), new LatLng((double) ll.get("lat"), (double) ll.get("lng")), bb.get("descMarker").toString(), bb.get("info").toString(), new WLstation(ptStation.get("name").toString(), Integer.parseInt(ptStation.get("id").toString()), new LatLng((double)ptStation.get("lat"),(double)ptStation.get("lng"))));
+                bbw = new BBW(bb.get("name").toString(), new LatLng((double) ll.get("lat"), (double) ll.get("lng")), bb.get("descMarker").toString(), bb.get("info").toString(), new WLstation(ptStation.get("name").toString(), Integer.parseInt(ptStation.get("id").toString()), new LatLng((double) ptStation.get("lat"), (double) ptStation.get("lng"))));
                 BBW_LIST.add(bbw);
             }
         } catch (IOException e) {
@@ -77,6 +76,7 @@ public class BBW {
 
     /**
      * Get name
+     *
      * @return name
      */
     public String getName() {
@@ -85,6 +85,7 @@ public class BBW {
 
     /**
      * Set name
+     *
      * @param name sets name
      */
     public void setName(String name) {
@@ -93,6 +94,7 @@ public class BBW {
 
     /**
      * Get latLng
+     *
      * @return latLng
      */
     public LatLng getLatLng() {
@@ -101,6 +103,7 @@ public class BBW {
 
     /**
      * Set latLng
+     *
      * @param latLng sets latLng
      */
     public void setLatLng(LatLng latLng) {
@@ -109,6 +112,7 @@ public class BBW {
 
     /**
      * Get descMarker
+     *
      * @return descMarker
      */
     public String getDescMarker() {
@@ -117,6 +121,7 @@ public class BBW {
 
     /**
      * Get info
+     *
      * @return info
      */
     public String getInfo() {
@@ -125,6 +130,7 @@ public class BBW {
 
     /**
      * Set info
+     *
      * @param info sets info
      */
     public void setInfo(String info) {
@@ -133,6 +139,7 @@ public class BBW {
 
     /**
      * Get String of latlang
+     *
      * @return String of latlang
      */
     public String getLatLngString() {
@@ -141,6 +148,7 @@ public class BBW {
 
     /**
      * Get travelTime
+     *
      * @return travelTime
      */
     public double getTravelTime() {
@@ -149,6 +157,7 @@ public class BBW {
 
     /**
      * Set travelTime
+     *
      * @param travelTime sets travelTime
      */
     public void setTravelTime(double travelTime) {
@@ -157,6 +166,7 @@ public class BBW {
 
     /**
      * Get nearestPTStation
+     *
      * @return nearestPTStation
      */
     public WLstation getNearestPTStation() {
@@ -165,6 +175,7 @@ public class BBW {
 
     /**
      * Set nearestPTStation
+     *
      * @param nearestPTStation sets nearestPTStation
      */
     public void setNearestPTStation(WLstation nearestPTStation) {
@@ -173,6 +184,7 @@ public class BBW {
 
     /**
      * Get currentLocationPTstation
+     *
      * @return nacurrentLocationPTstationme
      */
     public WLstation getCurrentLocationPTstation() {
@@ -181,6 +193,7 @@ public class BBW {
 
     /**
      * Set currentLocationPTstation
+     *
      * @param currentLocationPTstation sets currentLocationPTstation
      */
     public void setCurrentLocationPTstation(WLstation currentLocationPTstation) {
