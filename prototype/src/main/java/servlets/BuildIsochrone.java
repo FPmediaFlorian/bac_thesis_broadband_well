@@ -13,6 +13,10 @@ import java.io.IOException;
 public class BuildIsochrone extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(BuildIsochrone.class.getName());
 
+    /**
+     * Gets called from clientside with an HTTP GET request.
+     * Creates a List of BBWs for Frontend and passes it.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BBW.initBBWList();
 

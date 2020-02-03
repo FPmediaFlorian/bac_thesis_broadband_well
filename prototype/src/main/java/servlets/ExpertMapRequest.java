@@ -17,6 +17,10 @@ import java.io.IOException;
 public class ExpertMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(ExpertMapRequest.class.getName());
 
+    /**
+     * Handles Post requests from the Expert form in the Frontend
+     * Calculates all needed variables for a qualified decision Response
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ExpertRequestClass expertRequest = null;
 
@@ -64,7 +68,9 @@ public class ExpertMapRequest extends HttpServlet {
 
     }
 
-
+    /**
+     * forwards every Get request to the Build map endpoint
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("BuildMap").forward(request, response);
     }

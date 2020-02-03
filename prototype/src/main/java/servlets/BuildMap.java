@@ -13,6 +13,11 @@ import java.io.IOException;
 public class BuildMap extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
+    /**
+     * Gets called from clientside with an HTTP GET request.
+     * Creates a List of BBWs for Frontend and passes it.
+     * List contains Marker for the map and a dropdown list for expert mode
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BBW.initBBWList();
 
@@ -30,7 +35,6 @@ public class BuildMap extends HttpServlet {
             sb.append(System.getProperty("line.separator"));
             i++;
         }
-
 
         request.setAttribute("createMarker", sb.toString());
 
@@ -54,6 +58,9 @@ public class BuildMap extends HttpServlet {
         request.getRequestDispatcher("/map.jsp").forward(request, response);
     }
 
+    /**
+     * calls the Get method if a HTTP POST request is requested
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

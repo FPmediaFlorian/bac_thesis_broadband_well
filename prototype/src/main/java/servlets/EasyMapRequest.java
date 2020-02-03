@@ -18,6 +18,10 @@ import java.io.IOException;
 public class EasyMapRequest extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(EasyMapRequest.class.getName());
 
+    /**
+     * Handles Post requests from the Easy form in the Frontend
+     * Calculates all needed variables for a qualified decision Response
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         TransportForm transportOption = TransportForm.valueOf(request.getParameter("transport-option"));
@@ -67,6 +71,9 @@ public class EasyMapRequest extends HttpServlet {
         request.getRequestDispatcher("/mapResult.jsp").forward(request, response);
     }
 
+    /**
+     * forwards every Get request to the Build map endpoint
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("BuildMap").forward(request, response);
     }

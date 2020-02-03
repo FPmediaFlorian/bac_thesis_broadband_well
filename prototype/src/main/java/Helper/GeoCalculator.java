@@ -226,7 +226,7 @@ public class GeoCalculator {
      *
      * @param bbw Nearest BBW
      * @return returns traveltime in second
-     * @throws Exception
+     * @throws Exception if the API could not be reached or no response returns
      */
     public static double getPublicTransportTraveltime(BBW bbw) throws Exception {
         double secRet = 0;
@@ -290,7 +290,7 @@ public class GeoCalculator {
     /**
      * Finds nearest BBW station.
      *
-     * @param latLng Latitude & Longitude of current Location
+     * @param latLng Latitude and Longitude of current Location
      * @return Returns the nearest station to the given coordinates
      */
     public static WLstation getNearestPTStation(LatLng latLng) {

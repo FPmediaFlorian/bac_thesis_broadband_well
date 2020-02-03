@@ -17,12 +17,25 @@ public class ExpertRequestClass {
     private double streamSpeed;
     private SizeSuffix sizeSuffix;
 
+
+    /**
+     * Loaded constructor
+     *
+     * @param currentLocation Address of the current Location
+     * @param streamSpeed     Streamspeed in MBit/s
+     * @param downloadSize    Size of the File to download
+     * @param sizeSuffix      Size suffix for size of File
+     * @param transportOption form of transportation
+     * @param desiredBBW      the desired BBW asl int in List if there is one, else -1, nearest BBW is calculated
+     * @throws Exception Throws Exception if geocode or nearest BBW could not be calculated.
+     */
     public ExpertRequestClass(String currentLocation, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix, TransportForm transportOption, int desiredBBW) throws Exception {
         this.currentLocation = currentLocation;
         this.downloadSize = downloadSize;
         this.streamSpeed = streamSpeed;
         this.sizeSuffix = sizeSuffix;
         geocode = null;
+
         //getGeolocation
         calculateGeocode();
 
@@ -38,7 +51,7 @@ public class ExpertRequestClass {
     }
 
     /**
-     * Calculates the Donloadtime of the request with given Down- & Upstreams
+     * Calculates the Donloadtime of the request with given Down- and Upstreams
      *
      * @return Returns downloadtime in seconds
      */
@@ -48,7 +61,7 @@ public class ExpertRequestClass {
     }
 
     /**
-     * Calculates the Donloadtime of the request with BBW Down- & Upstreams
+     * Calculates the Donloadtime of the request with BBW Down- and Upstreams
      *
      * @return Returns downloadtime in seconds
      */
@@ -59,9 +72,9 @@ public class ExpertRequestClass {
     }
 
     /**
-     * Matches the given Address with a Geocode using OpenCage API
+     * Matches the given Address with a Geocode using HERE map API
      *
-     * @return Returns LatLng object which contains lat & lng
+     * @return Returns LatLng object which contains lat and lng
      */
     private LatLng calculateGeocode() throws InvalidAddressExeption {
         geocode = GeoCalculator.getGeocode(getCurrentLocation());
@@ -73,7 +86,7 @@ public class ExpertRequestClass {
     }
 
     /**
-     * Creates the Desicion based in various other calculations.
+     * Creates the Decision based in various other calculations.
      *
      * @return return s String with HTML input to be shown an the mapResult Page
      */
@@ -105,6 +118,9 @@ public class ExpertRequestClass {
         return sb.toString();
     }
 
+    /**
+     * calculates nearest BBW if necessary
+     */
     private void findNearestBBW() {
         desiredBBW = GeoCalculator.getNearestBBWsetTraveltime(geocode, transportForm);
     }
@@ -119,14 +135,29 @@ public class ExpertRequestClass {
         return currentLocation;
     }
 
+    /**
+     * returns form of Transport
+     *
+     * @return form of transport
+     */
     public TransportForm getTransportForm() {
         return transportForm;
     }
 
+    /**
+     * returns geocode as LatLng
+     *
+     * @return geocode as LatLang
+     */
     public LatLng getGeocode() {
         return geocode;
     }
 
+    /**
+     * returns desired BBW
+     *
+     * @return desired BBW
+     */
     public BBW getDesiredBBW() {
         return desiredBBW;
     }

@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 public class EasyRequestClass {
     private static Logger LOGGER = Logger.getLogger(EasyRequestClass.class.getName());
 
-
     private String currentLocation;
     private double downloadSize;
     private LatLng geocode;
@@ -24,7 +23,9 @@ public class EasyRequestClass {
      *
      * @param currentLocation Address on the current location
      * @param streamSpeed     speed of down or uploadspeed
-     * @param downloadSize    Filesize to be downloaded in GB
+     * @param downloadSize    Filesize to be downloade
+     * @param sizeSuffix      Filesize suffix for the downloadable file
+     * @param transportOption form of transport
      */
     public EasyRequestClass(String currentLocation, double streamSpeed, double downloadSize, SizeSuffix sizeSuffix, TransportForm transportOption) {
         this.currentLocation = currentLocation;
@@ -39,7 +40,7 @@ public class EasyRequestClass {
 
 
     /**
-     * Calculates the Donloadtime of the request with given Down- & Upstreams
+     * Calculates the Donloadtime of the request with given Down- and Upstreams
      *
      * @return Returns downloadtime in seconds
      */
@@ -49,7 +50,7 @@ public class EasyRequestClass {
     }
 
     /**
-     * Calculates the Donloadtime of the request with BBW Down- & Upstreams
+     * Calculates the Donloadtime of the request with BBW Down- and Upstreams
      *
      * @return Returns downloadtime in seconds
      */
@@ -60,9 +61,10 @@ public class EasyRequestClass {
     }
 
     /**
-     * Matches the given Address with a Geocode using OpenCage API
+     * Matches the given Address with a Geocode using HERE Map API
      *
-     * @return Returns LatLng object which contains lat & lng
+     * @return Returns LatLng object which contains lat and lng
+     * @throws InvalidAddressExeption if the Address could not be found by the API
      */
     public LatLng getGeolocation() throws InvalidAddressExeption {
         geocode = GeoCalculator.getGeocode(getCurrentLocation());
@@ -158,6 +160,11 @@ public class EasyRequestClass {
         this.currentLocation = currentLocation;
     }
 
+    /**
+     * returns the transportform
+     *
+     * @return transportform as TransportForm
+     */
     public TransportForm getTransportForm() {
         return transportForm;
     }
