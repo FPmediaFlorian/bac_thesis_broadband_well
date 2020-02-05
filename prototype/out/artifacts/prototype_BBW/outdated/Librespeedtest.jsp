@@ -18,9 +18,9 @@
     s.setParameter("test_order", "D_U");
 
     s.onupdate = function (data) { // when status is received, put the values in the appropriate fields
-        document.getElementById('download').textContent = data.dlStatus + ' Mbit/s'
+        document.getElementById('download').textContent = data.dlStatus + ' Mbit/s';
         document.getElementById('upload').textContent = data.ulStatus + ' Mbit/s'
-    }
+    };
     s.start();
 </script>
 
