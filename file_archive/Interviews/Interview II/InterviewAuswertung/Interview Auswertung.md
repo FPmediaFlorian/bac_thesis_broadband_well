@@ -122,31 +122,41 @@ nein
 - Alter: 46-60
 - Geschlecht: M
 #### Neue Ideen oder Anregungen zum Projekt gehabt?
-
+Konkrete Anregungen nicht, aber sieht das Projekt schon in näherer Zukunft als noch beim letzten Gespräch.
 #### Input Exploration Teil
-
+Viele kleine Design Inputs bzw. Werbeinputs:
+- Werbevideo für den BBW mit schönen Schnittbildern, wo man auf „Probleme“ aufmerksam macht die man mit langsamen Downloads hat.
+- Bei der Decision response Bilder und mehr Infos über die konkrete Location.
+- Startseite evtl. Ein bisschen ausbauen mit mehr Infos und Bildern von konkreten BBWs
 #### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
-
+	- Aufgaben wurden nicht gestellt, weil sie vom Probanden schon während dem Exploration Teil ausführlich abgehandelt wurden.
 #### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
-
+		Kam grundsätzlich mit der Bedienung zurecht
 	- Passierte etwas unerwartetes?
 
 - Schwierigkeiten?
-
+	- Bei der Eingabe von Straßen wurde direkt nach dem Enter eine Aktion erwartet, wie bei Google maps
 - Verbesserungsvorschläge?
-
+	- Current Location (Ortungsdienst)
+	- Isochrone Map umbenennen in etwas, worunter man sich mehr vorstellen kann.
+	- POIs auch bei der Suche einbauen. (z.B. Stephansdom) 
+	- Isochrone Map mit mehreren Standorten auf einmal (war eigentlich von Anfang an so geplant -\> API unterstützte das leider nicht)
+	- Back Button unter Decision response
+	- Handy App?
 #### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
-
+	Ja, sporadisch oder evtl. wenn es mit POI (z.B. cafe) verknüpft ist auch für Meetings oder ähnlichem
 	- Was müsste sich ändern?
-
+		siehe inputs oben
 - Angebot vor Ort
-	\- 
+	- Alle gängigen Anschlüssen (Thunderbolt, USBC, Ethernet) 
+	- evtl. Auch WLAN, das im Cafe oder Park gegenüber verwendet werden kann.
 - Konkrete Situation wo Sie BBW nützen würden
-
+	- Meetings
+	- Schnelle Dantenbeschaffung (Backups, Zeitkritische Projekte)
 
 ### Interview II mit Probant 10
 #### Demografie:
@@ -154,27 +164,29 @@ nein
 - Alter: 18-30
 - Geschlecht: W
 #### Neue Ideen oder Anregungen zum Projekt gehabt?
-
+Bei einem Projekt evtl. recht nützlich gewesen (Viele RAW Fotos mussten schnell übertragen werden)
 #### Input Exploration Teil
-
+Route planer wurde sofort verstanden, Isochrone Map musste nochmal erklärt werden.
 #### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
-
+	Jas
 #### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
-
+		Ja, kam ganz gut zurecht
 	- Passierte etwas unerwartetes?
-
+		Nein.
 - Schwierigkeiten?
-
+	Aufgabe 2 musste zwei mal gemacht werden, weil unabsichtlich falsche Daten eingegeben wurden.
 - Verbesserungsvorschläge?
-
+	Evtl. Auf der Startseite gleiche auf beide Tools verweisen (siehe 3. Interview, Call to Action Button)
 #### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
-
+	Ja, bei stressigen Projekten schon. Evtl. auch für Backups.
 	- Was müsste sich ändern?
-
+		Müsste on OÖ vorhanden sein.
 - Angebot vor Ort
-	\- 
+	- relativ simple Tisch mit Steckdosen und Netzwerkanschluss.
+	- nach Hinweis wurde auch die Idee mit Cafe für sehr wünschenswert empfunden.
 - Konkrete Situation wo Sie BBW nützen würden
+	- Viele Bilder müssen unkomprimiert zu einem Kunden in kurzer Zeit übertragen werden.

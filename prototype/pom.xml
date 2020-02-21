@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
 
+
     <dependencies>
         <dependency>
             <groupId>com.graphhopper</groupId>
@@ -100,7 +101,12 @@
                     <target>7</target>
                 </configuration>
             </plugin>
+
+
+
         </plugins>
+
+
     </build>
 
 </project>
