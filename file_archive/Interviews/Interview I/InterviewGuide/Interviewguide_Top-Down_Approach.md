@@ -22,7 +22,6 @@ Die grundsätzliche Idee ist an verschiedenen Orten in Wien (z.B. Unistandorte, 
 	- Mobil 37 MBits/s (53.100 Messungen)
 	- Festnetz - WLAN 27 MBit/s (91.483 Messungen)
 Hinter weltweitem Schnitt
-![Quelle: (https://www.speedtest.net/global-index)][image-1]
 
 #### Vergleich BBW: [^1]
 - 10 GBit/s -\> 10.000 Mbit/s
@@ -73,5 +72,3 @@ Wenn am Anfang viel Ideen kommen evtl. notieren und strukturiert abarbeiten.
 [^1]:	Berechnungen durchgeführt mit [https://www.heise.de/netze/tools/bandbreitenrechner/][1]
 
 [1]:	https://www.heise.de/netze/tools/bandbreitenrechner/
-
-[image-1]:	file:///.file/id=6571367.21461366
