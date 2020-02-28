@@ -1,18 +1,18 @@
-## Interview Auswertung
+# Interview Auswertung
 
-### Interview II mit Probant 1
-#### Demografie:
+## Interview II mit Probant 1
+### Demografie:
 - Beruf: Student
 - Alter: 18-30
 - Geschlecht: M
-#### Neue Ideen oder Anregungen zum Projekt gehabt?
+### Neue Ideen oder Anregungen zum Projekt gehabt?
 Nein, keine neuen Ideen
 #### Input Exploration Teil
 Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt werden.
-#### Input Guided Teil
+### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
 	Aufgaben konnten erfolgreich und ohne Probleme absolviert werden, bei allen drei Aufgaben wurden sofort die richtigen Eingabemasken und Input aufgerufen und eingegeben.
-#### Erfahrungen (subjektiv):
+### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
 		ja
@@ -24,7 +24,7 @@ Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt wer
 	den How-To Use Teil ein bisschen ausführlicher gestalten und genauer beschreiben. Sonst evtl. Etwas unklar. Brauche ich einen Ethernet Adapter? Funktioniert das über WLAN?
 	Eine Auslastung angeben, wie viele freie Plätze gerade vorhanden sind.
 
-#### Feedback zur konkreten Implementierung
+### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
 	Evtl. für große Spiele, die schnell heruntergeladen werden sollen, z.B. direkt nach release. 
 	Backups vom Computer in der Cloud speichern.
@@ -39,19 +39,19 @@ Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt wer
 	Backups vom Computer (sowohl erstellen, als auch im Ernstfall wieder restoren)
 	Spiel Download
 
-### Interview II mit Probant 11
-#### Demografie
+## Interview II mit Probant 11
+### Demografie
 - Beruf: Student
 - Alter: 18-30
 - Geschlecht: M
-#### Neue Ideen oder Anregungen zum Projekt gehabt?
+### Neue Ideen oder Anregungen zum Projekt gehabt?
 Nein 
-#### Input Exploration Teil
+### Input Exploration Teil
 Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt werden.
-#### Input Guided Teil
+### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
 	Aufgaben konnten erfolgreich und ohne Probleme absolviert werden, bei allen drei Aufgaben wurden sofort die richtigen Eingabemasken und Input aufgerufen und eingegeben.
-#### Erfahrungen:
+### Erfahrungen:
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
 		ja
@@ -62,7 +62,7 @@ Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt wer
 - Verbesserungsvorschläge?
 	Aktuellen Standort anzeigen, sowohl beim Routenplaner (mit autofill), als auch bei der isochrone map
 
-#### Feedback zur konkreten Implementierung
+### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
 	evtl. für Backups
 	- Was müsste sich ändern?
@@ -75,24 +75,24 @@ Kein konkreter Input, Interface wurde sofort verstanden und konnte angewandt wer
 - Konkrete Situation wo Sie BBW nützen würden
 	Backups vom Computer (sowohl erstellen, als auch im Ernstfall wieder restoren)
 
-### Interview II mit Probant 4
-#### Demografie:
+## Interview II mit Probant 4
+### Demografie:
 - Beruf: Grafikdesignerin
 - Alter: 31-45
 - Geschlecht: W
-#### Neue Ideen oder Anregungen zum Projekt gehabt?
+### Neue Ideen oder Anregungen zum Projekt gehabt?
 nein
-#### Input Exploration Teil
+### Input Exploration Teil
 - Startseite „call to action“ Button
 - Evtl. Infos über Anbieter & Datenschutz
 - Information zur Isochone Map, wurde nicht richtig verstanden
 - Aktuellen Standort einbauen & Text ändern in Input field. Führt zu Missinterpretation, da „current Location“ darin steht.
 - Ankerlinks aus Menü evtl. überflüssig
-#### Input Guided Teil
+### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
 	- Aufgaben 1&2 konnten gelöst werden,
 	- Bei Aufgabe 3 gab es Schwierigkeiten. Wurde zuerst mit easymode versucht, dann wurden Up-, Downloadraten und Filesize verwechselt. Mit Hilfe konnte aber auch diese Aufgabe bewältigt werden.
-#### Erfahrungen (subjektiv):
+### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
 		- Kam mit der Bedienung gut zurecht.
@@ -104,9 +104,9 @@ nein
 	- Isochrone Map
 - Verbesserungsvorschläge?
 	- Beschreibungen zur Isochronen Map & siehe oben
-#### Feedback zur konkreten Implementierung
+### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
-	Ja, sporadisch, für Aufträge, die schnell fertig sein sollen oder evtl. Backups. Wenn POI wie cafe dann evtl auch für Kundentermine.
+	Ja, sporadisch, für Aufträge, die schnell fertig sein sollen oder evtl. Backups. Wenn POI wie cafe dann evtl. auch für Kundentermine.
 	- Was müsste sich ändern?
 		aus jetziger Sicht nichts
 - Angebot vor Ort
@@ -116,27 +116,27 @@ nein
 	- Backups in die Cloud erstellen
 
 
-### Interview II mit Probant 8
-#### Demografie:
+## Interview II mit Probant 8
+### Demografie:
 - Beruf: Museumsdirektor
 - Alter: 46-60
 - Geschlecht: M
-#### Neue Ideen oder Anregungen zum Projekt gehabt?
+### Neue Ideen oder Anregungen zum Projekt gehabt?
 Konkrete Anregungen nicht, aber sieht das Projekt schon in näherer Zukunft als noch beim letzten Gespräch.
-#### Input Exploration Teil
+### Input Exploration Teil
 Viele kleine Design Inputs bzw. Werbeinputs:
 - Werbevideo für den BBW mit schönen Schnittbildern, wo man auf „Probleme“ aufmerksam macht die man mit langsamen Downloads hat.
 - Bei der Decision response Bilder und mehr Infos über die konkrete Location.
 - Startseite evtl. Ein bisschen ausbauen mit mehr Infos und Bildern von konkreten BBWs
-#### Input Guided Teil
+### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
 	- Aufgaben wurden nicht gestellt, weil sie vom Probanden schon während dem Exploration Teil ausführlich abgehandelt wurden.
-#### Erfahrungen (subjektiv):
+### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
 		Kam grundsätzlich mit der Bedienung zurecht
 	- Passierte etwas unerwartetes?
-
+		Nein
 - Schwierigkeiten?
 	- Bei der Eingabe von Straßen wurde direkt nach dem Enter eine Aktion erwartet, wie bei Google maps
 - Verbesserungsvorschläge?
@@ -146,7 +146,7 @@ Viele kleine Design Inputs bzw. Werbeinputs:
 	- Isochrone Map mit mehreren Standorten auf einmal (war eigentlich von Anfang an so geplant -\> API unterstützte das leider nicht)
 	- Back Button unter Decision response
 	- Handy App?
-#### Feedback zur konkreten Implementierung
+### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
 	Ja, sporadisch oder evtl. wenn es mit POI (z.B. cafe) verknüpft ist auch für Meetings oder ähnlichem
 	- Was müsste sich ändern?
@@ -158,19 +158,19 @@ Viele kleine Design Inputs bzw. Werbeinputs:
 	- Meetings
 	- Schnelle Dantenbeschaffung (Backups, Zeitkritische Projekte)
 
-### Interview II mit Probant 10
-#### Demografie:
+## Interview II mit Probant 10
+### Demografie:
 - Beruf: Fotografin
 - Alter: 18-30
 - Geschlecht: W
-#### Neue Ideen oder Anregungen zum Projekt gehabt?
+### Neue Ideen oder Anregungen zum Projekt gehabt?
 Bei einem Projekt evtl. recht nützlich gewesen (Viele RAW Fotos mussten schnell übertragen werden)
-#### Input Exploration Teil
+### Input Exploration Teil
 Route planer wurde sofort verstanden, Isochrone Map musste nochmal erklärt werden.
-#### Input Guided Teil
+### Input Guided Teil
 - Lösen der Aufgaben erfolgreich?
 	Jas
-#### Erfahrungen (subjektiv):
+### Erfahrungen (subjektiv):
 - Was lief gut?
 	- kamen Sie mit der Bedienung zurecht?
 		Ja, kam ganz gut zurecht
@@ -180,11 +180,11 @@ Route planer wurde sofort verstanden, Isochrone Map musste nochmal erklärt werd
 	Aufgabe 2 musste zwei mal gemacht werden, weil unabsichtlich falsche Daten eingegeben wurden.
 - Verbesserungsvorschläge?
 	Evtl. Auf der Startseite gleiche auf beide Tools verweisen (siehe 3. Interview, Call to Action Button)
-#### Feedback zur konkreten Implementierung
+### Feedback zur konkreten Implementierung
 - Würden Sie das Angebot nutzen?
 	Ja, bei stressigen Projekten schon. Evtl. auch für Backups.
 	- Was müsste sich ändern?
-		Müsste on OÖ vorhanden sein.
+		Müsste in OÖ vorhanden sein.
 - Angebot vor Ort
 	- relativ simple Tisch mit Steckdosen und Netzwerkanschluss.
 	- nach Hinweis wurde auch die Idee mit Cafe für sehr wünschenswert empfunden.
